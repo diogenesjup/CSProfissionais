@@ -11,7 +11,7 @@
                 $('.sub-header').hide();
                 $('.work').html('<p class="text-center"><img src="images/loading.gif" style="margin-top:100px;"/></p>');
 
-                 $.get("http://www.diogenesjunior.com.br/json/listaProfissionais.php",  function(html){ $(".work").html(html);}); 
+                 $.get("json/listaProfissionais.php",  function(html){ $(".work").html(html);}); 
 
 
                initialize();
@@ -91,7 +91,7 @@
 
             // CONFIRMAÇÃO DE SOLICITAÇÃO DE CONTATO
             function solicContato(){
-               $.get("http://www.diogenesjunior.com.br/json/solicContato.php");
+               $.get("json/solicContato.php");
                swal("Muito bem!", 'Sua solicitação de contato foi feita. Em breve o usuário entrara em contato', "success");
 
             }

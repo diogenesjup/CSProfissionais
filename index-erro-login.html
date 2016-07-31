@@ -74,11 +74,11 @@
         <p>&nbsp;</p>
         <div class="row">
             <div class="col-sm-12 col-xs-12">
-                <button class="btn btn-dafault btn-lg" onclick="location.href='dashboard.html'">Estou procurando <br> profissionais</button>
+                <button class="btn btn-dafault btn-lg" data-toggle="modal" data-target="#modalCadastroCliente">Estou procurando <br> profissionais</button>
             </div>
             <p>&nbsp;</p>
             <div class="col-sm-12 col-xs-12">
-                <button class="btn btn-default btn-lg" onclick="location.href='dashboard.html'">Eu sou um <br> profissional</button>
+                <button class="btn btn-default btn-lg"  data-toggle="modal" data-target="#modalCadastroProfissional">Eu sou um <br> profissional</button>
             </div>
         </div>
         <p>&nbsp;</p>
@@ -98,7 +98,7 @@
         <h4 class="modal-title" id="myModalLabel">Login</h4>
       </div>
       <div class="modal-body">
-        <form method="post" action="http://www.diogenesjunior.com.br/json/proc-login.php" onSubmit="return ajaxSubmit(this);">
+        <form method="post" action="json/proc-login.php" onSubmit="return ajaxSubmit(this);">
             <div class="form-group">
                 <label>E-mail</label>
                 <input type="email" class="form-control" placeholder="Seu e-mail cadastrado" required name="email" />
@@ -120,6 +120,53 @@
 </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="modalCadastroCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Novo cadastro CS Profissionais</h4>
+      </div>
+      <div class="modal-body">
+
+        <form method="post" action="json/proc-cadastro-cliente.php" onSubmit="return ajaxSubmit(this);">
+            <div class="form-group">
+                <label>Seu nome</label>
+                <input type="text" class="form-control" placeholder="Digite seu nome completo" required name="nome" />
+            </div>
+            <div class="form-group">
+                <label>E-mail</label>
+                <input type="email" class="form-control" placeholder="Seu e-mail (também será o login)" required name="email" />
+            </div>
+            <div class="form-group">
+                <label>CPF</label>
+                <input type="text" class="form-control" placeholder="Digite seu cpf" required name="CPF" />
+            </div>
+            <div class="form-group">
+                <label>Seu CEP</label>
+                <input type="text" class="form-control" data-mask="99999-999" placeholder="Seu código postal" required name="cep" />
+            </div>
+            
+            <div class="form-group">
+                <label>Senha</label>
+                <input type="password" required class="form-control" placeholder="Sua senha cadastrada" name="senha" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-default">cadastrar</button>
+            </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
     <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>                                  
      
@@ -133,7 +180,7 @@
 	<script type="text/javascript" src="js/scripts.js"></script> 
 
     <script type="text/javascript">
-            swal("Ops!", 'Login ou Senha incorretos', "error");
+            alert("Login ou Senha incorretos");
             var ajaxSubmit = function(form) {
                
                 var url = $(form).attr('action');               

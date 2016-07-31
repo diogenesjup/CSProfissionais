@@ -17,7 +17,7 @@ var Cep = 0;
 function infoUsuario(info)
 {
      jQuery.ajax({
-        url: 'http://www.diogenesjunior.com.br/json/info-usuario.php?valor='+info,
+        url: 'json/info-usuario.php?valor='+info,
         type: 'get',
         //dataType: 'html',
         success:function(data)
@@ -54,7 +54,7 @@ infoUsuario("Cep");
 function showGetResult()
 {
      jQuery.ajax({
-        url: 'http://www.diogenesjunior.com.br/json/verificar-sessao.php',
+        url: 'json/verificar-sessao.php',
         type: 'get',
         //dataType: 'text/html',
         success:function(data)
