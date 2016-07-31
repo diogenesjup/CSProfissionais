@@ -102,7 +102,7 @@ function showGetResult()
             }
             if(data!="logado"){
               console.log("nao-logado");
-              location.href="index-erro-login.html";
+              //location.href="index-erro-login.html";
             }
 
             //document.write(data);

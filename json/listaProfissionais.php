@@ -27,7 +27,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT');
 	             <p>Rua Ricardo Pedro, 56 <br>São Paulo - SP<br>
 	             <i class="fa fa-phone" aria-hidden="true"></i> 0000-0000&nbsp;             
 	             </p>
-	             <p class="btn-detalhe"><a href="detalhes-user.php" class="btn btn-primary">DETALHES</a></p>
+	             <p class="btn-detalhe"><a href="detalhes-user.html" class="btn btn-primary">DETALHES</a></p>
          </div>
          <div class="col-sm-12 col-xs-12 text-left user-preview">         
 	             <h5>Nome do profissional</h5>
@@ -41,7 +41,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT');
 	             <p>Rua Ricardo Pedro, 56 <br>São Paulo - SP<br>
 	             <i class="fa fa-phone" aria-hidden="true"></i> 0000-0000&nbsp;             
 	             </p>
-	             <p class="btn-detalhe"><a href="detalhes-user.php" class="btn btn-primary">DETALHES</a></p>
+	             <p class="btn-detalhe"><a href="detalhes-user.html" class="btn btn-primary">DETALHES</a></p>
          </div>
          <div class="col-sm-12 col-xs-12 text-left user-preview">         
 	             <h5>Nome do profissional</h5>
@@ -55,7 +55,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT');
 	             <p>Rua Ricardo Pedro, 56 <br>São Paulo - SP<br>
 	             <i class="fa fa-phone" aria-hidden="true"></i> 0000-0000&nbsp;             
 	             </p>
-	             <p class="btn-detalhe"><a href="detalhes-user.php" class="btn btn-primary">DETALHES</a></p>
+	             <p class="btn-detalhe"><a href="detalhes-user.html" class="btn btn-primary">DETALHES</a></p>
          </div>
 
          <div class="col-sm-12 col-xs-12 text-center user-preview" id="areaBannerAnuncio1">
@@ -76,7 +76,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT');
 	             <p>Rua Ricardo Pedro, 56 <br>São Paulo - SP<br>
 	             <i class="fa fa-phone" aria-hidden="true"></i> 0000-0000&nbsp;             
 	             </p>
-	             <p class="btn-detalhe"><a href="detalhes-user.php" class="btn btn-primary">DETALHES</a></p>
+	             <p class="btn-detalhe"><a href="detalhes-user.html" class="btn btn-primary">DETALHES</a></p>
          </div>
 
          <div class="col-sm-12 col-xs-12 text-center user-preview" id="areaBannerAnuncio2">
@@ -97,7 +97,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT');
 	             <p>Rua Ricardo Pedro, 56 <br>São Paulo - SP<br>
 	             <i class="fa fa-phone" aria-hidden="true"></i> 0000-0000&nbsp;             
 	             </p>
-	             <p class="btn-detalhe"><a href="detalhes-user.php" class="btn btn-primary">DETALHES</a></p>
+	             <p class="btn-detalhe"><a href="detalhes-user.html" class="btn btn-primary">DETALHES</a></p>
          </div>
 
          <div class="col-sm-12 col-xs-12 text-center user-preview" id="areaBannerAnuncio3">
