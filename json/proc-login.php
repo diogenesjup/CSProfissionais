@@ -45,6 +45,8 @@ if($json_str!=""):
 	$_SESSION["Bairro"] = $json_str["Data"]["Endereco"]["Bairro"];
 	$_SESSION["Cep"] = $json_str["Data"]["Endereco"]["Cep"];
 
+	
+
 else:
     
     $_SESSION["logado"] = "não logado";

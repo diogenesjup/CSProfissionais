@@ -30,8 +30,7 @@
 <!-- ICONES -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
-<!-- ANIMATE -->
-<link rel="stylesheet" type="text/css" href="css/animate.css">
+
 <!-- FONTE UBUNTU -->
 <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
 
@@ -98,7 +97,7 @@
         <h4 class="modal-title" id="myModalLabel">Login</h4>
       </div>
       <div class="modal-body">
-        <form method="post" action="json/proc-login.php" onSubmit="return ajaxSubmit(this);">
+        <form method="post" action="http://www.diogenesjunior.com.br/cs/json/proc-login.php" onSubmit="return ajaxSubmit(this);">
             <div class="form-group">
                 <label>E-mail</label>
                 <input type="email" class="form-control" placeholder="Seu e-mail cadastrado" required name="email" />
@@ -130,7 +129,7 @@
       </div>
       <div class="modal-body">
 
-        <form method="post" action="json/proc-cadastro-cliente.php" onSubmit="return ajaxSubmit(this);">
+        <form method="post" action="http://www.diogenesjunior.com.br/cs/json/proc-cadastro-cliente.php" onSubmit="return ajaxSubmit(this);">
             <div class="form-group">
                 <label>Seu nome</label>
                 <input type="text" class="form-control" placeholder="Digite seu nome completo" required name="nome" />
@@ -194,7 +193,7 @@
                     type:'POST'
                 });
                 
-                location.href="dashboard.html";
+                location.href="dashboard.html?v=2";
                 return false;
             }
 

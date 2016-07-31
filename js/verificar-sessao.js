@@ -17,7 +17,7 @@ var Cep = 0;
 function infoUsuario(info)
 {
      jQuery.ajax({
-        url: 'json/info-usuario.php?valor='+info,
+        url: 'http://www.diogenesjunior.com.br/cs/json/info-usuario.php?valor='+info,
         type: 'get',
         //dataType: 'html',
         success:function(data)
@@ -54,7 +54,7 @@ infoUsuario("Cep");
 function showGetResult()
 {
      jQuery.ajax({
-        url: 'json/verificar-sessao.php',
+        url: 'http://www.diogenesjunior.com.br/cs/json/verificar-sessao.php',
         type: 'get',
         //dataType: 'text/html',
         success:function(data)
@@ -102,7 +102,7 @@ function showGetResult()
             }
             if(data!="logado"){
               console.log("nao-logado");
-              //location.href="index-erro-login.html";
+              location.href="index-erro-login.html";
             }
 
             //document.write(data);
