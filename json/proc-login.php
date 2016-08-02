@@ -16,7 +16,7 @@ $postdata = http_build_query(
 $opts = array('http' =>
     array(
         'method'  => 'POST',
-        'header'  => 'Content-type: application/json',
+        'header'  => 'Content-type: application/x-www-form-urlencoded',
         'content' => $postdata
     )
 );
@@ -31,28 +31,50 @@ if($json_str!=""):
     // Valores retornados
 	// ClienteId, Nome, TelefoneFixo, TelefoneCelular, Email, Cpf, Senha, Endereco, CidadeId, Nome, Numero, Complemento, Bairro, Cep
 
-	$_SESSION["logado"] = "cliente";
-	$_SESSION["ClienteId"] = $json_str["Data"]["ClienteId"];
-	$_SESSION["Nome"] = $json_str["Data"]["Nome"];
-	$_SESSION["TelefoneFixo"] = $json_str["Data"]["TelefoneFixo"];
-	$_SESSION["TelefoneCelular"] = $json_str["Data"]["TelefoneCelular"];
-	$_SESSION["Email"] = $json_str["Data"]["Email"];
-	$_SESSION["Cpf"] = $json_str["Data"]["Cpf"];
-	$_SESSION["CidadeId"] = $json_str["Data"]["Endereco"]["CidadeId"];
-	$_SESSION["NomeRua"] = $json_str["Data"]["Endereco"]["Nome"];
-	$_SESSION["Numero"] = $json_str["Data"]["Endereco"]["Numero"];
-	$_SESSION["Complemento"] = $json_str["Data"]["Endereco"]["Complemento"];
-	$_SESSION["Bairro"] = $json_str["Data"]["Endereco"]["Bairro"];
-	$_SESSION["Cep"] = $json_str["Data"]["Endereco"]["Cep"];
+    require("conexao.php");
 
+	$logado = "cliente";
+	$ClienteId = $json_str["Data"]["ClienteId"];
+	$Nome = $json_str["Data"]["Nome"];
+	$TelefoneFixo = $json_str["Data"]["TelefoneFixo"];
+	$TelefoneCelular = $json_str["Data"]["TelefoneCelular"];
+	$Email = $json_str["Data"]["Email"];
+	$Cpf = $json_str["Data"]["Cpf"];
+	$CidadeId = $json_str["Data"]["Endereco"]["CidadeId"];
+	$NomeRua = $json_str["Data"]["Endereco"]["Nome"];
+	$Numero = $json_str["Data"]["Endereco"]["Numero"];
+	$Complemento = $json_str["Data"]["Endereco"]["Complemento"];
+	$Bairro = $json_str["Data"]["Endereco"]["Bairro"];
+	$Cep = $json_str["Data"]["Endereco"]["Cep"];
+	$lat = $json_str["Data"]["Endereco"]["Latitude"];
+	$lon = $json_str["Data"]["Endereco"]["Longitude"];
+
+	$sql = "INSERT INTO usuario(logado,nome,telfixo,telcelular,email,cpf,cidade,nomerua,numero,complemento,bairro,cep,lat,lon,clietid) VALUES(:logado,:nome,:telfixo,:telcelular,:email,:cpf,:cidade,:nomerua,:numero,:complemento,:bairro,:cep,:lat,:lon,:clietid)";
+	$stmt = $PDO->prepare( $sql );
 	
+	$stmt->bindParam( ':logado', $logado );
+	$stmt->bindParam( ':nome', $Nome );
+	$stmt->bindParam( ':telfixo', $TelefoneFixo );
+	$stmt->bindParam( ':telcelular', $TelefoneCelular );
+	$stmt->bindParam( ':email', $Email );
+	$stmt->bindParam( ':cpf', $Cpf );
+	$stmt->bindParam( ':cidade', $CidadeId );
+	$stmt->bindParam( ':nomerua', $NomeRua );
+	$stmt->bindParam( ':numero', $Numero );
+	$stmt->bindParam( ':complemento', $Complemento );
+	$stmt->bindParam( ':bairro', $Bairro );
+	$stmt->bindParam( ':cep', $Cep );
+	$stmt->bindParam( ':lat', $lat );
+	$stmt->bindParam( ':lon', $lon );
+	$stmt->bindParam( ':clietid', $ClienteId );
+	 
+	$result = $stmt->execute();	
 
 else:
     
-    $_SESSION["logado"] = "não logado";
+    $logado = "não logado";
     echo "Login não encontrado"; 
 
 endif;
-
 
 ?>

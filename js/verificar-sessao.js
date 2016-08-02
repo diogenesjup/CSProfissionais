@@ -1,4 +1,6 @@
 var logado = 1;
+var key = localStorage.getItem("email");
+alert(key);
 
 // CARREGAR INFORMAÇÕES DO USUÁRIO LOGADO
 var ClienteId = 0;
@@ -17,7 +19,7 @@ var Cep = 0;
 function infoUsuario(info)
 {
      jQuery.ajax({
-        url: 'http://www.diogenesjunior.com.br/cs/json/info-usuario.php?valor='+info,
+        url: 'http://www.diogenesjunior.com.br/cs/json/info-usuario.php?valor='+info+'&chave='+key,
         type: 'get',
         //dataType: 'html',
         success:function(data)
@@ -54,7 +56,7 @@ infoUsuario("Cep");
 function showGetResult()
 {
      jQuery.ajax({
-        url: 'http://www.diogenesjunior.com.br/cs/json/verificar-sessao.php',
+        url: 'http://www.diogenesjunior.com.br/cs/json/verificar-sessao.php?chave='+key,
         type: 'get',
         //dataType: 'text/html',
         success:function(data)

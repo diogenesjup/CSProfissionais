@@ -100,7 +100,7 @@
         <form method="post" action="http://www.diogenesjunior.com.br/cs/json/proc-login.php" onSubmit="return ajaxSubmit(this);">
             <div class="form-group">
                 <label>E-mail</label>
-                <input type="email" class="form-control" placeholder="Seu e-mail cadastrado" required name="email" />
+                <input type="email" class="form-control" id="emailLogin" placeholder="Seu e-mail cadastrado" required name="email" />
             </div>
             <div class="form-group">
                 <label>Senha</label>
@@ -173,12 +173,10 @@
 	<script type="text/javascript" src="js/bootstrap-notify.js"></script>
 	<script type="text/javascript" src="js/wow.min.js"></script>
     
-    <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    
-	<script type="text/javascript" src="js/scripts.js"></script> 
+
 
     <script type="text/javascript">
+    new WOW().init();
             alert("Login ou Senha incorretos");
             var ajaxSubmit = function(form) {
                
@@ -192,8 +190,8 @@
                     dataType: 'json',
                     type:'POST'
                 });
-                
-                location.href="dashboard.html?v=2";
+                localStorage.setItem("email", $("#emailLogin").val());
+                setTimeout(location.href="dashboard.html?v=2", 5500);
                 return false;
             }
 
