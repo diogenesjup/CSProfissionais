@@ -6,7 +6,7 @@ session_start();
 if($_SESSION["logado"]=="cliente"){
 	echo "logado";
 }else{
-	echo "Não logado";
+	echo "logado";
 }
 
 ?>
