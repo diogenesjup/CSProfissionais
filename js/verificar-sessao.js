@@ -1,6 +1,6 @@
 var logado = 1;
 var key = localStorage.getItem("email");
-alert(key);
+//alert(key);
 
 // CARREGAR INFORMAÇÕES DO USUÁRIO LOGADO
 var ClienteId = 0;
