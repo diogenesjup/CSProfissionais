@@ -25,6 +25,8 @@ if($info=="NomeRua") echo $usuario[0]["nomerua"];
 if($info=="Numero") echo $usuario[0]["numero"];
 if($info=="Complemento") echo $usuario[0]["complemento"];
 if($info=="Bairro") echo $usuario[0]["bairro"];
-if($info=="Cep") echo $usuario[0]["cep"];  
+if($info=="Cep") echo $usuario[0]["cep"]; 
+if($info=="Lat") echo $usuario[0]["lat"]; 
+if($info=="Lon") echo $usuario[0]["lon"];  
 
 ?>

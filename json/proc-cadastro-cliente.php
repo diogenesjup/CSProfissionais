@@ -5,20 +5,75 @@ header('Access-Control-Allow-Methods: GET, POST, PUT');
 
 session_start();
 
-$nome = $_POST["nome"];
-$cep  = $_POST["cep"];
-$cpf = $_POST["cpf"];
-$email = $_POST["email"];
-$senha = $_POST["senha"];
+$Nome = $_POST["nome"];
+$Cep  = $_POST["cep"];
+$Cpf = $_POST["cpf"];
+$Email = $_POST["email"];
+$Senha = $_POST["senha"];
+$Estado = $_POST["estado"];
+$Cidade = $_POST["cidade"];
 
+// BUSCAR LISTA DE ESTADOS E CIDADES PARA PEGAR O ID DA CIDADE
+//
+// ESTADOS
+//
+$estados_API = file_get_contents('http://api.csprofissionais.com.br/api/Estado/Listar');
+$json_estados = json_decode($estados_API, true);
+
+$tot_estados = count($json_estados["Data"]["List"]);
+
+$flagEstados = 0;
+
+while($flagEstados<$tot_estados):
+  
+  if($json_estados["Data"]["List"][$flagEstados]["Sigla"] == $Estado) $Estado = $json_estados["Data"]["List"][$flagEstados]["EstadoId"];
+  $flagEstados++;
+
+endwhile;
+//
+// CIDADES
+//
+$cidades_API = file_get_contents('http://api.csprofissionais.com.br/api/Cidade/Listar/'.$Estado);
+$json_cidades = json_decode($cidades_API, true);
+
+$tot_cidades = count($json_cidades["Data"]["List"]);
+
+$flagCidades = 0;
+
+while($flagCidades<$tot_cidades):
+  
+  if($json_cidades["Data"]["List"][$flagCidades]["Nome"] == $Cidade && $json_cidades["Data"]["List"][$flagCidades]["EstadoId"] == $Estado) $Cidade = $json_cidades["Data"]["List"][$flagCidades]["CidadeId"];
+  $flagCidades++;
+
+endwhile;
+//
+//
+// FIM BUSCA ESTADOS / CIDADES
+//
+//
+
+$TelefoneFixo = "00000000";
+$TelefoneCelular = "00000000";
+
+$Endereco = "N/A";
+$CidadeId = $Cidade;
+$enderecoNome = "N/A";
+$Numero = "N/A";
+$Complemento = "N/A";
+$Bairro = "N/A";
+
+$Latitude = "-25.2912987";
+$Longitude = "-25.2912987";
 
 $postdata = http_build_query(
     array(
-        'nome' => $nome,
-        'cpf' => $cpf,
-        'email' => $email,
-        'senha' => $senha
-        //'endereco[cep]' => $cep
+
+        'nome' => $Nome,
+        'cpf' => $Cpf,
+        'email' => $Email,
+        'senha' => $Senha,
+        'endereco' => array('CidadeId' => $CidadeId, 'Nome' => $enderecoNome, 'Numero' => $Numero, 'Complemento' => $Complemento, 'Bairro' => $Bairro, 'Cep' => $Cep, 'Latitude' => $Latitude, 'Longitude' => $Longitude )
+        
     )
 );
 
@@ -41,8 +96,8 @@ echo "fim execução";
 
 $postdata2 = http_build_query(
     array(
-        'email' => $email,
-        'senha' => $senha
+        'email' => $Email,
+        'senha' => $Senha
     )
 );
 
@@ -66,17 +121,47 @@ if($json_str2!=""):
 	// ClienteId, Nome, TelefoneFixo, TelefoneCelular, Email, Cpf, Senha, Endereco, CidadeId, Nome, Numero, Complemento, Bairro, Cep
     // Como é um novo cadastro, ainda não temos todos os campos
     //
+    $logado = "cliente";
+    $ClienteId = $json_str["Data"]["ClienteId"];
+    $Nome = $json_str["Data"]["Nome"];
+    $TelefoneFixo = $json_str["Data"]["TelefoneFixo"];
+    $TelefoneCelular = $json_str["Data"]["TelefoneCelular"];
+    $Email = $json_str["Data"]["Email"];
+    $Cpf = $json_str["Data"]["Cpf"];
+    $CidadeId = $json_str["Data"]["Endereco"]["CidadeId"];
+    $NomeRua = $json_str["Data"]["Endereco"]["Nome"];
+    $Numero = $json_str["Data"]["Endereco"]["Numero"];
+    $Complemento = $json_str["Data"]["Endereco"]["Complemento"];
+    $Bairro = $json_str["Data"]["Endereco"]["Bairro"];
+    $Cep = $json_str["Data"]["Endereco"]["Cep"];
+    $lat = $json_str["Data"]["Endereco"]["Latitude"];
+    $lon = $json_str["Data"]["Endereco"]["Longitude"];
 
-	$_SESSION["logado"] = "cliente";
-	$_SESSION["ClienteId"] = $json_str["Data"]["ClienteId"];
-	$_SESSION["Nome"] = $json_str["Data"]["Nome"];
-	$_SESSION["Email"] = $json_str["Data"]["Email"];
-	$_SESSION["Cpf"] = $json_str["Data"]["Cpf"];
-	$_SESSION["Cep"] = $json_str["Data"]["Endereco"]["Cep"]; 
+    require("conexao.php");
+	$sql = "INSERT INTO usuario(logado,nome,telfixo,telcelular,email,cpf,cidade,nomerua,numero,complemento,bairro,cep,lat,lon,clietid) VALUES(:logado,:nome,:telfixo,:telcelular,:email,:cpf,:cidade,:nomerua,:numero,:complemento,:bairro,:cep,:lat,:lon,:clietid)";
+    $stmt = $PDO->prepare( $sql );
+    
+    $stmt->bindParam( ':logado', $logado );
+    $stmt->bindParam( ':nome', $Nome );
+    $stmt->bindParam( ':telfixo', $TelefoneFixo );
+    $stmt->bindParam( ':telcelular', $TelefoneCelular );
+    $stmt->bindParam( ':email', $Email );
+    $stmt->bindParam( ':cpf', $Cpf );
+    $stmt->bindParam( ':cidade', $CidadeId );
+    $stmt->bindParam( ':nomerua', $NomeRua );
+    $stmt->bindParam( ':numero', $Numero );
+    $stmt->bindParam( ':complemento', $Complemento );
+    $stmt->bindParam( ':bairro', $Bairro );
+    $stmt->bindParam( ':cep', $Cep );
+    $stmt->bindParam( ':lat', $lat );
+    $stmt->bindParam( ':lon', $lon );
+    $stmt->bindParam( ':clietid', $ClienteId );
+     
+    $result = $stmt->execute(); 
 
 else:
     
-    $_SESSION["logado"] = "não logado";
+    $logado = "não logado";
     echo "Login não encontrado"; 
 
 endif;

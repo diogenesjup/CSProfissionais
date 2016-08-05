@@ -15,6 +15,8 @@ var Numero = 0;
 var Complemento = 0;
 var Bairro = 0;
 var Cep = 0;
+var Lat = 0;
+var Lon = 0;
 
 function infoUsuario(info)
 {
@@ -36,6 +38,8 @@ function infoUsuario(info)
             if(info=="Complemento"){ Complemento = data; }
             if(info=="Bairro"){ Bairro = data; }
             if(info=="Cep"){ Cep = data; }
+            if(info=="Lat"){ Lat = data; }
+            if(info=="Lon"){ Lon = data; }
         }       
     });
 }
@@ -52,6 +56,8 @@ infoUsuario("Numero");
 infoUsuario("Complemento");
 infoUsuario("Bairro");
 infoUsuario("Cep");
+infoUsuario("Lat");
+infoUsuario("Lon");
 
 function showGetResult()
 {
@@ -80,6 +86,9 @@ function showGetResult()
               console.log("NUMERO: "+Numero);
               console.log("BAIRRO: "+Bairro);
               console.log("CIDADE: "+CidadeId);
+
+              console.log("LAT: "+Lat);
+              console.log("LON: "+Lon);
               
               // PASSAR VALOR DO CEP PARA O CAMPO DE BUSCA
               $("#cepPesquisa").val(Cep);
