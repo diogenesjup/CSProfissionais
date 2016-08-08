@@ -8,6 +8,9 @@ $cep = $_GET["cep"];
 $lat = $_GET["lat"];
 $lon = $_GET["lon"];
 
+if($lat=="0") $lat = "-23.5806447";
+if($lon=="0") $lon = "-46.6187552";
+
 $clienteid =  $_GET["idcliente"];
 $radius = "6371";
 $dist = "25";
