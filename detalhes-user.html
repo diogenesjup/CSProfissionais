@@ -44,7 +44,7 @@
 <header>
 	<div class="top wow fadeInDown" data-wow-delay="0.5s" data-wow-duration="1.7s">
 	       <div class="col-sm-6 col-xs-6" id="nomeUsuario">
-                Nome do usuário 
+                
             </div>
 	       <div class="col-sm-6 col-xs-6" style="text-align:right;">
                 &nbsp;
@@ -66,60 +66,6 @@
 
 
      
-
-
-
-     <div class="row">
-
-         <div class="col-sm-12 col-xs-12 text-left user-preview">
-             <img src="images/1790778.jpg" class="profilePicture" />
-             <h4>Nome do profissional</h4>
-             <span>
-                     <i class="fa fa-star" aria-hidden="true"></i>
-                     <i class="fa fa-star" aria-hidden="true"></i>
-                     <i class="fa fa-star" aria-hidden="true"></i>
-                     <i class="fa fa-star" aria-hidden="true"></i>
-                     <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                 </span>
-
-             
-             <p>&nbsp;</p>
-           
-             <p> <i class="fa fa-phone" aria-hidden="true"></i> 11 0000-0000&nbsp; / &nbsp;11 0000-0000&nbsp;</p>
-           
-             <p><b>Endereço:</b> Rua Ricardo Pedro, 56 <br>São Paulo - SP<br>                          
-             </p>
-             <hr />
-             <p><b>Sobre:</b> Trabalho com sistemas a mais de 10 anos, e tenho certeza que posso te ajudar na sua demanda.</p>
-             <hr />
-
-             <p>
-                 <a href="#" class="btn btn-default" data-toggle="modal" data-target="#ultimosTrabalhos">Ver últimos trabalhos</a>
-             </p>
-             <p>
-                 <a href="mensagens.html" class="btn btn-default">Enviar mensagem</a>
-             </p>
-             <p>
-                 <a href="#" class="btn btn-default" data-toggle="modal" data-target="#avaliarUsuario">Avaliar esse usuário</a>
-             </p>
-             <p>
-                 <a href="#" class="btn btn-default" onclick="solicContato();" >Solicitar Contato</a>
-             </p>
-             <p>
-                 <a href="#" class="btn btn-primary" style="width:100%;" data-toggle="modal" data-target="#verComentarios"><i class="fa fa-star" aria-hidden="true"></i> Ver comentários</a>
-             </p>
-            
-         </div>
-
-         
-
-         <div class="col-sm-12 col-xs-12 text-center user-preview" id="areaBannerAnuncio3">
-             <a href="#">
-                 <img src="http://www.csprofissionais.com.br/upload/11072016234342Anu1.png" />
-             </a>
-         </div>
-
-     </div>
 
 
 
@@ -161,16 +107,9 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Últimos trabalhos</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="ultimosTrabalhosWork">
         
-        <p>
-        <img src="images/1.jpg" class="img-responsive" />
-        </p>
-
-        <p>
-        <img src="images/1.jpg" class="img-responsive" />
-        </p>
-
+    
        
 
 
@@ -316,12 +255,28 @@
 
     <script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>
 
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&key=87847234"></script>
-
-  
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&key=87847234"></script>    
 
     <script type="text/javascript" src="js/scripts.js"></script>
 
+    <script type="text/javascript" src="js/verificar-sessao.js?v=2"></script>
+
+
+    <script type="text/javascript">
+        
+
+    var myParam = location.search.split('idUsuario=')[1];
+
+    $.get("http://www.diogenesjunior.com.br/cs/json/getProfissional.php?profissional="+myParam,  function(html){ $(".work").html(html);}); 
+
+
+    function buscarUltimosTrabalhos(idUsuarioProfissional){
+
+        $.get("http://www.diogenesjunior.com.br/cs/json/getImagens.php?profissional="+idUsuarioProfissional,  function(html){ $("#ultimosTrabalhosWork").html(html);});
+
+    }
+    </script>
+    
 
 
     <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->

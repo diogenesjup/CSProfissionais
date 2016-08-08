@@ -226,7 +226,7 @@ nav ul li.active{
 
 
 #GoogleMapa{
-    width:101%;height:120px;
+    width:101%;height:0px;
     border-left:solid 1px #6279b5;
     border-right:solid 1px #6279b5;
     background:#efefef;

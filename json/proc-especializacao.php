@@ -12,9 +12,11 @@ $tot_estados = count($json_estados["Data"]["List"]);
 
 $flag = 0;
 
+echo "<option value=''>", "Selecione um item </option>";
+
 while($flag<$tot_estados):
 
-	echo "<option value='", $json_estados["Data"]["List"][$flag]["Nome"], "'>";
+	echo "<option value='", $json_estados["Data"]["List"][$flag]["Nome"], "'>", $json_estados["Data"]["List"][$flag]["Nome"], "</option>";
 
 	$flag++;
 

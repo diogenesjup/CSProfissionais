@@ -109,6 +109,10 @@ function showGetResult()
               // CIDADE VINDO EM BRANCO POR CAUSA QUE O RETORNO ESTÁ VINDO COM ID EM VEZ DO NOME DA CIDADE
               //$("#cidadeCliente").val(CidadeId);
               $("#cepCliente").val(Cep);
+              
+              $("#hiddenClienteId").val(ClienteId);
+              $("#latCliente").val(Lat);
+              $("#lonCliente").val(Lon);
 
             }
             if(data!="logado"){

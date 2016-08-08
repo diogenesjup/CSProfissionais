@@ -51,7 +51,7 @@
 <header>
 	<div class="top wow fadeInDown" data-wow-delay="0.5s" data-wow-duration="1.7s">
 	        <div class="col-sm-6 col-xs-6" id="nomeUsuario">
-	            Nome do usuário 
+	            
 	        </div>
 	        <div class="col-sm-6 col-xs-6" style="text-align:right;">
 	            &nbsp;
@@ -71,9 +71,15 @@
 </div>
 <!-- SUB HEADER -->
 
-
+<!-- GOOGLE MAPS -->
+<div id="GoogleMapa"></div>
+<!-- GOOGLE MAPS -->
 <!-- WORK -->
 <div class="work">
+
+
+
+
 <div class="container">
      <div class="row">
          <div class="col-sm-12 col-xs-12 text-center">
@@ -87,10 +93,10 @@
                  
                  <div class="form-group">
                      <!--<input type="text" class="form-control input-lg" required name="tipoProfissional" id="tipoProfissionalPesquisa" placeholder="Tipo de profissional" />-->
-                     <input list="tipoProfissionalLista" name="tipoProfissional" id="tipoProfissionalPesquisa" class="form-control input-lg" required placeholder="Tipo de profissional">
-                      <datalist id="tipoProfissionalLista">
-                          <option value="digite alguma coisa">
-                      </datalist>
+                     <select id="tipoProfissionalLista" name="tipoProfissional" class="form-control input-lg" required>
+                         <option value="">Selecione um item</option>
+                     </select>
+                     
                  </div>
                  
 
@@ -99,6 +105,10 @@
                  <div class="form-group">
                      <input type="text" class="form-control input-lg" required name="cep" id="cepPesquisa" data-mask="99999-999" placeholder="CEP do local do serviço" />
                  </div>
+                 
+                 <input type="hidden" name="hiddenClienteId" id="hiddenClienteId" value="">
+                 <input type="hidden" name="latCliente" id="latCliente" value="" />
+                 <input type="hidden" name="lonCliente" id="lonCliente" value="">
                  
                  <div class="form-group">
                      <button id="btnPesquisar" class="btn btn-default btn-lg">procurar</button>
@@ -158,10 +168,9 @@
 
     <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
 
-    <script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>
-    
+    <script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>    
 
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCUGRiH2iey-c2WqqeegGF2qpxBDNLsmfQ"></script>
 
 	<script type="text/javascript" src="js/scripts.js"></script>
 

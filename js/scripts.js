@@ -10,22 +10,66 @@
            $.get("http://www.diogenesjunior.com.br/cs/json/proc-especializacao.php",  function(html){ $("#tipoProfissionalLista").html(html);}); 
 
 
-            // FORMULÁRIO DE PESQUISA  APENAS COM JAVASCRIPT          
+            // FORMULÁRIO DE PESQUISA APENAS COM JAVASCRIPT          
             //
             
             $('#btnPesquisar').click(function(){  
              
-                var tipoProfPesquisa = $('tipoProfissionalPesquisa').val();
-                var cepPesquisa = $('cepPesquisa').val();
+                var tipoProfPesquisa = $('#tipoProfissionalLista').val();
+                var cepPesquisa = $('#cepPesquisa').val();
+                var latCliente = $('#latCliente').val();
+                var lonCliente = $('#lonCliente').val();
+                var idClienteHidden = $('#hiddenClienteId').val();
                 
                 $('.sub-header').hide();
+
                 $('.work').html('<p class="text-center"><img src="images/loading.gif" style="margin-top:100px;"/></p>');
 
-                 $.get("http://www.diogenesjunior.com.br/cs/json/listaProfissionais.php",  function(html){ $(".work").html(html);}); 
+                 $.get("http://www.diogenesjunior.com.br/cs/json/listaProfissionais.php?tipo="+tipoProfPesquisa+"&cep="+cepPesquisa+"&lat="+latCliente+"&lon="+lonCliente+"&idcliente="+idClienteHidden,  function(html){ $(".work").html(html);}); 
 
+                                                               //
+                                                               //
+                                                               //
+                                                               // DESENHAR O MAPA DO GOOGLE
+                                                               //
+                                                               //
+                                                               //
+                                                                   
+                                                                    document.getElementById("GoogleMapa").style.height = "120px";
+                                                                    var latLng = new google.maps.LatLng(-23.566525,-46.649680); 
+                                                                    var mapOptions = {
+                                                                        zoom: 17,
+                                                                        center: latLng,
+                                                                        panControl: true, 
+                                                                        draggable: false,
+                                                                        zoomControl: false,
+                                                                        scrollwheel: false,
+                                                                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                                                                    };
 
-               initialize();
-                
+                                                                    var map = new google.maps.Map(document.getElementById('GoogleMapa'), mapOptions);
+
+                                                                    var image = {
+                                                                     url: 'images/icon/icon-64.png',
+                                                                      size: new google.maps.Size(64, 64),
+                                                                      origin: new google.maps.Point(0,0),
+                                                                      anchor: new google.maps.Point(90, 84)
+                                                                    };
+
+                                                                    var marker = new google.maps.Marker({
+                                                                        icon: image,
+                                                                        position: latLng,
+                                                                        map: map,
+                                                                        title:"Ver no Google Maps"
+                                                                    });
+
+                                                                    google.maps.event.addListener(marker,'click',function(){
+                                                                        window.open('https://goo.gl/maps/yO2f2','_blank');
+                                                                    });
+
+                                                                 
+
+                                                                            
                 
             });          
 
@@ -122,41 +166,5 @@
               });
 
 
-           // DESENHAR O MAPA DO GOOGLE
-           //
-            function initialize() {
-                var latLng = new google.maps.LatLng(-23.566525,-46.649680); 
-                var mapOptions = {
-                    zoom: 17,
-                    center: latLng,
-                    panControl: false, 
-                    draggable: false,
-                    zoomControl: false,
-                    scrollwheel: false,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
-
-                var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-                var image = {
-                 url: 'http://www.system-dreams.com/images/icoLocal.png',
-                  size: new google.maps.Size(61, 85),
-                  origin: new google.maps.Point(0,0),
-                  anchor: new google.maps.Point(90, 84)
-                };
 
 
-                var marker = new google.maps.Marker({
-                    icon: image,
-                    position: latLng,
-                    map: map,
-                    title:"Ver no Google Maps"
-                });
-
-                google.maps.event.addListener(marker,'click',function(){
-                    window.open('https://goo.gl/maps/yO2f2','_blank');
-                });
-
-            }
-
-            google.maps.event.addDomListener(window, 'load', initialize); 

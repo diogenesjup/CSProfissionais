@@ -13,6 +13,9 @@ $Senha = $_POST["senha"];
 $Estado = $_POST["estado"];
 $Cidade = $_POST["cidade"];
 
+$gmap_estado = $estado;
+$gmap_cidade = $cidade;
+
 // BUSCAR LISTA DE ESTADOS E CIDADES PARA PEGAR O ID DA CIDADE
 //
 // ESTADOS
@@ -62,8 +65,27 @@ $Numero = "N/A";
 $Complemento = "N/A";
 $Bairro = "N/A";
 
-$Latitude = "-25.2912987";
-$Longitude = "-25.2912987";
+$gmap_cidade = str_replace(" ", "", $gmap_cidade);
+$address = $gmap_estado."+".$gmap_cidade;
+$url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false&region=Brasil";
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+$response = curl_exec($ch);
+curl_close($ch);
+$response_a = json_decode($response);
+
+$Latitude = $response_a->results[0]->geometry->location->lat;
+$Longitude = $response_a->results[0]->geometry->location->lng;
+
+if($Latitude=="" || $Longitude==""){
+    $Latitude = "-25.2912987";
+    $Longitude = "-25.2912987";
+}
 
 $postdata = http_build_query(
     array(
