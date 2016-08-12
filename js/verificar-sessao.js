@@ -74,8 +74,17 @@ function showGetResult()
               logado = 0;              
 
               console.log("ID CLIENTE: "+ClienteId);
+              
+              if(ClienteId==""){ location.reload(); } 
+
+              $("#idClienteAvaliacao").val(ClienteId);
+
+              $.get("http://www.diogenesjunior.com.br/cs/json/chat.php?cliente="+ClienteId,  function(html){ $("#mensagemLista").html(html);});
+
               console.log("NOME: "+Nome);
               console.log("CEP: "+Cep);
+
+              if(Cep==""){ location.reload(); } 
 
               console.log("CPF: "+Cpf);
               console.log("EMAIL: "+Email);
@@ -89,6 +98,9 @@ function showGetResult()
 
               console.log("LAT: "+Lat);
               console.log("LON: "+Lon);
+
+              if(Lat==""){ location.reload(); } 
+              if(Lon==""){ location.reload(); } 
               
               // PASSAR VALOR DO CEP PARA O CAMPO DE BUSCA
               $("#cepPesquisa").val(Cep);

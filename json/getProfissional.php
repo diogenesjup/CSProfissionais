@@ -19,6 +19,7 @@ $json_str = json_decode($json_file, true);
     "TelefoneCelular": "1192323233",
     "Telefonefixo": "1122222226",
     "Email": "fernando@teste.com",
+    "Descricao:" "Trabalho a mais de 10 anos com desenvolvimento\r\n<br>Alta tecnologia\r\nAplicações mobiles e web",
     "NroEstrela": 0,
     "AceitaRegistro": false,
     "Destaque": false,
@@ -72,7 +73,7 @@ $json_str = json_decode($json_file, true);
              <p><b>Endereço:</b> <?php echo  $json_str["Data"]["Endereco"]["Nome"], " ",$json_str["Data"]["Endereco"]["Numero"], " - ", $json_str["Data"]["Endereco"]["Complemento"], $json_str["Data"]["Endereco"]["Bairro"];  ?><br>                          
              </p>
              <hr />
-             <p><b>Sobre:</b> Trabalho com sistemas a mais de 10 anos, e tenho certeza que posso te ajudar na sua demanda.</p>
+             <p><b>Sobre:</b> <?php echo $json_str["Data"]["Descricao"]; ?></p>
              <hr />
 
              <p>

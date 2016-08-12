@@ -7,7 +7,7 @@
            // PREENCHER O AUTO COMPLETE COM OS DADOS DA ESPECIALIZAÇÃO
            // VINDOS DA API
            //
-           $.get("http://www.diogenesjunior.com.br/cs/json/proc-especializacao.php",  function(html){ $("#tipoProfissionalLista").html(html);}); 
+           //$.get("http://www.diogenesjunior.com.br/cs/json/proc-especializacao.php",  function(html){ $("#tipoProfissionalLista").html(html);}); 
 
 
             // FORMULÁRIO DE PESQUISA APENAS COM JAVASCRIPT          
@@ -36,35 +36,85 @@
                                                                //
                                                                    
                                                                     document.getElementById("GoogleMapa").style.height = "120px";
+
                                                                     var latLng = new google.maps.LatLng(-23.566525,-46.649680); 
+                                                                    var latLng2 = new google.maps.LatLng(-23.5788806,-46.6183882); 
+                                                                    var latLng3 = new google.maps.LatLng(-23.57887,-46.61837); 
+                                                                    var latLng4 = new google.maps.LatLng(-23.5820807,-46.6168111); 
+                                                                    var latLng5 = new google.maps.LatLng(-23.5820807,-46.6168111); 
+
                                                                     var mapOptions = {
-                                                                        zoom: 17,
+                                                                        zoom: 12,
                                                                         center: latLng,
                                                                         panControl: true, 
-                                                                        draggable: false,
-                                                                        zoomControl: false,
-                                                                        scrollwheel: false,
+                                                                        draggable: true,
+                                                                        zoomControl: true,
+                                                                        scrollwheel: true,
                                                                         mapTypeId: google.maps.MapTypeId.ROADMAP
                                                                     };
 
                                                                     var map = new google.maps.Map(document.getElementById('GoogleMapa'), mapOptions);
 
                                                                     var image = {
-                                                                     url: 'images/icon/icon-64.png',
-                                                                      size: new google.maps.Size(64, 64),
+                                                                     url: 'images/icon/icon-36-ldpi.png',
+                                                                      size: new google.maps.Size(36, 36),
                                                                       origin: new google.maps.Point(0,0),
-                                                                      anchor: new google.maps.Point(90, 84)
+                                                                      anchor: new google.maps.Point(60, 64)
                                                                     };
 
                                                                     var marker = new google.maps.Marker({
                                                                         icon: image,
                                                                         position: latLng,
                                                                         map: map,
-                                                                        title:"Ver no Google Maps"
+                                                                        title:"Ver perfil do profissional"
+                                                                    });
+
+                                                                    var marker2 = new google.maps.Marker({
+                                                                        icon: image,
+                                                                        position: latLng2,
+                                                                        map: map,
+                                                                        title:"Ver perfil do profissional"
+                                                                    });
+
+                                                                    var marker3 = new google.maps.Marker({
+                                                                        icon: image,
+                                                                        position: latLng3,
+                                                                        map: map,
+                                                                        title:"Ver perfil do profissional"
+                                                                    });
+
+                                                                    var marker4 = new google.maps.Marker({
+                                                                        icon: image,
+                                                                        position: latLng4,
+                                                                        map: map,
+                                                                        title:"Ver perfil do profissional"
+                                                                    });
+
+                                                                    var marker5 = new google.maps.Marker({
+                                                                        icon: image,
+                                                                        position: latLng5,
+                                                                        map: map,
+                                                                        title:"Ver perfil do profissional"
                                                                     });
 
                                                                     google.maps.event.addListener(marker,'click',function(){
-                                                                        window.open('https://goo.gl/maps/yO2f2','_blank');
+                                                                        //aqui funcao focus, não funcionando
+                                                                    });
+
+                                                                    google.maps.event.addListener(marker2,'click',function(){
+                                                                        //aqui funcao focus, não funcionando
+                                                                    });
+
+                                                                    google.maps.event.addListener(marker3,'click',function(){
+                                                                        //aqui funcao focus, não funcionando
+                                                                    });
+
+                                                                    google.maps.event.addListener(marker4,'click',function(){
+                                                                        //aqui funcao focus, não funcionando
+                                                                    });
+
+                                                                    google.maps.event.addListener(marker5,'click',function(){
+                                                                        //aqui funcao focus, não funcionando
                                                                     });
 
                                                                  
@@ -108,6 +158,28 @@
                 });
               //$('#sucesso').html('<div class="alert alert-success"><b>Mensagem enviada com <b>sucesso</b>!</div>');
                 alert("Muito bem! Suas informações foram atualizadas com sucesso");
+                           //$("#formE").fadeOut(0);
+                // return false so the form does not actually
+                // submit to the page
+                return false;
+            }
+
+            var ajaxSubmit2 = function(form) {
+                // fetch where we want to submit the form to
+                var url = $(form).attr('action');
+                var flag = 9;
+                // fetch the data for the form
+                var data = $(form).serializeArray();
+
+                // setup the ajax request
+                $.ajax({
+                    url: url,
+                    data: data,
+                    dataType: 'json',
+                    type:'POST'
+                });
+              //$('#sucesso').html('<div class="alert alert-success"><b>Mensagem enviada com <b>sucesso</b>!</div>');
+                alert("Muito bem! O profissional foi avaliado com sucesso");
                            //$("#formE").fadeOut(0);
                 // return false so the form does not actually
                 // submit to the page
@@ -164,7 +236,30 @@
                   ratingsField.val(value);
                 });
               });
+              
+
+              /* AUTO COMPLETE */
 
 
+           $('#tipoProfissionalLista').autocomplete({
+              lookup: function (query, done) {
+                  // Do ajax call or lookup locally, when done,
+                  // call the callback and pass your results:
+                  var result = {
+                      suggestions: [
+                                 
+                          { "value": "Analista de Sistemas", "data": "Analista de Sistemas" },   
+                          { "value": "Desenvolvedor", "data": "Desenvolvedor" },   
+                          { "value": "Eletricista", "data": "Eletricista" },   
+                          { "value": "Encanador", "data": "Encanador" },  
+                          { "value": "Pedreiro", "data": "Pedreiro" },   
+                             
+                      ]
+                  };
+
+                  done(result);
+              },
+
+             });
 
 

@@ -146,14 +146,17 @@
                             <p style="text-align:center;">Conte para outras pessoas a sua experiência com esse profissional</p>
                         </div>
                         <div class="text-right">
-                            <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Escreva um comentário</a>
+                            <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Avaliar agora</a>
                         </div>
                     
                         <div class="row" id="post-review-box" style="display:none;">
                            
-                                <form accept-charset="UTF-8" action="#" method="post">
+                                <form accept-charset="UTF-8" method="post" action="http://www.diogenesjunior.com.br/cs/json/avaliar-usuario.php" onSubmit="return ajaxSubmit2(this);">
                                     <input id="ratings-hidden" name="rating" type="hidden"> 
-                                    <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Escreva o seu review aqui..." rows="5"></textarea>
+
+                                    <input type="hidden" id="idClienteAvaliacao" name="idCliente" value="" />
+                                    <input type="hidden" id="idProfissionalAvaliacao" name="idPro" value="" />
+                                    
                     
                                     <div class="text-right">
                                         <div class="stars starrr" data-rating="0"></div>
@@ -189,10 +192,12 @@
       </div>
       <div class="modal-body">
 
+        <p>&nbsp;</p>
+
         <!-- COMENTARIO -->
         <div class="row">
             <div class="col-sm-12 col-xs-12">
-                <blockquote>Cumpriu com o compinado com preço justo</blockquote>
+                
                 <p class="text-right" style="margin-top:-18px;"><i>Diogenes Junior, 20/07/2016</i><br>
                  <span>
                      <i class="fa fa-star" aria-hidden="true"></i>
@@ -210,7 +215,7 @@
         <!-- COMENTARIO -->
         <div class="row">
             <div class="col-sm-12 col-xs-12">
-                <blockquote>Ótimo profissional, atencioso e pontual, recomendo</blockquote>
+                
                 <p class="text-right" style="margin-top:-18px;"><i>Pedro da Silva, 21/07/2016</i><br>
                  <span>
                      <i class="fa fa-star" aria-hidden="true"></i>
@@ -257,7 +262,7 @@
 
     <script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>
 
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&key=87847234"></script>    
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyCUGRiH2iey-c2WqqeegGF2qpxBDNLsmfQ"></script>    
 
     <script type="text/javascript" src="js/scripts.js"></script>
 
@@ -277,6 +282,11 @@
         $.get("http://www.diogenesjunior.com.br/cs/json/getImagens.php?profissional="+idUsuarioProfissional,  function(html){ $("#ultimosTrabalhosWork").html(html);});
 
     }
+
+
+    
+    $("#idProfissionalAvaliacao").val(myParam);
+    
     </script>
     
 

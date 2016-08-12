@@ -114,7 +114,7 @@ $json_str = json_decode($result, true);
 print_r($json_str);
 echo "fim execução";
 
-// DEPOIS DO LOGIN, VAMOS LOGAR ESSE USUÁRIO
+// DEPOIS DO CADASTRO, VAMOS LOGAR ESSE USUÁRIO
 
 $postdata2 = http_build_query(
     array(

@@ -232,9 +232,9 @@ nav ul li.active{
     background:#efefef;
 }
 
-.user-preview{
-    padding-top: 20px;
-    padding-bottom: 20px;
+.user-preview {
+    padding-top: 2px;
+    padding-bottom: 2px;
     border-bottom: 1px solid #ccc;
 }
 .user-preview p.btn-detalhe{
@@ -450,3 +450,12 @@ nav ul li.active{
     border:1px solid #efefef;
     padding: 3px;
 }
+
+
+/* AUTO COMPLETE */
+.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+.autocomplete-group { padding: 2px 5px; }
+.autocomplete-group strong { display: block; border-bottom: 1px solid #000; }

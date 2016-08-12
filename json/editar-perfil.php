@@ -11,7 +11,7 @@ $celular = $_POST["celular"];
 $endereco = $_POST["endereco"];
 $numero = $_POST["numero"];
 $bairro = $_POST["bairro"];
-$cidade = $_POST["cidade"];
+
 $cep = $_POST["cep"];
 $senha = $_POST["senha"];
 
@@ -25,12 +25,7 @@ $postdata = http_build_query(
         'email' => $email,
         'cpf' => $cpf,
         'senha' => $senha,
-        'endereco[nome]' => $endereco,
-        'endereco[numero]' => $numero,
-        'endereco[bairro]' => $bairro,
-        'cep[cep]' => $cep,
-        //endereco[latitude]
-        //endereco[longitude]
+        'endereco' => array('Nome' => $enderecoNome, 'Numero' => $Numero, 'Bairro' => $Bairro, 'Cep' => $Cep);        
     )
 );
 
