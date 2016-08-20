@@ -77,55 +77,123 @@
      <div class="row">
          <div class="col-sm-12 col-xs-12">
                  
-                 <form method="post" action="http://www.diogenesjunior.com.br/cs/json/editar-perfil.php" onSubmit="return ajaxSubmit(this);">
-
-                 <input id="idCliente" type="hidden" name="id" value="1" />
-
-
-                 <div class="form-group">
-                     <input id="nomeClienteEditar" type="text" class="form-control input-lg" required name="nome" placeholder="Nome completo" />
-                 </div>
-
-                 <div class="form-group">
-                     <input id="cpfCliente" type="text" class="form-control input-lg"  name="cpf" placeholder="Número do seu CPF" />
-                 </div>
-
-                 <div class="form-group">
-                     <input id="emailCliente" type="email" class="form-control input-lg" required name="email" placeholder="E-mail de contato" />
-                 </div>
-
-                 <div class="form-group">
-                     <input id="telefoneFixo" type="text" class="form-control input-lg"  name="telefone" placeholder="Telefone com DDD" />
-                 </div>
-                 <div class="form-group">
-                     <input id="telefoneCelular" type="text" class="form-control input-lg"  name="celular" placeholder="Celular com DDD" />
-                 </div>
-
-                 <div class="form-group">
-                     <input id="enderecoCliente" type="text" class="form-control input-lg"  name="endereco" placeholder="Endereço" />
-                 </div>
-                 <div class="form-group">
-                     <input id="numeroCliente" type="text" class="form-control input-lg"  name="numero" placeholder="Número" />
-                 </div>
-                 <div class="form-group">
-                     <input id="bairroCliente" type="text" class="form-control input-lg"  name="bairro" placeholder="Bairro" />
-                 </div>
+                
                  
 
-                 <div class="form-group">
-                     <input id="cepCliente" type="text" class="form-control input-lg" required name="cep" placeholder="Código postal" />
-                 </div>
+                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Atualizar sua Senha de Acesso
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+
 
                  <div class="form-group">
-                     <input type="password" class="form-control input-lg"  name="senha" placeholder="Senha de segurança" />
+                     <label>Senha de acesso</label>
+                     <input id="senhaDeAcesso" type="password" class="form-control input-lg" required name="senha" placeholder="sua senha de acesso" />
                  </div>
                 
 
                  <div class="form-group">
-                     <button type="submit" class="btn btn-default btn-lg">atualizar</button>
+                     <button id="atualizarSenha" class="btn btn-default btn-lg" onclick="atualizarSenha()">atualizar senha de acesso</button>
                  </div>
 
-                 </form>
+
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Atualizar Outras informações
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+                
+                <div class="form-group">
+                     <label>Nome completo</label>
+                     <input id="nomeClienteEditar" type="text" class="form-control input-lg" required name="nome" placeholder="Nome completo" />
+                 </div>
+
+                
+
+                 <div class="form-group">
+                     <label>CPF</label>
+                     <input id="cpfCliente" type="text" class="form-control input-lg"  name="cpf" placeholder="Número do seu CPF" />
+                 </div>
+
+                 <div class="form-group">
+                    <label>E-mail de contato (também é seu login)</label>
+                     <input id="emailCliente" type="email" class="form-control input-lg" required name="email" placeholder="E-mail de contato" />
+                 </div>
+
+                 <div class="form-group">
+                     <label>Telefone com DDD</label>
+                     <input id="telefoneFixo" type="text" class="form-control input-lg"  name="telefone" placeholder="Telefone com DDD" />
+                 </div>
+                 <div class="form-group">
+                     <label>Celular com DDD</label>
+                     <input id="telefoneCelular" type="text" class="form-control input-lg"  name="celular" placeholder="Celular com DDD" />
+                 </div>
+
+                 <div class="form-group">
+                     <label>Nome da rua:</label>
+                     <input id="enderecoCliente" type="text" class="form-control input-lg"  name="endereco" placeholder="Nome da Rua" />
+                 </div>
+                 <div class="form-group">
+                     <label>Número</label>
+                     <input id="numeroCliente" type="text" class="form-control input-lg"  name="numero" placeholder="Número" />
+                 </div>
+                 
+
+                  <div class="form-group">
+                        <label>Estado</label>
+                        <select class="form-control" name="estado" id="estado"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Cidade</label>
+                        <select class="form-control" name="cidade" id="cidade">-- selecione o estado --</select>
+                    </div>
+
+
+
+                 <div class="form-group">
+                     <label>Bairro</label>
+                     <input id="bairroCliente" type="text" class="form-control input-lg"  name="bairro" placeholder="Bairro" />
+                 </div> 
+
+
+                 <div class="form-group">
+                     <label>Cep</label>
+                     <input id="cepCliente" type="text" class="form-control input-lg" data-mask="99999-999" name="bairro" placeholder="Cep" />
+                 </div>                 
+
+              
+                
+
+                 <div class="form-group">
+                     <button id="atualizarPerfil" onclick="editarMeuPerfil();" class="btn btn-default btn-lg">atualizar informações</button>
+                 </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+                
+
+<span id="areaBannerAnuncio"></span>
+
+
+
                  <p>&nbsp;</p>
                  <p>&nbsp;</p>
                  <p>&nbsp;</p>
@@ -167,32 +235,34 @@
     <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
 
     <script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="js/cidades-estados-v0.2.js"></script>
+    <script type="text/javascript">
+          window.onload = function() {
+              new dgCidadesEstados(
+                  document.getElementById('estado'),
+                  document.getElementById('cidade'),
+                  true
+              );
+          }
 
-	<script type="text/javascript" src="js/scripts.js"></script> 
-    
-   <script type="text/javascript" src="js/verificar-sessao.js"></script>
+
+    </script>  
+
+    <script type="text/javascript" src="js/jquery.json.min.js"></script>
+    <script type="text/javascript" src="js/servicos.js"></script>
 
     <script type="text/javascript">
-        
-        var ajaxSubmit = function(form) {
-               
-                var url = $(form).attr('action');               
-               
-                var data = $(form).serializeArray();
-              
-                $.ajax({
-                    url: url,
-                    data: data,
-                    dataType: 'json',
-                    type:'POST'
-                });
-                alert("Dados foram atualizados com sucesso");
-                location.href="dashboard.html";
-                
-                return false;
-            }
-        
+        new WOW().init(); 
+
+        verificarSessao();
+        autoCompleteBusca();
+        bannersAnuncios();
+        popularHtml();
+
+        popularCamposPerfil();
+
+       
+
 
     </script>
 

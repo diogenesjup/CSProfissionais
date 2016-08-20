@@ -97,19 +97,19 @@
         <h4 class="modal-title" id="myModalLabel">Login</h4>
       </div>
       <div class="modal-body">
-        <form method="post" action="http://www.diogenesjunior.com.br/cs/json/proc-login.php" onSubmit="return ajaxSubmit(this);">
+        
             <div class="form-group">
                 <label>E-mail</label>
-                <input type="email" class="form-control" id="emailLogin" placeholder="Seu e-mail cadastrado" required name="email" />
+                <input type="email" class="form-control" id="login" placeholder="Seu e-mail cadastrado" required name="email" />
             </div>
             <div class="form-group">
                 <label>Senha</label>
-                <input type="password" required class="form-control" placeholder="Sua senha cadastrada" name="senha" />
+                <input type="password" id="senha" required class="form-control" placeholder="Sua senha cadastrada" name="senha" />
             </div>
             <div class="form-group" id="conteudoLogin2">
-                <button type="submit" class="btn btn-defaul">login</button>
+                <button  onclick="procLogin();" class="btn btn-defaul">login</button>
             </div>
-        </form>
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
@@ -129,22 +129,33 @@
       </div>
       <div class="modal-body">
 
-        <form method="post" action="http://www.diogenesjunior.com.br/cs/json/proc-cadastro-cliente.php" onSubmit="return ajaxSubmit(this);"> <!-- -->
+       
             <div class="form-group">
                 <label>Seu nome</label>
-                <input type="text" class="form-control" placeholder="Digite seu nome completo" required name="nome" />
+                <input type="text" class="form-control" id="cadastroNome" placeholder="Digite seu nome completo" required name="nome" />
             </div>
             <div class="form-group">
                 <label>E-mail</label>
-                <input type="email" class="form-control" id="emailCadastroNovo" placeholder="Seu e-mail (também será o login)" required name="email" onchange='localStorage.setItem("email", this.value);' />
+                <input type="email" class="form-control" id="cadastroEmail" placeholder="Seu e-mail (também será o login)" required name="email" />
+            </div>
+            <!--<div class="form-group">
+                <label>CPF</label>
+                <input type="text" class="form-control" id="cadastroCpf" placeholder="Digite seu cpf" required name="CPF" />
+            </div>-->
+
+            <div class="form-group">
+               <label>Nome da rua:</label>
+               <input type="text" id="cadastroRua" class="form-control" name="nomeRua" placeholder="Nome da rua" />
             </div>
             <div class="form-group">
-                <label>CPF</label>
-                <input type="text" class="form-control" placeholder="Digite seu cpf" required name="CPF" />
+               <label>Número:</label>
+               <input type="text" id="cadastroNumero" class="form-control" name="nomeNumero" placeholder="Número" />
             </div>
+
+
             <div class="form-group">
                 <label>Seu CEP</label>
-                <input type="text" class="form-control" data-mask="99999-999" placeholder="Seu código postal" required name="cep" />
+                <input type="text" class="form-control" id="cadastroCep" data-mask="99999-999" placeholder="Seu código postal" required name="cep" />
             </div>
 
             <div class="form-group">
@@ -155,15 +166,20 @@
                 <label>Cidade</label>
                 <select class="form-control" name="cidade" id="cidade">-- selecione o estado --</select>
             </div>
+
+            <div class="form-group">
+                <label>Seu Bairro</label>
+                <input type="text" class="form-control" id="cadastroBairro" placeholder="Nome do Bairro" required name="cep" />
+            </div>
             
             <div class="form-group">
                 <label>Senha</label>
-                <input type="password" required class="form-control" placeholder="Sua senha cadastrada" name="senha" />
+                <input type="password" required id="cadastroSenha" class="form-control" placeholder="Sua senha cadastrada" name="senha" />
             </div>
             <div class="form-group" id="conteudoLogin">
-                <button type="submit" class="btn btn-default">cadastrar</button>
+                <button onclick="procCadastro();" class="btn btn-default">cadastrar</button>
             </div>
-        </form>
+       
 
       </div>
       <div class="modal-footer">
@@ -198,51 +214,15 @@
 
     <script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>
 
-
     <script type="text/javascript">
-new WOW().init();
-            var ajaxSubmit = function(form) {
-               
-                var url = $(form).attr('action');               
-               
-                var data = $(form).serializeArray();
-              
-                $.ajax({
-                    url: url,
-                    data: data,
-                    dataType: 'json',
-                    type:'POST'
-                });
 
-                $("#conteudoLogin").html("carregando...");
-                $("#conteudoLogin2").html("carregando...");
-
-                var emailKey = $("#emailLogin").val();
-                var emailKey2 = $("#emailCadastroNovo").val();
-                
-                if(emailKey != ""){ 
-
-                    localStorage.setItem("email", emailKey);
-
-                }
-
-                if(emailKey == ""){
-
-                    localStorage.setItem("email", emailKey2);
-                }
-                
-                //var emailCadastroNovo = document.getElementById('emailCadastroNovo').value;
-
-                //alert(emailKey2);
-
-                    var tempo_espera = setTimeout(function() { 
-                        location.href="dashboard.html?version=4";
-                    }, 5000);                        
-
-                return false;
-            }
+        new WOW().init();           
 
     </script>
+    
+
+    <script type="text/javascript" src="js/jquery.json.min.js"></script>
+    <script type="text/javascript" src="js/servicos.js"></script>
     
 </body>
 </html>
