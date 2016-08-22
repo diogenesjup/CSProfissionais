@@ -33,6 +33,23 @@
 // D0021 - PEGAR APENAS O NOME DO PROFISSIONAL
 // D0022 - PEGAR TODAS AS MENSAGENS EM QUE O CLIENTE INTERAGIU COM UM PROFISSIONAL
 // D0023 - SETAR E DIRECIONAR O USUARIO PARA A PAGINA DO PROFISSIONAL QUE ELE QUER VER A CONVERSA
+// D0024 - CADASTRO DE USUÁRIOS TIPO PROFISSIONAL
+// D0025 - UPLOAD DE IMAGENS
+// D0026 - FUNÇÃO PARA O AUTO COMPLETE NO CADASTRO DO PROFISSIONAL
+// D0027 - FUNÇÃO PARA LOGAR O USUÁRIO COMO PROFISSIONAL
+// D0028 - FUNÇÃO PARA VERIFICAR SE O USUÁRIO PROFISSIONAL ESTÁ LOGADO
+// D0029 - POPULAR HTML COM INFORMAÇÕES VINDAS DOS SERVIÇOS (PROFISSIONAL)
+// D0030 - PEGAR TODAS AS MENSAGENS EM QUE O PROFISSIONAL INTERAGIU COM UM CLIENTE
+// D0031 - SETAR E DIRECIONAR O USUARIO PROFISSIONAL PARA A PAGINA DO CLIENTE QUE ELE QUER VER A CONVERSA
+// D0032 - PEGAR APENAS O NOME DO CLIENTE
+// D0033 - TROCA DE MENSAGENS ENTRE CLIENTE E PROFISSIONAL
+// D0034 - SOLICITAÇÃO DE DESTAQUE FEITA PELO PROFISSIONAL
+// D0035 - CARREGAR COMENTÁRIOS FEITOS PARA O PROFISSIONAL (PROFISSIONAL)
+// D0036 - POPULAR FORMULARIOS DA PAGINA DE PERFIL
+// D0037 - ATUALIZAR SENHA DO PROFISSIONAL
+// D0038 - ATUALIZAR DADOS DO PROFISSIONAL
+// D0039 - CLIENTE SOLICITA CONTATO DO PROFISSIONAL
+//
 //
 //
 // #############################################################################
@@ -1026,5 +1043,656 @@ function interagirProfissional(idPro){
 
   location.href="mensagens-trocadas.html";
 
+
+}
+
+
+
+
+
+
+// D0024 - CADASTRO DE USUÁRIOS TIPO PROFISSIONAL
+function procCadastroPro(){
+
+var cadastroNomePro = $("#cadastroNomePro").val();
+var telefoneFixoPro = $("#telefoneFixoPro").val();
+var telefoneCelularPro = $("#telefoneCelularPro").val();
+var cadastroEmailPro = $("#cadastroEmailPro").val();
+var cadastroCnpjPro = $("#cadastroCnpjPro").val();
+var cadastroRuaPro = $("#cadastroRuaPro").val();
+var cadastroNumeroPro = $("#cadastroNumeroPro").val();
+var cadastroCepPro = $("#cadastroCepPro").val();
+var estadoPro = $("#estadoPro").val();
+var cidadePro = $("#cidadePro").val();
+var cadastroBairroPro = $("#cadastroBairroPro").val();
+var cadastroCurriculoPro = $("#cadastroCurriculoPro").val();
+var fotoPerfilPro = document.getElementById('fotoPerfilPro').files[0]; //$("#fotoPerfilPro").val(); 
+var cadastroSenhaPro = $("#cadastroSenhaPro").val();
+var especializacaoPro = $("#tipoProfissionalLista").val();
+            
+      var latitude = "-23.5806447";
+      var longitude = "-46.6187552";
+      
+      console.log("Vamos Iniciar o cadastro de um profissional");
+      console.log("Nome: "+cadastroNomePro);
+      console.log("Email: "+cadastroEmailPro);
+      console.log("CNPJ: "+cadastroCnpjPro);
+      console.log("Foto perfil: "+fotoPerfilPro);
+
+      console.log("Testando a imagem de perfil: ");
+
+      var nomeFoto = fotoPerfilPro.name;
+      var tamanhoFoto = fotoPerfilPro.size;
+
+      console.log("Nome arquivo: "+fotoPerfilPro.name);
+      console.log("Tamanho arquivo: "+fotoPerfilPro.size);
+      console.log("Tipo arquivo: "+fotoPerfilPro.type);
+
+    
+
+      // PEGAR LATITUDE E LONGITUDE
+      var request = $.ajax({
+          method: "GET",
+          url: "https://maps.googleapis.com/maps/api/geocode/json?address="+cadastroNumeroPro+"+"+cadastroRuaPro+",+"+cidadePro+",+"+estadoPro+"&key=AIzaSyCUGRiH2iey-c2WqqeegGF2qpxBDNLsmfQ"
+          //data: { email: login, senha: senha }
+        })
+          request.done(function( msg ) {
+              
+              console.log("Latitude do Google: "+msg["results"][0]["geometry"]["location"]["lat"]+" Longitude do Google: "+msg["results"][0]["geometry"]["location"]["lng"]);
+              latitude = msg["results"][0]["geometry"]["location"]["lat"];
+              longitude = msg["results"][0]["geometry"]["location"]["lng"];
+          });
+          request.fail(function() {
+              console.log("Ocorreu um erro ao tentar carregar a Lista de estados");
+          });
+      // PEGAR LATITUDE E LONGITUDE
+
+      console.log("Latitude atual: "+latitude+" Longitude atual: "+longitude);
+      
+      // SETAR NA SESSÃO O ID DA CIDADE
+      getIdEstadoCidade(estado,cidade);
+      
+      var idCidade = localStorage.getItem("cidadeId");
+
+      // POPULAR ARRAY DO ENDEREÇO
+      
+      var endereco = [];
+     
+      endereco = {CidadeId: idCidade, nome: cadastroRuaPro, numero: cadastroNumeroPro, complemento: "n/a", bairro: cadastroBairroPro, cep: cadastroCepPro, latitude: latitude, longitude: longitude}   
+      
+      var espec = [];
+      espec = {EspecializacaoId: especializacaoPro };
+
+      var request = $.ajax({
+        method: "POST",
+        url: "http://api.csprofissionais.com.br/api/profissional/inserir",
+        data: { nome: cadastroNomePro, 
+            nomefoto: nomeFoto, 
+           Descricao: cadastroCurriculoPro, 
+        telefonefixo: telefoneFixoPro, 
+     telefonecelular: telefoneCelularPro, 
+               email: cadastroEmailPro, 
+                 cpf: cadastroCnpjPro, 
+               senha: cadastroSenhaPro, 
+            endereco: endereco,
+      Especializacao: espec }
+      })
+        request.done(function( msg ) {
+
+            console.log(msg);
+            console.log("Cadastro de profissional Realizado com sucesso!");
+            // REGISTRAR OS DADOS DA SESSÃO E LOGAR O USUÁRIO
+            
+            localStorage.setItem("idProfissionalLogado", msg["Data"]["ProfissionalId"]);
+            localStorage.setItem("Nome", msg["Data"]["Nome"]);
+            localStorage.setItem("TelefoneFixo", msg["Data"]["TelefoneFixo"]);
+            localStorage.setItem("TelefoneCelular", msg["Data"]["TelefoneCelular"]);
+            localStorage.setItem("Email", msg["Data"]["Email"]);  
+            localStorage.setItem("Cpf", msg["Data"]["Cpf"]);          
+
+            localStorage.setItem("CidadeId", msg["Data"]["Endereco"]["CidadeId"]);
+            localStorage.setItem("NomeRua", msg["Data"]["Endereco"]["Nome"]);
+
+            localStorage.setItem("Numero", msg["Data"]["Endereco"]["Numero"]);
+            localStorage.setItem("Complemento", msg["Data"]["Endereco"]["Complemento"]);
+            localStorage.setItem("Bairro", msg["Data"]["Endereco"]["Bairro"]);
+            localStorage.setItem("Cep", msg["Data"]["Endereco"]["Cep"]);
+            localStorage.setItem("Latitude", msg["Data"]["Endereco"]["Latitude"])
+            localStorage.setItem("Longitude", msg["Data"]["Endereco"]["Longitude"]);
+
+            console.log("Direcionando o profissional...");
+
+            location.href="dashboard-pro.html";
+
+        });
+        request.fail(function() {
+            console.log("Deu ruim o cadastro");
+        });
+
+        
+}
+
+
+
+// D0025 - UPLOAD DE IMAGENS
+function uploadImagens(){
+
+var idProfissionalLogado = localStorage.getItem("idProfissionalLogado");
+
+var nomeFoto = "";
+var descricao = "";
+
+console.log("Iniciando a rotina para upload de imagem do profissional ID: "+idProfissionalLogado);
+
+ var request = $.ajax({
+        method: "POST",
+        url: "http://api.csprofissionais.com.br/api/profissional/InserirImagem",
+        data: { ProfissionalId: idProfissionalLogado, 
+             Nome: nomeFoto,
+             Descricao: descricao }
+      })
+        request.done(function( msg ) {
+
+            console.log(msg);
+            console.log("Imagem carregada com sucesso em http://www.csprofissionais.com.br/upload/"+nomeFoto);
+            
+        });
+        request.fail(function() {
+            alert("Ocorreu um erro no servidor. Tente novamente mais tarde");
+            //location.href="dashboard.html";
+            //$('#avaliarUsuario').modal("hide");
+        });
+
+console.log("Encerrada a rotina para upload de imagem do profissional ID: "+idProfissionalLogado);        
+
+
+}
+
+
+
+// D0026 - FUNÇÃO PARA O AUTO COMPLETE NO CADASTRO DO PROFISSIONAL
+function autoCompletePro(){
+
+          $('#tipoProfissionalLista').autocomplete({
+              lookup: function (query, done) {
+                  // Do ajax call or lookup locally, when done,
+                  // call the callback and pass your results:
+                  var result = {
+                      suggestions: [
+                                 
+                          { "value": "Advogado", "data": "12" },   
+                          { "value": "Analista de Sistemas", "data": "1" },   
+                          { "value": "Azulejista", "data": "10" },   
+                          { "value": "Baba", "data": "9" },  
+                          { "value": "Desenvolvedor", "data": "2" },
+                          { "value": "Eletricista", "data": "4" },
+                          { "value": "Encanador", "data": "5" },
+                          { "value": "Faxineiro", "data": "8" },
+                          { "value": "Gesseiro", "data": "11" },
+                          { "value": "Pedreiro", "data": "3" }, 
+                            
+                      ]
+                  };
+
+                  done(result);
+              },
+
+             });
+}
+
+
+
+// D0027 - FUNÇÃO PARA LOGAR O USUÁRIO COMO PROFISSIONAL
+function procLoginPro(){  
+
+  var login = $("#loginPro").val();
+  var senha = $("#senhaPro").val();
+
+  var request = $.ajax({
+      method: "POST",
+      url: "http://api.csprofissionais.com.br/api/profissional/Login",
+      data: { documento: login, senha: senha }
+    })
+      request.done(function( msg ) {
+
+        if(!msg["Data"]){
+          alert("Login ou Senha incorretos");
+        }else{
+
+          localStorage.setItem("idProfissionalLogado", msg["Data"]["ProfissionalId"]);
+          localStorage.setItem("Nome", msg["Data"]["Nome"]);
+          localStorage.setItem("TelefoneFixo", msg["Data"]["TelefoneFixo"]);
+          localStorage.setItem("TelefoneCelular", msg["Data"]["TelefoneCelular"]);
+          localStorage.setItem("Email", msg["Data"]["Email"]);
+          localStorage.setItem("Cpf", msg["Data"]["Cpf"]);
+          localStorage.setItem("Senha", msg["Data"]["Senha"]);
+          localStorage.setItem("CidadeId", msg["Data"]["Endereco"]["CidadeId"]);
+          localStorage.setItem("NomeRua", msg["Data"]["Endereco"]["Nome"]);
+          localStorage.setItem("Numero", msg["Data"]["Endereco"]["Numero"]);
+          localStorage.setItem("Complemento", msg["Data"]["Endereco"]["Complemento"]);
+          localStorage.setItem("Bairro", msg["Data"]["Endereco"]["Bairro"]);
+          localStorage.setItem("Cep", msg["Data"]["Endereco"]["Cep"]);
+          localStorage.setItem("Latitude", msg["Data"]["Endereco"]["Latitude"])
+          localStorage.setItem("Longitude", msg["Data"]["Endereco"]["Longitude"]);
+
+          location.href="dashboard-pro.html";
+
+        }  
+
+      });
+      request.fail(function() {
+          alert("Não foi possível realizar o seu login, tente novamente");
+          location.href="index.html";
+      });
+
+}
+
+
+
+// D0028 - FUNÇÃO PARA VERIFICAR SE O USUÁRIO PROFISSIONAL ESTÁ LOGADO
+function verificarSessaoPro(){
+
+  var sessao = localStorage.getItem("idProfissionalLogado");
+  if(!sessao){
+    alert("Por favor, faça seu login novamente");
+    location.href("index.html");
+  }
+
+}  
+
+
+// D0029 - POPULAR HTML COM INFORMAÇÕES VINDAS DOS SERVIÇOS (PROFISSIONAL)
+function popularHtmlPro(){
+
+          // ESCREVER O NOME DO USUÁRIO NO HEADER DA PÁGINA             
+          $("#nomeUsuario").html(localStorage.getItem("Nome"));  
+          // SETAR O CEP NO CAMPO DE BUSCA AUTOMATICAMENTE  
+          $("#cepPesquisa").val(localStorage.getItem("Cep")); 
+
+
+}
+
+
+
+
+// D0030 - PEGAR TODAS AS MENSAGENS EM QUE O PROFISSIONAL INTERAGIU COM UM CLIENTE
+function TodasMensagensPro(){
+
+  var idCli = localStorage.getItem("idProfissionalLogado");
+
+  console.log("Iniciando a busca para saber se o profissional trocou mensagens com algum cliente");
+
+  var request = $.ajax({
+      method: "GET",
+      url: "http://api.csprofissionais.com.br/api/mensagem/ListaClientesMensagemProfissional/"+idCli
+      //data: { email: login, senha: senha }
+    })
+      request.done(function( msg ) {
+          
+          if(msg["Data"]){
+          var totInt = msg["Data"]["List"].length;
+
+          for(i = 0; i < totInt; i++){
+          
+           $('#areaTodasMsg').prepend('<div class="row" onclick="interagirProfissionalPro('+msg["Data"]["List"][i]["ClienteId"]+');" style="padding:20px;"><div class="col-xs-12 col-md-12"><div><b style="color:#d32f2f;">'+msg["Data"]["List"][i]["Nome"]+'</b><div class="mic-info"><i>celular: '+msg["Data"]["List"][i]["TelefoneCelular"]+'</i></div></div><div class="comment-text">clique para abrir a conversa</div></div></div>');
+            
+          }  
+        }else{
+          $('#areaTodasMsg').html("<p style='text-align:center;padding:25px;'>Nenhuma mensagem ainda. Tente novamente mais tarde</p>");  
+        }
+          
+          
+      });
+      request.fail(function() {
+          console.log("Ocorreu um erro ao tentar pegar os dados desse profissional");
+          $('#areaTodasMsg').html("<p style='text-align:center;padding:25px'>Nenhuma mensagem ainda</p>");          
+      });
+
+
+}
+
+
+// D0031 - SETAR E DIRECIONAR O USUARIO PROFISSIONAL PARA A PAGINA DO CLIENTE QUE ELE QUER VER A CONVERSA
+function interagirProfissionalPro(idPro){
+
+  console.log("Vamos direcionar o usuário para o histórico de conversas entre ele e o cliente ID: "+idPro);
+
+  localStorage.setItem("Cliente", idPro);
+
+  console.log("Direcionando...");
+
+  location.href="mensagens-trocadas-pro.html";
+
+
+}
+
+
+
+// D0032 - PEGAR APENAS O NOME DO CLIENTE
+function getNomeCliente(){
+
+  var idPro = localStorage.getItem("Cliente");
+  console.log("Vamos procurar o nome do Cliente ID: "+idPro);
+
+
+  var request = $.ajax({
+      method: "GET",
+      url: "http://api.csprofissionais.com.br/api/cliente/obter/"+idPro
+      //data: { email: login, senha: senha }
+    })
+      request.done(function( msg ) {
+          
+         $('#nomeCliente').html(msg["Data"]["Nome"]); 
+         console.log("Nome encontrado! é "+msg["Data"]["Nome"]);
+          
+      });
+      request.fail(function() {
+          console.log("Ocorreu um erro ao tentar pegar a informação do cliente");
+                  
+      });  
+
+}
+
+
+
+
+// D0033 - TROCA DE MENSAGENS ENTRE CLIENTE E PROFISSIONAL
+function trocaMensagensPro(){
+
+  var idPro = localStorage.getItem("Cliente");
+  var idCli = localStorage.getItem("idProfissionalLogado");
+
+  console.log("Vamos começar a exibir as mensagens trocadas entre profissional e cliente");
+  console.log("Profissional ID: "+idCli);
+  console.log("Cliente ID: "+idPro);
+  
+
+  var request = $.ajax({
+        method: "POST",
+        url: "http://api.csprofissionais.com.br/api/mensagem/BuscaMensagens",
+        data: { ProfissionalId: idPro, 
+             ClienteId: idCli }
+      })
+        request.done(function( msg ) {
+
+            console.log(msg);
+            console.log("Mensagens recuperadas com sucesso");
+
+            var totMsg = msg["Data"]["List"].length;
+
+            if(totMsg==0){
+              $('#areaMsg').html("<p>Nenhuma mensagem ainda. Mande a primeira!</p>");
+            }else{
+
+
+               for(i = 0; i < totMsg; i++){
+
+                  if(msg["Data"]["List"][i]["Origem"]=="C"){
+                    $('#areaMsg').prepend('<div class="row msg_container base_sent"><div class="col-md-12 col-xs-12"><div class="messages msg_sent"><p>'+msg["Data"]["List"][i]["Mensagem"]+'</p><time datetime="2009-11-13T20:00"></time></div></div><div class="col-md-2 col-xs-2 avatar"><img src="images/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive "></div></div>');
+                  }
+                  if(msg["Data"]["List"][i]["Origem"]=="P"){
+                    $('#areaMsg').prepend('<div class="row msg_container base_receive"><div class="col-md-2 col-xs-2 avatar"><img src="images/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive "></div><div class="col-md-10 col-xs-10"><div class="messages msg_receive"><p>'+msg["Data"]["List"][i]["Mensagem"]+'</p><time datetime="2009-11-13T20:00"></time></div></div></div>');
+                  }  
+
+               }
+
+            }
+            
+
+        });
+        request.fail(function() {
+            alert("Ocorreu um erro no servidor. Tente novamente mais tarde");
+            location.href="dashboard.html";
+            //$('#avaliarUsuario').modal("hide");
+        });
+
+ console.log("Final execução da busca por mensagens entre profissional e cliente");
+
+}
+
+
+// D0034 - SOLICITAÇÃO DE DESTAQUE FEITA PELO PROFISSIONAL
+function solicDestaque(){
+
+  var idPro = localStorage.getItem("idProfissionalLogado");
+  
+
+  var request = $.ajax({
+      method: "GET",
+      url: "http://api.csprofissionais.com.br/api/profissional/SolicitaDestaque/"+idPro
+      //data: { email: login, senha: senha }
+    })
+      request.done(function( msg ) {
+          
+         //$('#nomeCliente').html(msg["Data"]["Nome"]); 
+         console.log("Solicitação de destaque realizada com sucesso");
+         alert("Solicitação de destaque realizada com sucesso");
+          
+      });
+      request.fail(function() {
+          console.log("Ocorreu um erro ao tentar realizar a solicitação");
+                  
+      });
+
+
+}
+
+
+
+
+
+// D0035 - CARREGAR COMENTÁRIOS FEITOS PARA O PROFISSIONAL (PROFISSIONAL)
+function carregarComentariosPro(){
+
+  var idPro = localStorage.getItem("idProfissionalLogado");
+  var nota = 0;
+
+  console.log("Iniciando a busca por comentários a esse profissional: "+idPro);
+
+
+  var request = $.ajax({
+      method: "GET",
+      url: "http://api.csprofissionais.com.br/api/profissional/ObterQualificacaoProfissional/"+idPro
+      //data: { email: login, senha: senha }
+    })
+      request.done(function( msg ) {
+          
+          if(msg["Data"]){
+          var totAval = msg["Data"]["List"].length;
+
+          for(i = 0; i < totAval; i++){
+
+            nota = msg["Data"]["List"][i]["Nota"] * 2;
+
+            
+
+            $('#areaComentarios').append('<!-- COMENTARIO --><div class="row"><div class="col-sm-12 col-xs-12"><p class="text-right" style="margin-top:-18px;"><i>'+getNome(msg["Data"]["List"][i]["ClienteId"])+' disse:</i><br>'+msg["Data"]["List"][i]["Mensagem"]+'<br><b>Nota:</b> '+nota+'</p></div></div><!-- COMENTARIO --><p>&nbsp;</p>')
+            console.log("Avaliação Impressa com sucesso");
+
+          }  
+        }else{
+          $('#areaComentarios').html("<p style='text-align:center;'>Ninguem o avaliou ainda.</p>"); 
+        }
+          
+          
+      });
+      request.fail(function() {
+          console.log("Ocorreu um erro ao tentar pegar os dados desse profissional");
+          $('#areaComentarios').html("<p style='text-align:center;'>Ninguem o avaliou ainda.</p>");          
+      });
+
+
+
+}
+
+
+
+
+// D0036 - POPULAR FORMULARIOS DA PAGINA DE PERFIL
+function popularCamposPerfilPro(){
+
+
+ var bairro = localStorage.getItem("Bairro");
+ var cep = localStorage.getItem("Cep");
+ var cpf = localStorage.getItem("Cpf");
+ var email = localStorage.getItem("Email");
+ var nome = localStorage.getItem("Nome");
+ var nomeRua = localStorage.getItem("NomeRua");
+ var numero = localStorage.getItem("Numero");
+ var senha = localStorage.getItem("Senha");
+ var telefoneCelular = localStorage.getItem("TelefoneCelular");
+ var telefoneFixo = localStorage.getItem("TelefoneFixo");
+
+
+  $("#senhaDeAcesso").val(senha);
+  $("#nomeClienteEditar").val(nome);
+  $("#cpfCliente").val(cpf);
+  $("#emailCliente").val(email);
+  $("#telefoneFixo").val(telefoneFixo);
+  $("#telefoneCelular").val(telefoneCelular);
+  $("#enderecoCliente").val(nomeRua);
+  $("#numeroCliente").val(numero);
+  $("#bairroCliente").val(bairro);
+  $("#cepCliente").val(cep);
+
+  console.log("Campos de perfil foram carregados!");
+
+}
+
+
+
+// D0037 - ATUALIZAR SENHA DO PROFISSIONAL
+function atualizarSenhaPro(){
+
+  var idUsuario = localStorage.getItem("idProfissionalLogado");
+  var senhaUsuario = $("#senhaDeAcesso").val();
+
+  localStorage.setItem("Senha", senhaUsuario);
+  
+  // CAMPOS OBRIGATÓRIOS DA API DO SERVIÇO
+  var bairro = localStorage.getItem("Bairro");
+  var cpf = localStorage.getItem("Cpf");
+  var email = localStorage.getItem("Email");
+  var nome = localStorage.getItem("Nome");
+  var nomeRua = localStorage.getItem("NomeRua");
+  var numero = localStorage.getItem("Numero");
+  var telefoneCelular = localStorage.getItem("TelefoneCelular");
+  var telefoneFixo = localStorage.getItem("TelefoneFixo");
+
+  var cep = localStorage.getItem("Cep");
+  var latitude = localStorage.getItem("Latitude");
+  var longitude = localStorage.getItem("Longitude");
+  var idCidade = localStorage.getItem("CidadeId");
+
+  console.log("ID DO PROFISSIONAL: "+idUsuario);
+  console.log("SENHA DO PROFISSIONAL: "+senhaUsuario);
+  console.log("Vamos atualizar os dados agora...");
+
+  endereco = {cidadeId: idCidade, Nome: nomeRua, numero: numero, bairro: bairro, cep: cep, latitude: latitude, longitude: longitude}     
+
+      var request = $.ajax({
+        method: "POST",
+        url: "http://api.csprofissionais.com.br/api/profissional/editar",
+        data: { profissionalid: idUsuario,
+          nome: nome,  
+        telefonefixo: telefoneFixo, 
+     telefonecelular: telefoneCelular, 
+               email: email, 
+                 cpf: cpf, 
+               senha: senhaUsuario, 
+            endereco: endereco }
+      })
+        request.done(function( msg ) {
+
+            console.log(msg);
+            console.log("Dados (senha) atualizados com sucesso!");            
+
+        });
+        request.fail(function() {
+            console.log("Não foi possível realizar a operação, tente novamente.");
+        });
+
+}
+
+
+
+
+
+// D0038 - ATUALIZAR DADOS DO PROFISSIONAL
+function editarMeuPerfilPro(){
+
+  var idUsuario = localStorage.getItem("ClienteId");
+  var senhaUsuario = localStorage.getItem("Senha");
+  
+  // RECUPERAR OS DADOS DO USUARIO
+
+  var bairro = $("#bairroCliente").val();
+  var cpf = $("#cpfCliente").val();
+  var email = $("#emailCliente").val();
+  var nome = $("#nomeClienteEditar").val();
+  var nomeRua = $("#enderecoCliente").val();
+  var numero = $("#numeroCliente").val();
+  var telefoneCelular = $("#telefoneCelular").val();
+  var telefoneFixo = $("#telefoneFixo").val();
+
+  var cep = $("#cepCliente").val();
+
+
+  var latitude = localStorage.getItem("Latitude");
+  var longitude = localStorage.getItem("Longitude");
+  var idCidade = localStorage.getItem("CidadeId");
+
+  console.log("ID DO USUARIO: "+idUsuario);  console.log("Vamos atualizar os dados agora...");
+
+  endereco = {cidadeId: idCidade, Nome: nomeRua, numero: numero, bairro: bairro, cep: cep, latitude: latitude, longitude: longitude}     
+
+      var request = $.ajax({
+        method: "POST",
+        url: "http://api.csprofissionais.com.br/api/profissional/editar",
+        data: { profissionalid: idUsuario,
+          nome: nome,  
+        telefonefixo: telefoneFixo, 
+     telefonecelular: telefoneCelular, 
+               email: email, 
+                 cpf: cpf, 
+               senha: senhaUsuario, 
+            endereco: endereco }
+      })
+        request.done(function( msg ) {
+
+            console.log(msg);
+            console.log("Dados (outras informações) atualizados com sucesso!");            
+
+        });
+        request.fail(function() {
+            console.log("Não foi possível realizar a operação, tente novamente.");
+        });
+
+
+}
+
+
+// D0039 - CLIENTE SOLICITA CONTATO DO PROFISSIONAL
+function solicContato(){
+
+  var idPro = localStorage.getItem("Profissional");
+  var idCli = localStorage.getItem("ClienteId");
+
+  var request = $.ajax({
+        method: "POST",
+        url: "http://api.csprofissionais.com.br/api/profissional/SolicitarContato",
+        data: { ClienteId: idCli,
+          ProfissionalId: idPro }
+      })
+        request.done(function( msg ) {
+
+            console.log(msg);
+            console.log("Solicitação de contato realizada com sucesso!");     
+            alert("Solicitação de contato realizada com sucesso");       
+
+        });
+        request.fail(function() {
+            console.log("Não foi possível realizar a operação, tente novamente.");
+        });
 
 }
