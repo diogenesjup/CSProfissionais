@@ -206,28 +206,29 @@ function procCadastro(){
       var longitude = "-46.6187552";
 
       
-      
-
       // PEGAR LATITUDE E LONGITUDE
       var request = $.ajax({
           method: "GET",
+          async: false,
           url: "https://maps.googleapis.com/maps/api/geocode/json?address="+cadastroNumero+"+"+cadastroRua+",+"+cidade+",+"+estado+"&key=AIzaSyCUGRiH2iey-c2WqqeegGF2qpxBDNLsmfQ"
           //data: { email: login, senha: senha }
-        })
+        }) 
           request.done(function( msg ) {
               
               console.log("Latitude do Google: "+msg["results"][0]["geometry"]["location"]["lat"]+" Longitude do Google: "+msg["results"][0]["geometry"]["location"]["lng"]);
               latitude = msg["results"][0]["geometry"]["location"]["lat"];
               longitude = msg["results"][0]["geometry"]["location"]["lng"];
+
+              localStorage.setItem("Latitude", msg["results"][0]["geometry"]["location"]["lat"]);
+              localStorage.setItem("Longitude",msg["results"][0]["geometry"]["location"]["lng"]);
+
           });
           request.fail(function() {
               console.log("Ocorreu um erro ao tentar carregar a Lista de estados");
           });
       // PEGAR LATITUDE E LONGITUDE
 
-
-
-      console.log("Latitude atual: "+latitude+" Longitude atual: "+longitude);
+      console.log("Latitude e Longitude descobertas: "+latitude+" Longitude atual: "+longitude);
       
       // SETAR NA SESSÃO O ID DA CIDADE
       getIdEstadoCidade(estado,cidade);
@@ -271,9 +272,10 @@ function procCadastro(){
             localStorage.setItem("Complemento", msg["Data"]["Endereco"]["Complemento"]);
             localStorage.setItem("Bairro", msg["Data"]["Endereco"]["Bairro"]);
             localStorage.setItem("Cep", msg["Data"]["Endereco"]["Cep"]);
-            localStorage.setItem("Latitude", msg["Data"]["Endereco"]["Latitude"])
+            localStorage.setItem("Latitude", msg["Data"]["Endereco"]["Latitude"]);
             localStorage.setItem("Longitude", msg["Data"]["Endereco"]["Longitude"]);
             console.log("Direcionando o usuário para o dashboard...");
+            
             location.href="dashboard.html";
 
         });
@@ -969,6 +971,50 @@ function enviarNovaMensagen(){
   
 
 }
+function enviarNovaMensagenPro(){
+
+  var idPro = localStorage.getItem("Profissional");
+  var idCli = localStorage.getItem("ClienteId");
+  var mensagem = $('#msgField').val();
+  var origem = "P";
+
+  console.log("Cliente quer enviar mensagem para profissional");
+  console.log("Cliente ID: "+idCli);
+  console.log("Profissional ID: "+idPro);
+  console.log("Mensagem: "+mensagem);
+
+  console.log("Enviando Menagem....");
+  
+  var request = $.ajax({
+        method: "POST",
+        url: "http://api.csprofissionais.com.br/api/mensagem/Inserir",
+        data: { ClienteId: idCli, 
+             ProfissionalId: idPro,
+             Mensagem: mensagem,
+             Origem: origem }
+      })
+        request.done(function( msg ) {
+
+            console.log(msg);
+            console.log("Mensagem foi enviada com sucesso");
+
+            // LIMPAR O CAMPO DE MENSAGEM
+            $('#msgField').val("");
+            
+            // ATUALIZAR A PÁGINA PARA MOSTRAR AS MENSAGENS ATUALIZADAS
+            location.reload();            
+
+        });
+        request.fail(function() {
+            alert("Ocorreu um erro no servidor. Tente novamente mais tarde");
+            //location.href="dashboard.html";
+            //$('#avaliarUsuario').modal("hide");
+        });
+
+
+  
+
+}
 
 
 
@@ -1093,14 +1139,20 @@ var especializacaoPro = $("#tipoProfissionalLista").val();
       // PEGAR LATITUDE E LONGITUDE
       var request = $.ajax({
           method: "GET",
+          async: false,
           url: "https://maps.googleapis.com/maps/api/geocode/json?address="+cadastroNumeroPro+"+"+cadastroRuaPro+",+"+cidadePro+",+"+estadoPro+"&key=AIzaSyCUGRiH2iey-c2WqqeegGF2qpxBDNLsmfQ"
           //data: { email: login, senha: senha }
         })
           request.done(function( msg ) {
               
               console.log("Latitude do Google: "+msg["results"][0]["geometry"]["location"]["lat"]+" Longitude do Google: "+msg["results"][0]["geometry"]["location"]["lng"]);
+              
               latitude = msg["results"][0]["geometry"]["location"]["lat"];
               longitude = msg["results"][0]["geometry"]["location"]["lng"];
+
+              localStorage.setItem("Latitude", msg["results"][0]["geometry"]["location"]["lat"]);
+              localStorage.setItem("Longitude",msg["results"][0]["geometry"]["location"]["lng"]);
+
           });
           request.fail(function() {
               console.log("Ocorreu um erro ao tentar carregar a Lista de estados");
@@ -1110,7 +1162,7 @@ var especializacaoPro = $("#tipoProfissionalLista").val();
       console.log("Latitude atual: "+latitude+" Longitude atual: "+longitude);
       
       // SETAR NA SESSÃO O ID DA CIDADE
-      getIdEstadoCidade(estado,cidade);
+      getIdEstadoCidade(estadoPro,cidadePro);
       
       var idCidade = localStorage.getItem("cidadeId");
 
@@ -1410,8 +1462,8 @@ function trocaMensagensPro(){
   var request = $.ajax({
         method: "POST",
         url: "http://api.csprofissionais.com.br/api/mensagem/BuscaMensagens",
-        data: { ProfissionalId: idPro, 
-             ClienteId: idCli }
+        data: { ProfissionalId: idCli, 
+             ClienteId: idPro }
       })
         request.done(function( msg ) {
 
@@ -1428,10 +1480,13 @@ function trocaMensagensPro(){
                for(i = 0; i < totMsg; i++){
 
                   if(msg["Data"]["List"][i]["Origem"]=="C"){
-                    $('#areaMsg').prepend('<div class="row msg_container base_sent"><div class="col-md-12 col-xs-12"><div class="messages msg_sent"><p>'+msg["Data"]["List"][i]["Mensagem"]+'</p><time datetime="2009-11-13T20:00"></time></div></div><div class="col-md-2 col-xs-2 avatar"><img src="images/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive "></div></div>');
+                    
+                    $('#areaMsg').prepend('<div class="row msg_container base_receive"><div class="col-md-2 col-xs-2 avatar"><img src="images/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive "></div><div class="col-md-10 col-xs-10"><div class="messages msg_receive"><p>'+msg["Data"]["List"][i]["Mensagem"]+'</p><time datetime="2009-11-13T20:00"></time></div></div></div>');
                   }
                   if(msg["Data"]["List"][i]["Origem"]=="P"){
-                    $('#areaMsg').prepend('<div class="row msg_container base_receive"><div class="col-md-2 col-xs-2 avatar"><img src="images/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive "></div><div class="col-md-10 col-xs-10"><div class="messages msg_receive"><p>'+msg["Data"]["List"][i]["Mensagem"]+'</p><time datetime="2009-11-13T20:00"></time></div></div></div>');
+
+                    $('#areaMsg').prepend('<div class="row msg_container base_sent"><div class="col-md-12 col-xs-12"><div class="messages msg_sent"><p>'+msg["Data"]["List"][i]["Mensagem"]+'</p><time datetime="2009-11-13T20:00"></time></div></div><div class="col-md-2 col-xs-2 avatar"><img src="images/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive "></div></div>');
+                  
                   }  
 
                }
