@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 #
 # DIOGENES OLIVEIRA DOS SANTOS JUNIOR
 # WWW.DIOGENESJUNIOR.COM.BR
@@ -100,7 +100,7 @@
                 
 
                  <div class="form-group">
-                     <button id="atualizarSenha" class="btn btn-default btn-lg" onclick="atualizarSenha()">atualizar senha de acesso</button>
+                     <button id="atualizarSenha" class="btn btn-default btn-lg" onclick="atualizarSenhaPro()">atualizar senha de acesso</button>
                  </div>
 
 
@@ -126,7 +126,7 @@
                 
 
                  <div class="form-group">
-                     <label>CPF</label>
+                     <label>CPF/CNPJ</label>
                      <input id="cpfCliente" type="text" class="form-control input-lg"  name="cpf" placeholder="Número do seu CPF" />
                  </div>
 
@@ -137,28 +137,22 @@
 
                  <div class="form-group">
                      <label>Telefone com DDD</label>
-                     <input id="telefoneFixo" type="text" class="form-control input-lg" data-mask="(99) 9999-9999" name="telefone" placeholder="Telefone com DDD" />
+                     <input id="telefoneFixo" type="text" class="form-control input-lg"  name="telefone" placeholder="Telefone com DDD" />
                  </div>
                  <div class="form-group">
                      <label>Celular com DDD</label>
-                     <input id="telefoneCelular" type="text" class="form-control input-lg" name="celular" data-mask="(99) 9999-9999?9" placeholder="Celular com DDD" />
+                     <input id="telefoneCelular" type="text" class="form-control input-lg"  name="celular" placeholder="Celular com DDD" />
                  </div>
-                  <div class="form-group">
-                      <label>Cep</label>
-                      <input id="cepCliente" type="text" class="form-control input-lg" data-mask="99999-999" name="bairro" placeholder="Cep" />
-                  </div>  
+
                  <div class="form-group">
-                     <label>Endereço</label>
+                     <label>Nome da rua:</label>
                      <input id="enderecoCliente" type="text" class="form-control input-lg"  name="endereco" placeholder="Nome da Rua" />
                  </div>
                  <div class="form-group">
                      <label>Número</label>
                      <input id="numeroCliente" type="text" class="form-control input-lg"  name="numero" placeholder="Número" />
                  </div>
-                  <div class="form-group">
-                      <label>Bairro</label>
-                      <input id="bairroCliente" type="text" class="form-control input-lg" name="bairro" placeholder="Bairro" />
-                  </div> 
+                 
 
                   <div class="form-group">
                         <label>Estado</label>
@@ -166,21 +160,27 @@
                     </div>
                     <div class="form-group">
                         <label>Cidade</label>
-                        <select class="form-control" name="cidade" id="cidade">-- selecione a cidade --</select>
+                        <select class="form-control" name="cidade" id="cidade">-- selecione o estado --</select>
                     </div>
 
 
 
-                
+                 <div class="form-group">
+                     <label>Bairro</label>
+                     <input id="bairroCliente" type="text" class="form-control input-lg"  name="bairro" placeholder="Bairro" />
+                 </div> 
 
 
-                               
+                 <div class="form-group">
+                     <label>Cep</label>
+                     <input id="cepCliente" type="text" class="form-control input-lg" data-mask="99999-999" name="bairro" placeholder="Cep" />
+                 </div>                 
 
               
                 
 
                  <div class="form-group">
-                     <button id="atualizarPerfil" onclick="editarMeuPerfil();" class="btn btn-default btn-lg">atualizar informações</button>
+                     <button id="atualizarPerfil" onclick="editarMeuPerfilPro();" class="btn btn-default btn-lg">atualizar informações</button>
                  </div>
       </div>
     </div>
@@ -209,13 +209,13 @@
 <nav class="wow fadeInUp" data-wow-delay="0.5s" data-wow-duration="1.7s">
     <ul>
         <li>
-            <a href="dashboard.html"><i class="fa fa-home" aria-hidden="true"></i></a>
+            <a href="dashboard-pro.html"><i class="fa fa-home" aria-hidden="true"></i></a>
         </li>
         <li>
-            <a href="perfil.html" ><i class="fa fa-user" aria-hidden="true"></i></a>
+            <a href="perfil-pro.html" ><i class="fa fa-user" aria-hidden="true"></i></a>
         </li>
         <li>
-            <a href="mensagens.html" ><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+            <a href="mensagens-pro.html" ><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
         </li>
         <li>
             <a href="index.html"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
@@ -254,12 +254,12 @@
     <script type="text/javascript">
         new WOW().init(); 
 
-        verificarSessao();
+        verificarSessaoPro();
         autoCompleteBusca();
         bannersAnuncios();
-        popularHtml();
+        popularHtmlPro();
 
-        popularCamposPerfil();
+        popularCamposPerfilPro();
 
        
 

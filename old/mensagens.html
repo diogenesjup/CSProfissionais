@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 #
 # DIOGENES OLIVEIRA DOS SANTOS JUNIOR
 # WWW.DIOGENESJUNIOR.COM.BR
@@ -68,55 +68,50 @@
 
 <!-- WORK -->
 <div class="work">
-<div class="container msg-single">
-     
-<h3>
-    Mensagens com o profissional: <span id="nomeProfissional"></span>
-</h3>
-<p>&nbsp;</p>   
-<div class="panel-body msg_container_base">
+<div class="container">
+    
 
-                    <div id="areaMsg"></div>
+     <div class="row">
+         <div class="col-sm-12 col-xs-12 msg-plugin">
+             
+                
+
+
+<!-- AREA MENSAGENS -->
+
+<div class="row">
+
+        
+        <div class="panel panel-default widget">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-comment"></span>
+                <h3 class="panel-title">
+                    Suas mensagens</h3>
+            
                     
-                    
-                </div>
-                <div class="panel-footer">
-                    <div class="input-group">
-                        <input id="msgField" type="text" class="form-control input-sm chat_input" placeholder="Escreva aqui..." />
-                        <span class="input-group-btn">
-                        <button onclick="enviarNovaMensagen();" class="btn btn-default btn-sm" id="btn-chat">enviar</button>
-                        </span>
-                    </div>
-                </div>
-    <p>&nbsp;</p>
-    <p>
-        <a  class="btn btn-primary" style="width:100%;" onclick="history.go(-1);" ><i class="fa fa-sign-out" aria-hidden="true"></i> Voltar</a>
-    </p>
+            </div>
+            <div class="panel-body" id="areaTodasMsg">
+                
+              
+
+
+                
+            </div>
+        </div>
+    </div>
+
+<!-- AREA MENSAGENS -->
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+             
+         </div>
+     </div>
 
       <div class="col-sm-12 col-xs-12 text-center user-preview" id="areaBannerAnuncio1">
-             <p>&nbsp;</p>
              <span id="areaBannerAnuncio"></span>
          </div>
-
-
-         <p>&nbsp;</p>
-         <p>&nbsp;</p>
-         <p>&nbsp;</p>
 </div>
 </div>
 <!-- WORK -->
@@ -143,7 +138,7 @@
     
    
 
-<script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
 
     <script type="text/javascript" src="js/bootstrap.min.js"></script>                                  
      
@@ -159,7 +154,6 @@
 
     <script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>
 
-    
     <script type="text/javascript" src="js/jquery.json.min.js"></script>
     <script type="text/javascript" src="js/servicos.js"></script>
 
@@ -171,12 +165,14 @@
         bannersAnuncios();
         popularHtml();
         
-        getNomeProfissional();
-        trocaMensagens();
+        
+        TodasMensagens();
 
 
-    </script>     
+    </script> 
 
+
+   
 
 
     <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->

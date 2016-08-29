@@ -1,49 +1,48 @@
-<!--
+﻿<!--
 #
 # DIOGENES OLIVEIRA DOS SANTOS JUNIOR
 # WWW.DIOGENESJUNIOR.COM.BR
 # CONTATO@DIOGENESJUNIOR.COM.BR
-# 
+#
 -->
 <!DOCTYPE html>
-<html lang="pt-br"><head>
-<title>CS PROFISSIONAIS</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-   
-<!-- DESCRIÇÃO DO SITE -->
-<meta name="description" content="Coloque aqui a descrição do site" />
-<!-- PALAVRAS CHAVE -->
-<meta name="keywords" content="coloque aqui as palavras chave separadas por virgula" />
-<meta http-equiv="Content-Security-Policy" content="default-src *; script-src * 'unsafe-eval' 'unsafe-inline'; connect-src *; img-src *; style-src * 'unsafe-inline' ; media-src *">  
-   
+<html lang="pt-br">
+<head>
+    <title>CS PROFISSIONAIS</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css" media="all" />                
-
-<link rel="stylesheet" type="text/css" href="css/style.css" />
-
-<!-- SWEET ALERT -->
-<link rel="stylesheet" type="text/css" href="css/sweetalert2.min.css">
-
-<!-- ICONES -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <!-- DESCRIÇÃO DO SITE -->
+    <meta name="description" content="Coloque aqui a descrição do site" />
+    <!-- PALAVRAS CHAVE -->
+    <meta name="keywords" content="coloque aqui as palavras chave separadas por virgula" />
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src * 'unsafe-eval' 'unsafe-inline'; connect-src *; img-src *; style-src * 'unsafe-inline' ; media-src *">
 
 
-<!-- FONTE UBUNTU -->
-<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" media="all" />
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <!-- SWEET ALERT -->
+    <link rel="stylesheet" type="text/css" href="css/sweetalert2.min.css">
+
+    <!-- ICONES -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
 
+    <!-- FONTE UBUNTU -->
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
+    <script type="text/javascript">
+       
+        
 
+    </script>
 </head>
 <body class="homepage hidden-lg hidden-md" onload="localStorage.clear();">
-
-
-
-
     <div class="container actions-homepage wow fadeInDown" data-wow-delay="0.5s" data-wow-duration="1.7s">
-       
-       
+
+
         <div class="row">
             <div class="col-sm-12 col-xs-12">
                 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalLogin">Já sou usuário</button>
@@ -54,320 +53,303 @@
                 <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#tipoCadastro">Quero me cadastrar</button>
             </div>
         </div>
-        
+        <!--<input type="file" id="fileUpload" name="fileUpload" />
+        <input type="button" id="btnEnviar" value="Enviar" />-->
     </div>
-   
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="tipoCadastro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Você é que tipo de usuário?</h4>
-      </div>
-      <div class="modal-body" style="text-align:center;">
-        <p>&nbsp;</p>
-        <div class="row">
-            <div class="col-sm-12 col-xs-12">
-                <button class="btn btn-dafault btn-lg" data-toggle="modal" data-target="#modalCadastroCliente">Estou procurando <br> profissionais</button>
+    <!-- Modal -->
+    <div class="modal fade" id="tipoCadastro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Você é que tipo de usuário?</h4>
+                </div>
+                <div class="modal-body" style="text-align:center;">
+                    <p>&nbsp;</p>
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12">
+                            <button class="btn btn-dafault btn-lg" data-toggle="modal" data-target="#modalCadastroCliente">Estou procurando <br> profissionais</button>
+                        </div>
+                        <p>&nbsp;</p>
+                        <div class="col-sm-12 col-xs-12">
+                            <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalCadastroProfissional">Eu sou um <br> profissional</button>
+                        </div>
+                    </div>
+                    <p>&nbsp;</p>
+                </div>
             </div>
-            <p>&nbsp;</p>
-            <div class="col-sm-12 col-xs-12">
-                <button class="btn btn-default btn-lg"  data-toggle="modal" data-target="#modalCadastroProfissional">Eu sou um <br> profissional</button>
-            </div> 
         </div>
-        <p>&nbsp;</p>
-      </div>
-
     </div>
-  </div>
-</div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Login</h4>
-      </div>
-      <div class="modal-body">
-        
-            <div class="form-group">
-                <label>E-mail</label>
-                <input type="text" class="form-control" id="login" placeholder="Seu e-mail cadastrado" required name="email" />
+    <!-- Modal -->
+    <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="text" class="form-control" id="login" placeholder="Seu e-mail cadastrado" required name="email" />
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" id="senha" required class="form-control" placeholder="Sua senha cadastrada" name="senha" />
+                    </div>
+                    <div class="form-group" id="conteudoLogin2">
+                        <button onclick="procLogin();" class="btn btn-defaul">login como cliente</button> <p style="text-align:center;">ou</p> <button data-toggle="modal" data-target="#modalLoginPro" class="btn btn-defaul">quero me logar como profissional</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Senha</label>
-                <input type="password" id="senha" required class="form-control" placeholder="Sua senha cadastrada" name="senha" />
-            </div>
-            <div class="form-group" id="conteudoLogin2">
-                <button  onclick="procLogin();" class="btn btn-defaul">login como cliente</button> <p style="text-align:center;">ou</p> <button data-toggle="modal" data-target="#modalLoginPro" class="btn btn-defaul">quero me logar como profissional</button>
-            </div>
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
-      </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<!-- Modal -->
-<div class="modal fade" id="modalLoginPro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Login</h4>
-      </div>
-      <div class="modal-body">
-        
-            <div class="form-group">
-                <label>CPF/CNPJ</label>
-                <input type="text" class="form-control" id="loginPro" placeholder="Seu e-mail cadastrado" required name="email" />
+    <!-- Modal -->
+    <div class="modal fade" id="modalLoginPro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Login</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>CPF/CNPJ</label>
+                        <input type="text" class="form-control" id="loginPro" placeholder="Seu e-mail cadastrado" required name="email" />
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" id="senhaPro" required class="form-control" placeholder="Sua senha cadastrada" name="senha" />
+                    </div>
+                    <div class="form-group" id="conteudoLogin2">
+                        <button onclick="procLoginPro();" class="btn btn-defaul">logar como profissional</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Senha</label>
-                <input type="password" id="senhaPro" required class="form-control" placeholder="Sua senha cadastrada" name="senha" />
-            </div>
-            <div class="form-group" id="conteudoLogin2">
-                <button  onclick="procLoginPro();" class="btn btn-defaul">logar como profissional</button>
-            </div>
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
-      </div>
+        </div>
     </div>
-  </div>
-</div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="modalCadastroCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Novo cadastro CS Profissionais</h4>
-      </div>
-      <div class="modal-body">
+    <!-- Modal -->
+    <div class="modal fade" id="modalCadastroCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Novo cadastro CS Profissionais</h4>
+                </div>
+                <div class="modal-body">
 
-       
-            <div class="form-group">
-                <label>Seu nome</label>
-                <input type="text" class="form-control" id="cadastroNome" placeholder="Digite seu nome completo" required name="nome" />
-            </div>
-            <div class="form-group">
-                <label>E-mail</label>
-                <input type="email" class="form-control" id="cadastroEmail" placeholder="Seu e-mail (também será o login)" required name="email" />
-            </div>
-            <!--<div class="form-group">
-                <label>CPF</label>
-                <input type="text" class="form-control" id="cadastroCpf" placeholder="Digite seu cpf" required name="CPF" />
-            </div>-->
+                    <div class="form-group">
+                        <label>*Nome</label>
+                        <input type="text" class="form-control" id="cadastroNome" placeholder="Digite seu nome completo" required name="nome" />
+                    </div>
+                    <div class="form-group">
+                        <label>*E-mail</label>
+                        <input type="email" class="form-control" id="cadastroEmail" placeholder="Seu e-mail (também será o login)" required name="email" />
+                    </div>
+                    <div class="form-group">
+                        <label>*Telefone Celular</label>
+                        <input type="text" class="form-control" id="telefoneCelular" data-mask="(99) 9999-9999?9" placeholder="DDD + número" required name="DDD + número" />
+                    </div>
+                    <div class="form-group">
+                        <label>*CEP</label>
+                        <input type="text" class="form-control itfCEPCli" id="cadastroCep" data-mask="99999-999" placeholder="Seu código postal" required name="cep" />
+                    </div>
+                    <!--<div class="form-group">
+                        <label>CPF</label>
+                        <input type="text" class="form-control" id="cadastroCpf" placeholder="Digite seu cpf" required name="CPF" />
+                    </div>-->
 
-            <div class="form-group">
-               <label>Nome da rua:</label>
-               <input type="text" id="cadastroRua" class="form-control" name="nomeRua" placeholder="Nome da rua" />
+                    <div class="form-group">
+                        <label>*Endereço</label>
+                        <input type="text" id="cadastroRua" class="form-control itfEnderecoCli" name="nomeRua" placeholder="Nome da rua" />
+                    </div>
+                    <div class="form-group">
+                        <label>Número</label>
+                        <input type="text" id="cadastroNumero" class="form-control" name="nomeNumero" placeholder="Número" />
+                    </div> 
+                    <div class="form-group">
+                        <label>*Bairro</label>
+                        <input type="text" class="form-control itfBairroCli" id="cadastroBairro" placeholder="Nome do Bairro" required name="cep" />
+                    </div>
+                    <div class="form-group">
+                        <label>*Estado</label>
+                        <select class="form-control itfEstadoCli" name="estado" id="estado"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>*Cidade</label>
+                        <select class="form-control itfCidadeCli" name="cidade" id="cidade">-- selecione a cidade --</select>
+                    </div>
+                    <div class="form-group">
+                        <label>*Senha</label>
+                        <input type="password" required id="cadastroSenha" class="form-control" placeholder="Sua senha cadastrada" name="senha" />
+                    </div>
+                    <div class="form-group" id="conteudoLogin">
+                        <button onclick="procCadastro();" class="btn btn-default">cadastrar</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+                </div>
             </div>
-            <div class="form-group">
-               <label>Número:</label>
-               <input type="text" id="cadastroNumero" class="form-control" name="nomeNumero" placeholder="Número" />
-            </div>
-
-
-            <div class="form-group">
-                <label>Seu CEP</label>
-                <input type="text" class="form-control" id="cadastroCep" data-mask="99999-999" placeholder="Seu código postal" required name="cep" />
-            </div>
-
-            <div class="form-group">
-                <label>Estado</label>
-                <select class="form-control" name="estado" id="estado"></select>
-            </div>
-            <div class="form-group">
-                <label>Cidade</label>
-                <select class="form-control" name="cidade" id="cidade">-- selecione o estado --</select>
-            </div>
-
-            <div class="form-group">
-                <label>Seu Bairro</label>
-                <input type="text" class="form-control" id="cadastroBairro" placeholder="Nome do Bairro" required name="cep" />
-            </div>
-            
-            <div class="form-group">
-                <label>Senha</label>
-                <input type="password" required id="cadastroSenha" class="form-control" placeholder="Sua senha cadastrada" name="senha" />
-            </div>
-            <div class="form-group" id="conteudoLogin">
-                <button onclick="procCadastro();" class="btn btn-default">cadastrar</button>
-            </div>
-       
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
-      </div>
+        </div>
     </div>
-  </div>
-</div>
 
 
+    <!-- Modal -->
+    <div class="modal fade" id="modalCadastroProfissional" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Novo cadastro CS Profissionais</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>*Nome</label>
+                        <input type="text" class="form-control" id="cadastroNomePro" placeholder="Digite seu nome completo" required name="nome" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>*Sua especialização</label>
+                        <input type="text" id="tipoProfissionalLista" class="form-control" required name="tipoProfissional" id="tipoProfissionalPesquisa" placeholder="Tipo de profissional" />
+                        <!--<input id="autocomplete-profissionais" type="text" name="Especializacao" class="form-control" placeholder="Analista sistemas, Dentista, Médico (...)" />
+                        <input type="hidden" name="EspecializacaoId" id="autocomplete-profissionais-id">-->
+
+                    </div>
+                    <div class="form-group">
+                        <label>Telefone Fixo</label>
+                        <input type="text" class="form-control" id="telefoneFixoPro" data-mask="(99) 9999-9999" placeholder="DDD + número" required name="DDD + número" />
+                    </div>
+                    <div class="form-group">
+                        <label>*Telefone Celular</label>
+                        <input type="text" class="form-control" id="telefoneCelularPro" data-mask="(99) 9999-9999?9" placeholder="DDD + número" required name="DDD + número" />
+                    </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="modalCadastroProfissional" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Novo cadastro CS Profissionais</h4>
-      </div>
-      <div class="modal-body">
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="email" class="form-control" id="cadastroEmailPro" placeholder="Seu e-mail" required name="email" />
+                    </div>
 
-            <div class="form-group">
-                <label>Seu nome</label>
-                <input type="text" class="form-control" id="cadastroNomePro" placeholder="Digite seu nome completo" required name="nome" />
+
+                    <div class="form-group">
+                        <label>*CPF/CNPJ</label>
+                        <input type="text" class="form-control" id="cadastroCnpjPro" placeholder="Digite o número do seu CPF ou CPJ (também será o login)" required name="nome" />
+                    </div>
+                    <div class="form-group">
+                        <label>*CEP</label>
+                        <input type="text" class="form-control itfCEP" id="cadastroCepPro" data-mask="99999-999" placeholder="Seu código postal" required name="cep" />
+                    </div>
+                    <div class="form-group">
+                        <label>*Endereço</label>
+                        <input type="text" id="cadastroRuaPro" class="form-control itfEndereco" name="nomeRuaPro" placeholder="Nome da rua" />
+                    </div>
+                    <div class="form-group">
+                        <label>*Número</label>
+                        <input type="text" id="cadastroNumeroPro" class="form-control" name="nomeNumeroPro" placeholder="Número" />
+                    </div>
+                       
+                    <div class="form-group">
+                        <label>*Bairro</label>
+                        <input type="text" class="form-control itfBairro" id="cadastroBairroPro" placeholder="Nome do Bairro" required name="cep" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>*Estado</label>
+                        <select class="form-control itfEstado" name="estadoPro" id="estadoPro"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>*Cidade</label>
+                        <select class="form-control itfCidade" name="cidadePro" id="cidadePro">-- selecione o estado --</select>
+                    </div>
+                                     
+
+                    <div class="form-group">
+                        <label>Curriculum</label>
+                        <textarea class="form-control" name="Curriculum" id="cadastroCurriculoPro" placeholder="Curriculum" rows="8"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Foto de perfil</label>
+                        <input type="file" name="foto" id="fotoPerfilPro">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" required id="cadastroSenhaPro" class="form-control" placeholder="Sua senha cadastrada" name="senha" />
+                    </div>
+                    
+                    <div class="form-group" id="conteudoLoginPro">
+                        <button onclick="procCadastroProPre();" class="btn btn-default">cadastrar</button>
+                    </div>
+                    <div class="form-group" id="divAguardeCadPro" style="display:none;text-align:center; width:100%">
+                        <img src="http://app.csprofissionais.com.br/images/loadingCad.gif" />
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+                </div>
             </div>
-            
-             <div class="form-group">
-                     <label>Sua especialização</label>
-                     <input type="text" id="tipoProfissionalLista" class="form-control" required name="tipoProfissional" id="tipoProfissionalPesquisa" placeholder="Tipo de profissional" />                
-                     
-                 </div>
-
-
-            <div class="form-group">
-                <label>Telefone Fixo</label>
-                <input type="text" class="form-control" id="telefoneFixoPro" placeholder="DDD + número" required name="DDD + número" />
-            </div>
-            <div class="form-group">
-                <label>Telefone Celular</label>
-                <input type="text" class="form-control" id="telefoneCelularPro" placeholder="DDD + número" required name="DDD + número" />
-            </div>
-
-
-            <div class="form-group">
-                <label>E-mail</label>
-                <input type="email" class="form-control" id="cadastroEmailPro" placeholder="Seu e-mail (também será o login)" required name="email" />
-            </div>
-            
-
-            <div class="form-group">
-                <label>CPF/CNPJ</label>
-                <input type="text" class="form-control" id="cadastroCnpjPro" placeholder="Digite o número do seu CPF?CPJ" required name="nome" />
-            </div>
-
-
-            <div class="form-group">
-               <label>Nome da rua:</label>
-               <input type="text" id="cadastroRuaPro" class="form-control" name="nomeRuaPro" placeholder="Nome da rua" />
-            </div>
-            <div class="form-group">
-               <label>Número:</label>
-               <input type="text" id="cadastroNumeroPro" class="form-control" name="nomeNumeroPro" placeholder="Número" />
-            </div>
-
-
-            <div class="form-group">
-                <label>Seu CEP</label>
-                <input type="text" class="form-control" id="cadastroCepPro" data-mask="99999-999" placeholder="Seu código postal" required name="cep" />
-            </div>
-
-            <div class="form-group">
-                <label>Estado</label>
-                <select class="form-control" name="estadoPro" id="estadoPro"></select>
-            </div>
-            <div class="form-group">
-                <label>Cidade</label>
-                <select class="form-control" name="cidadePro" id="cidadePro">-- selecione o estado --</select>
-            </div>
-
-            <div class="form-group">
-                <label>Seu Bairro</label>
-                <input type="text" class="form-control" id="cadastroBairroPro" placeholder="Nome do Bairro" required name="cep" />
-            </div>
-
-            <div class="form-group">
-                <label>Curriculum</label>
-                <textarea class="form-control" name="Curriculum" id="cadastroCurriculoPro" placeholder="Curriculum" rows="8"></textarea>
-            </div>
-
-            <div class="form-group">
-              <label>Foto de perfil</label>
-              <input type="file" name="foto" id="fotoPerfilPro">
-            </div>
-            
-            <div class="form-group">
-                <label>Senha</label>
-                <input type="password" required id="cadastroSenhaPro" class="form-control" placeholder="Sua senha cadastrada" name="senha" />
-            </div>
-
-            
-
-
-            <div class="form-group" id="conteudoLoginPro">
-                <button onclick="procCadastroPro();" class="btn btn-default">cadastrar</button>
-            </div>
-       
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
-      </div>
+        </div>
     </div>
-  </div>
-</div>
 
 
     <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>        
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="js/cidades-estados-v0.2.js"></script>
     <script type="text/javascript">
-          window.onload = function() {
-              new dgCidadesEstados(
-                  document.getElementById('estado'),
-                  document.getElementById('cidade'),
-                  true
-              );
-              new dgCidadesEstados(
-                  document.getElementById('estadoPro'),
-                  document.getElementById('cidadePro'),
-                  true
-              );
-          }
+        window.onload = function () {
+            new dgCidadesEstados(
+                document.getElementById('estado'),
+                document.getElementById('cidade'),
+                true
+            );
+            new dgCidadesEstados(
+                document.getElementById('estadoPro'),
+                document.getElementById('cidadePro'),
+                true
+            );
+        }
 
 
-    </script>                          
-     
-    <script type="text/javascript" src="js/sweetalert2.min.js"></script> 
+    </script>
+
+    <script type="text/javascript" src="js/sweetalert2.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-notify.js"></script>
     <script type="text/javascript" src="js/wow.min.js"></script>
-    
+
     <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
 
     <script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>
 
     <script type="text/javascript">
 
-        new WOW().init();           
+        new WOW().init();
 
     </script>
-    
+
 
     <script type="text/javascript" src="js/jquery.json.min.js"></script>
     <script type="text/javascript" src="js/servicos.js"></script>
 
     <script type="text/javascript">
-      autoCompleteBusca();
+        autoCompleteBusca();
     </script>
-    
+
 </body>
 </html>

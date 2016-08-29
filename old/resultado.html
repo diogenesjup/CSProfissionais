@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 #
 # DIOGENES OLIVEIRA DOS SANTOS JUNIOR
 # WWW.DIOGENESJUNIOR.COM.BR
@@ -16,7 +16,7 @@
 <meta name="description" content="Coloque aqui a descrição do site" />
 <!-- PALAVRAS CHAVE -->
 <meta name="keywords" content="coloque aqui as palavras chave separadas por virgula" />
-
+<meta http-equiv="Content-Security-Policy" content="default-src *; script-src * 'unsafe-eval' 'unsafe-inline'; connect-src *; img-src *; style-src * 'unsafe-inline' ; media-src *">  
 <!-- FAVICON -->
 <link rel="shortcut icon" href="favicon.ico">    
 
@@ -49,76 +49,33 @@
 
 <!-- HEADER -->
 <header>
-    <div class="top wow fadeInDown" data-wow-delay="0.5s" data-wow-duration="1.7s">
-           <div class="col-sm-6 col-xs-6" id="nomeUsuario">
-                
-            </div>
-            <div class="col-sm-6 col-xs-6" style="text-align:right;">
-                <a href="dashboard.html?cache=3" style="color:#fff;text-decoration:none;">
+	<div class="top wow fadeInDown" data-wow-delay="0.5s" data-wow-duration="1.7s">
+	        <div class="col-sm-6 col-xs-6" id="nomeUsuario">
+	            
+	        </div>
+	        <div class="col-sm-6 col-xs-6" style="text-align:right;">
+	            <a href="dashboard.html?cache=3" style="color:#fff;text-decoration:none;">
                     <i class="fa fa-search" aria-hidden="true"></i>
                 </a>
-            </div>
-    </div>
+	        </div>
+	</div>
 </header>
 <!-- HEADER -->
 
 
-
-
-
+<!-- GOOGLE MAPS -->
+<div id="GoogleMapa"></div>
+<!-- GOOGLE MAPS -->
 <!-- WORK -->
 <div class="work">
-<div class="container msg-single">
-     
-<h3>
-    Mensagens com o profissional: <span id="nomeProfissional"></span>
-</h3>
-<p>&nbsp;</p>   
-<div class="panel-body msg_container_base">
-
-                    <div id="areaMsg"></div>
-                    
-                    
-                </div>
-                <div class="panel-footer">
-                    <div class="input-group">
-                        <input id="msgField" type="text" class="form-control input-sm chat_input" placeholder="Escreva aqui..." />
-                        <span class="input-group-btn">
-                        <button onclick="enviarNovaMensagen();" class="btn btn-default btn-sm" id="btn-chat">enviar</button>
-                        </span>
-                    </div>
-                </div>
-    <p>&nbsp;</p>
-    <p>
-        <a  class="btn btn-primary" style="width:100%;" onclick="history.go(-1);" ><i class="fa fa-sign-out" aria-hidden="true"></i> Voltar</a>
-    </p>
 
 
 
 
+<div class="container" style="padding-bottom:65px;" id="workInner"></div>
 
 
-
-
-
-
-
-
-
-
-
-
-      <div class="col-sm-12 col-xs-12 text-center user-preview" id="areaBannerAnuncio1">
-             <p>&nbsp;</p>
-             <span id="areaBannerAnuncio"></span>
-         </div>
-
-
-         <p>&nbsp;</p>
-         <p>&nbsp;</p>
-         <p>&nbsp;</p>
-</div>
-</div>
+<span id="areaBannerAnuncio"></span>
 <!-- WORK -->
 
 
@@ -143,24 +100,26 @@
     
    
 
-<script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
     <script type="text/javascript" src="js/bootstrap.min.js"></script>                                  
      
     <script type="text/javascript" src="js/sweetalert2.min.js"></script> 
-
-    <script type="text/javascript" src="js/bootstrap-notify.js"></script>
-
-    <script type="text/javascript" src="js/wow.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-notify.js"></script>
+	<script type="text/javascript" src="js/wow.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
 
     <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
 
-    <script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>    
 
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCUGRiH2iey-c2WqqeegGF2qpxBDNLsmfQ"></script>
+
+    <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
     
-    <script type="text/javascript" src="js/jquery.json.min.js"></script>
+	<script type="text/javascript" src="js/jquery.json.min.js"></script>
     <script type="text/javascript" src="js/servicos.js"></script>
 
     <script type="text/javascript">
@@ -170,14 +129,8 @@
         autoCompleteBusca();
         bannersAnuncios();
         popularHtml();
-        
-        getNomeProfissional();
-        trocaMensagens();
-
-
-    </script>     
-
-
+        procPesquisa();
+    </script>
 
     <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     
