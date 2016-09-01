@@ -97,10 +97,10 @@
                    <a class="btn btn-default" data-toggle="modal" data-target="#ultimosTrabalhos" onclick="buscarUltimosTrabalhosPro()">Seus últimos trabalhos</a>
                 </p>
                 <p>
-                   <a onclick="alert('Nenhuma solicitação ainda');" class="btn btn-default">Solicitações de contato</a>
+                   <a data-toggle="modal" data-target="#solicitacaoContato" class="btn btn-default" onclick="buscarTrabalhos()">Solicitações de contato</a>
                 </p>
                 <p>
-                   <a onclick="solicDestaque();" class="btn btn-default">Solicitar destaque</a>
+                   <a data-toggle="modal" data-target="#solicitacaoDestaque" onclick="solicDestaque();" class="btn btn-default">Solicitar destaque</a>
                 </p>
                 <p>
                    <a  class="btn btn-default"  onclick="carregarComentariosPro();" data-toggle="modal" data-target="#verComentarios">Suas avaliações</a>
@@ -200,8 +200,73 @@
         <input type="file" id="fotoTrabalho" name="fotoTrabalho" class="form-control">
     </div>
     <div class="form-group">
-        <button type="submit" id="fotoTrabalho" class="btn btn-primary btn-sm">enviar novo trabalho</button>
+        <button type="submit" id="SendfotoTrabalho" class="btn btn-primary btn-sm">enviar novo trabalho</button>
     </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- SOLICITAÇÕES DE CONTATO -->
+<div class="modal fade" id="solicitacaoContato" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Solicitações de contato</h4>
+      </div>
+      <div class="modal-body" id="solicitacoesContatoWork">
+
+        
+
+       
+
+   
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- SOLICITAÇÕES DE CONTATO -->
+<div class="modal fade" id="solicitacaoDestaque" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Solicitar destaque</h4>
+      </div>
+      <div class="modal-body" id="solicitacoesDestaqueWork">
+
+        
+      <p style="text-align:center;">
+        Obtenha destaque na busca!<br>
+Seu perfil ficará em destaque por 30 dias por apenas R$ <span id="valorDestaque">19,90</span>.<br>
+Obs: você receberá um boleto em seu e-mail e seu serviço será válido e após a confirmação de pagamento.
+      </p>   
+      <p style="text-align:center;">
+        <button onclick="confirmarDestaque();" class="btn btn-primary">Solicitar <b>agora</b></button>
+      </p>
 
 
       </div>

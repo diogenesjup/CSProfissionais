@@ -54,6 +54,11 @@
 // D0042 - Carrega Endereço pelo CEP Pro
 // D0043 - Pre Cadastro Profissional (verifica se tem imagem)
 // D0044 - BUSCAR ULTIMOS TRABALHOS DO PROFISSIONAL LOGAGO
+// D0045 - UPLOAD DE NOVO TRABALHO DO PROFISSIONAL
+// D0046 - APAGAR IMAGEM DA GALERIA DE TRABALHOS DO PROFISSIONAL
+// D0047 - ATUALIZAR FOTO DE PERFIL DO PROFISSIONAL
+// D0048 - BUSCAR SOLICITAÇÕES DE CONTATO DO PROFISSIONAL
+//
 //
 //
 // #############################################################################
@@ -73,6 +78,11 @@ function procLogin(){
 
     var login = $("#login").val();
     var senha = $("#senha").val();
+
+    if(login=="" || $senha ==""){
+        alert("Login e Senha são obrigatórios");
+        return 1;
+    }
 
     var request = $.ajax({
         method: "POST",
@@ -848,7 +858,7 @@ function procPesquisa(){
                                                                    
               
 
-                $("#workInner").append('<div class="row"><div class="col-sm-12 col-xs-12 text-left user-preview"><h4>'+nomeProfissional+'</h4>'+estrelas+'&nbsp;<i class="fa fa-phone" aria-hidden="true"></i>'+celularProfissional+'&nbsp;</p><p class="btn-detalhe"><a style="cursor:pointer;" onclick="verProfissional('+idProfissional+')" class="btn btn-primary">DETALHES</a></p></div></div>');
+                $("#workInner").append('<div class="row"><div class="col-sm-12 col-xs-12 text-left user-preview"><p style="padding-top:8px;"><b>'+nomeProfissional+'</b></p>'+estrelas+'&nbsp;<i class="fa fa-phone" aria-hidden="true"></i>'+celularProfissional+'&nbsp;</p><p class="btn-detalhe"><a style="cursor:pointer;" onclick="verProfissional('+idProfissional+')" class="btn btn-primary">DETALHES</a></p></div></div>');
 
 
             }           
@@ -1405,6 +1415,11 @@ function procLoginPro(){
     var login = $("#loginPro").val();
     var senha = $("#senhaPro").val();
 
+    if(login=="" || $senha ==""){
+        alert("Login e Senha são obrigatórios");
+        return 1;
+    }
+
     var request = $.ajax({
         method: "POST",
         url: "http://api.csprofissionais.com.br/api/profissional/Login",
@@ -1614,6 +1629,26 @@ function solicDestaque(){
 
     var idPro = localStorage.getItem("idProfissionalLogado");
   
+    var request = $.ajax({
+        method: "GET",
+        url: "http://api.csprofissionais.com.br/api/profissional/ObterValorDestaque"
+        //data: { email: login, senha: senha }
+    })
+    request.done(function( msg ) {
+          
+        $('#valorDestaque').html(msg["Data"]["Valor"]); 
+        console.log("Valor da solicitação de destaque capturada com sucesso");
+          
+    });
+    request.fail(function() {
+        console.log("Ocorreu um erro ao tentar realizar a solicitação");
+                  
+    });
+
+}
+function confirmarDestaque(){
+     
+     var idPro = localStorage.getItem("idProfissionalLogado");
 
     var request = $.ajax({
         method: "GET",
@@ -1631,8 +1666,6 @@ function solicDestaque(){
         console.log("Ocorreu um erro ao tentar realizar a solicitação");
                   
     });
-
-
 }
 
 
@@ -2191,7 +2224,7 @@ function buscarUltimosTrabalhosPro(){
 
         for(i = 0; i < totImagens; i++){
 
-            $('#ultimosTrabalhosWork').prepend("<img src='http://www.csprofissionais.com.br/upload/"+msg["Data"]["Imagens"][i]["Nome"]+"' style='width:100%;height:auto;margin-bottom:8px;padding:3px;border:1px solid #efefef;' />")
+            $('#ultimosTrabalhosWork').prepend("<div id='imagemTrabalhoDiv"+msg["Data"]["Imagens"][i]["ImagensProfissionalId"]+"'><img src='http://www.csprofissionais.com.br/upload/"+msg["Data"]["Imagens"][i]["Nome"]+"' style='width:100%;height:auto;margin-bottom:8px;padding:3px;border:1px solid #efefef;' /><p><button onclick='apagarImagemPro("+msg["Data"]["Imagens"][i]["ImagensProfissionalId"]+");' class='btn btn-danger btn-xs'>apagar</button></p><br></div>")
             console.log("Imagem do trabalho do profissional impressa: http://www.csprofissionais.com.br/upload/"+msg["Data"]["Imagens"][i]["Nome"]);
 
         }  
@@ -2205,6 +2238,204 @@ function buscarUltimosTrabalhosPro(){
         console.log("Ocorreu um erro ao tentar pegar os dados desse profissional");
         $('#ultimosTrabalhosWork').prepend("<p style='text-align:center;'>Nenhuma imagem encontrada ou disponível no servidor.</p>");          
     });
+
+
+
+}
+
+
+// D0045 - UPLOAD DE NOVO TRABALHO DO PROFISSIONAL
+
+ $('#fotoTrabalho').change(function (event) {
+        form = new FormData();
+        form.append('fileUpload', event.target.files[0]); // para apenas 1 arquivo
+        //var name = event.target.files[0].content.name; // para capturar o nome do arquivo com sua extenção
+    });
+
+    $('#SendfotoTrabalho').click(function () {
+        $('#SendfotoTrabalho').html("enviando....");
+        var retorno='';
+        var imagemTrabalho='';
+        var request = $.ajax({
+            url: 'http://api.csprofissionais.com.br/api/imagem/PostImagem', // Url do lado server que vai receber o arquivo
+            data: form,
+            processData: false,
+            contentType: false,
+            async: false,
+            type: 'POST',
+            success: function (data) {
+                //retorno = data;
+                //alert(data); // utilizar o retorno
+            }
+        });
+        //alert(retorno);
+        request.done(function( msg ) {
+            
+            imagemTrabalho = msg;
+
+            console.log(imagemTrabalho);
+            $('#SendfotoTrabalho').html("enviar novo trabalho");
+            alert("Imagem enviada com sucesso");
+        })      
+        request.fail(function() {
+            console.log("Deu ruim o cadastro");
+        });
+
+
+        if(imagemTrabalho!=''){
+            console.log("Salvando na API "+imagemTrabalho);
+            var profissionalTrabalho = localStorage.getItem("idProfissionalLogado");
+
+
+            var request = $.ajax({
+                method: "POST",
+                url: "http://api.csprofissionais.com.br/api/profissional/InserirImagem",
+                data: { ProfissionalId: profissionalTrabalho, Nome: imagemTrabalho }
+            })
+            request.done(function( msg ) {
+
+                if(!msg["Data"]){
+                    alert("Ocorreu um erro em tentar salvar a imagem no servidor, tente novamente mais tarde");
+                }else{
+                    console.log("Imagem salva na galeria do profissional com sucesso");
+                }  
+
+            });
+            request.fail(function() {
+                alert("Ocorreu um erro em tentar salvar a imagem no servidor, tente novamente mais tarde");
+            }); 
+
+
+        }
+
+
+});
+
+
+
+
+// D0046 - APAGAR IMAGEM DA GALERIA DE TRABALHOS DO PROFISSIONAL
+function apagarImagemPro(idImagem){
+
+   var request = $.ajax({
+        method: "POST",
+        url: "http://api.csprofissionais.com.br/api/profissional/DeletarImagem/"+idImagem
+        //data: { email: login, senha: senha }
+    })
+    request.done(function( msg ) {
+          
+       console.log("Imagem removida com sucesso");
+       alert("Imagem removida com sucesso");
+       $('#imagemTrabalhoDiv'+idImagem).fadeOut();          
+          
+    });
+    request.fail(function() {
+        console.log("Ocorreu um erro ao tentar apagar a imagem");
+                
+    });
+
+}    
+
+
+// D0047 - ATUALIZAR FOTO DE PERFIL DO PROFISSIONAL
+ $('#fotoPerfilPro2').change(function (event) {
+        form = new FormData();
+        form.append('fileUpload', event.target.files[0]); // para apenas 1 arquivo
+        //var name = event.target.files[0].content.name; // para capturar o nome do arquivo com sua extenção
+    });
+
+    $('#updateProfilePicture').click(function () {
+        
+        var imagemPerfil='';
+        var request = $.ajax({
+            url: 'http://api.csprofissionais.com.br/api/imagem/PostImagem', // Url do lado server que vai receber o arquivo
+            data: form,
+            processData: false,
+            contentType: false,
+            async: false,
+            type: 'POST',
+            success: function (data) {
+                //retorno = data;
+                //alert(data); // utilizar o retorno
+            }
+        });
+        //alert(retorno);
+        request.done(function( msg ) {
+            
+            imagemPerfil = msg;
+
+            console.log(imagemPerfil);
+            alert("Imagem atualizada com sucesso");
+        })      
+        request.fail(function() {
+            console.log("Deu ruim o cadastro");
+        });
+
+
+        if(imagemPerfil!=''){
+            console.log("Atualizando Perfil "+imagemPerfil);
+            var profissionalPicture = localStorage.getItem("idProfissionalLogado");
+
+            var request = $.ajax({
+                method: "POST",
+                url: "http://api.csprofissionais.com.br/api/profissional/editar",
+                data: { profissionalid: profissionalPicture,
+                    nomefoto: imagemPerfil }
+            })
+            request.done(function( msg ) {
+
+                console.log(msg);
+                console.log("Dados (profile picture) atualizados com sucesso!");            
+
+            });
+            request.fail(function() {
+                console.log("Não foi possível realizar a operação, tente novamente.");
+            });            
+
+
+        }
+
+
+});
+
+
+
+// D0048 - BUSCAR SOLICITAÇÕES DE CONTATO
+function buscarTrabalhos(){
+
+      //var profissionalLogado = localStorage.getItem("idProfissionalLogado");
+      var profissionalLogado = 27;
+      
+      console.log("Buscando as solicitações de contato do Profissional: "+profissionalLogado);
+
+
+
+      var request = $.ajax({
+            method: "GET",
+            url: "http://api.csprofissionais.com.br/api/profissional/SolicitacoesContato/"+profissionalLogado
+            //data: { email: login, senha: senha }
+        })
+        request.done(function( msg ) {
+            
+            if(msg["Data"]){  
+            var totContato = msg["Data"].length;
+            totContato = totContato - 1;
+            
+
+            for(i = 0; i < totContato; i++){
+            
+               $("#solicitacoesContatoWork").prepend("<b>Nome do cliente: </b> "+msg["Data"][i]["ClienteNome"]+"<br><b>Telefone: </b>"+msg["Data"][i]["Telefone"]+"<br><b>E-mail: </b>"+msg["Data"][i]["Email"]+"<br><b>Data solicitação: </b>"+msg["Data"][i]["DataSolicitacao"]+"<hr />");
+            
+            }
+
+            }else{
+                $("#solicitacoesContatoWork").html("Nenhuma solicitação de contato ainda");
+            }
+        });
+        request.fail(function() {
+            console.log("Ocorreu um erro ao tentar carregar as solicitações de contato");
+            $("#solicitacoesContatoWork").html("<p>Ocorreu um erro ao tentar carregar as solicitações de contato</p>");
+        });
 
 
 
