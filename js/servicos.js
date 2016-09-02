@@ -79,7 +79,7 @@ function procLogin(){
     var login = $("#login").val();
     var senha = $("#senha").val();
 
-    if(login=="" || $senha ==""){
+    if(login=="" || senha ==""){
         alert("Login e Senha são obrigatórios");
         return 1;
     }
@@ -1415,7 +1415,7 @@ function procLoginPro(){
     var login = $("#loginPro").val();
     var senha = $("#senhaPro").val();
 
-    if(login=="" || $senha ==""){
+    if(login=="" || senha ==""){
         alert("Login e Senha são obrigatórios");
         return 1;
     }
