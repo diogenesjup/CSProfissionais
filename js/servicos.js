@@ -58,6 +58,7 @@
 // D0046 - APAGAR IMAGEM DA GALERIA DE TRABALHOS DO PROFISSIONAL
 // D0047 - ATUALIZAR FOTO DE PERFIL DO PROFISSIONAL
 // D0048 - BUSCAR SOLICITAÇÕES DE CONTATO DO PROFISSIONAL
+// D0049 - VERIFICAR A VERSÃO ATUAL DO APLICATIVO
 //
 //
 //
@@ -66,6 +67,8 @@
 
 var form;
 var nomeFoto;
+// SETAR A VERSÃO ATUAL DO APLICATIVO NESSA VARIAVEL
+var versaoApp = "v1.1";
 
 var especializacaoData;
 
@@ -1225,7 +1228,7 @@ function enviarNovaMensagen(){
 }
 function enviarNovaMensagenPro(){
 
-    var idPro = localStorage.getItem("Profissional");
+    var idPro = localStorage.getItem("idProfissionalLogado");
     var idCli = localStorage.getItem("ClienteId");
     var mensagem = $('#msgField').val();
     var origem = "P";
@@ -2438,5 +2441,34 @@ function buscarTrabalhos(){
         });
 
 
+
+}
+
+
+
+// D0049 - VERIFICAR A VERSÃO ATUAL DO APLICATIVO
+function verificaVersaoAtual(){    
+
+      var request = $.ajax({
+            method: "GET",
+            url: "http://api.csprofissionais.com.br/api/versao/getversao"
+            //data: { email: login, senha: senha }
+        })
+        request.done(function( msg ) {
+            
+            console.log("VERSÃO MAIS RECENTE DO APLICATIVO: "+msg["Data"]["Versao"]);
+            console.log("VERSÃO ATUAL INSTALADA: "+versaoApp);
+
+            if(msg["Data"]["Versao"]==versaoApp){
+                console.log("APLICATIVO ESTÁ ATUALIZADO");
+            }else{
+                console.log("DIRECIONANDO O USUÁRIO PARA A LOJA DE APLICATIVO");
+            }
+
+        });
+        request.fail(function() {
+            console.log("Ocorreu um erro ao tentar carregar as solicitações de contato");
+            $("#solicitacoesContatoWork").html("<p>Ocorreu um erro ao tentar carregar as solicitações de contato</p>");
+        });
 
 }
