@@ -13,6 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
     <!-- DESCRIÇÃO DO SITE -->
     <meta name="description" content="Coloque aqui a descrição do site" />
     <!-- PALAVRAS CHAVE -->
@@ -32,17 +33,17 @@
 
 
     <!-- FONTE UBUNTU -->
-    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
+    <!--<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>-->
+
     <script type="text/javascript">
-       
-        
+
+
 
     </script>
 </head>
-<body class="homepage hidden-lg hidden-md" onload="localStorage.clear();">
+<!--<body class="homepage hidden-lg hidden-md" onload="localStorage.clear();">-->
+<body class="homepage hidden-lg hidden-md">
     <div class="container actions-homepage wow fadeInDown" data-wow-delay="0.5s" data-wow-duration="1.7s">
-
-
         <div class="row">
             <div class="col-sm-12 col-xs-12">
                 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalLogin">Já sou usuário</button>
@@ -51,6 +52,19 @@
         <div class="row">
             <div class="col-sm-12 col-xs-12">
                 <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#tipoCadastro">Quero me cadastrar</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <br />
+                <!--<a href="javascript:;" onclick="closeBrowser()">Close</a>-->
+                <!--<button id="efetuarlogoff" class="btn btn-primary btn-lg" onclick="onDeviceReady()">onDeviceReady</button>-->
+
+                <!--<button id="efetuarlogoff2" class="btn btn-primary btn-lg" onclick="closeBrowser();">closeBrowser</button>-->
+                <!--<button id="backbutton" class="btn btn-primary btn-lg" onclick="exitAppPopup()">closeMeNow</button>-->
+                <!--<a href="#" onclick="exitFromApp();" data-role="button">Close App</a>-->
+
+                <!--<a id="exitApp" href="#" onclick="onDeviceReady();" data-role="button">closeMeNow</a>-->
             </div>
         </div>
         <!--<input type="file" id="fileUpload" name="fileUpload" />
@@ -101,6 +115,10 @@
                     </div>
                     <div class="form-group" id="conteudoLogin2">
                         <button onclick="procLogin();" class="btn btn-defaul">login como cliente</button> <p style="text-align:center;">ou</p> <button data-toggle="modal" data-target="#modalLoginPro" class="btn btn-defaul">quero me logar como profissional</button>
+                    
+                    </div>
+                    <div class="form-group" id="divAguardeLogCli" style="display:none;text-align:center; width:100%">
+                        <img src="http://app.csprofissionais.com.br/images/loadingCad.gif" />
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -122,14 +140,17 @@
 
                     <div class="form-group">
                         <label>CPF/CNPJ</label>
-                        <input type="text" class="form-control" id="loginPro" placeholder="Seu e-mail cadastrado" required name="email" />
+                        <input type="tel" class="form-control" id="loginPro" placeholder="Seu e-mail cadastrado" maxlength="16" required name="email" />
                     </div>
                     <div class="form-group">
                         <label>Senha</label>
                         <input type="password" id="senhaPro" required class="form-control" placeholder="Sua senha cadastrada" name="senha" />
                     </div>
                     <div class="form-group" id="conteudoLogin2">
-                        <button onclick="procLoginPro();" class="btn btn-defaul">logar como profissional</button>
+                        <button onclick="procLoginPro();" class="btn btn-defaul" id="btnLogProf">logar como profissional</button>
+                        <div class="form-group" id="divAguardeLogProf" style="display:none;text-align:center; width:100%">
+                            <img src="http://app.csprofissionais.com.br/images/loadingCad.gif" />
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -152,19 +173,19 @@
 
                     <div class="form-group">
                         <label>*Nome</label>
-                        <input type="text" class="form-control" id="cadastroNome" placeholder="Digite seu nome completo" required name="nome" />
+                        <input type="text" class="form-control" id="cadastroNome" placeholder="Digite seu nome completo" onclick="ClickTextCli(80)" required name="nome" />
                     </div>
                     <div class="form-group">
                         <label>*E-mail</label>
-                        <input type="email" class="form-control" id="cadastroEmail" placeholder="Seu e-mail (também será o login)" required name="email" />
+                        <input type="email" class="form-control" id="cadastroEmail" placeholder="Seu e-mail (também será o login)" onclick="ClickTextCli(155)" required name="email" />
                     </div>
                     <div class="form-group">
                         <label>*Telefone Celular</label>
-                        <input type="text" class="form-control" id="telefoneCelular" data-mask="(99) 9999-9999?9" placeholder="DDD + número" required name="DDD + número" />
+                        <input type="tel" class="form-control" id="telefoneCelular" maxlength="11" placeholder="DDD + número" onclick="ClickTextCli(230)" required name="DDD + número" />
                     </div>
                     <div class="form-group">
                         <label>*CEP</label>
-                        <input type="text" class="form-control itfCEPCli" id="cadastroCep" data-mask="99999-999" placeholder="Seu código postal" required name="cep" />
+                        <input type="tel" class="form-control itfCEPCli" id="cadastroCep" maxlength="8" placeholder="Seu código postal" onclick="ClickTextCli(305)" required name="cep" />
                     </div>
                     <!--<div class="form-group">
                         <label>CPF</label>
@@ -173,35 +194,39 @@
 
                     <div class="form-group">
                         <label>*Endereço</label>
-                        <input type="text" id="cadastroRua" class="form-control itfEnderecoCli" name="nomeRua" placeholder="Nome da rua" />
+                        <input type="text" id="cadastroRua" class="form-control itfEnderecoCli" name="nomeRua" placeholder="Nome da rua" onclick="ClickTextCli(380)" />
                     </div>
                     <div class="form-group">
                         <label>Número</label>
-                        <input type="text" id="cadastroNumero" class="form-control" name="nomeNumero" placeholder="Número" />
-                    </div> 
+                        <input type="text" id="cadastroNumero" class="form-control" name="nomeNumero" placeholder="Número" onclick="ClickTextCli(455)" />
+                    </div>
                     <div class="form-group">
                         <label>*Bairro</label>
-                        <input type="text" class="form-control itfBairroCli" id="cadastroBairro" placeholder="Nome do Bairro" required name="cep" />
+                        <input type="text" class="form-control itfBairroCli" id="cadastroBairro" placeholder="Nome do Bairro" required name="cadastroBairro" onclick="ClickTextCli(530)" /> 
                     </div>
                     <div class="form-group">
                         <label>*Estado</label>
-                        <select class="form-control itfEstadoCli" name="estado" id="estado"></select>
+                        <select class="form-control itfEstadoCli" name="estado" id="estado" onclick="ClickTextCli(605)"></select>
                     </div>
                     <div class="form-group">
                         <label>*Cidade</label>
-                        <select class="form-control itfCidadeCli" name="cidade" id="cidade">-- selecione a cidade --</select>
+                        <select class="form-control itfCidadeCli" name="cidade" id="cidade" onclick="ClickTextCli(680)">-- selecione a cidade --</select>
                     </div>
                     <div class="form-group">
                         <label>*Senha</label>
-                        <input type="password" required id="cadastroSenha" class="form-control" placeholder="Sua senha cadastrada" name="senha" />
+                        <input type="password" required id="cadastroSenha" class="form-control" placeholder="Sua senha cadastrada" name="senha" onclick="ClickTextCli(755)" />
                     </div>
                     <div class="form-group" id="conteudoLogin">
                         <button onclick="procCadastro();" class="btn btn-default">cadastrar</button>
+                    </div>
+                    <div class="form-group" id="divAguardeCadCli" style="display:none;text-align:center; width:100%">
+                        <img src="http://app.csprofissionais.com.br/images/loadingCad.gif" />
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
                 </div>
+                <br />&nbsp;<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             </div>
         </div>
     </div>
@@ -219,81 +244,75 @@
 
                     <div class="form-group">
                         <label>*Nome</label>
-                        <input type="text" class="form-control" id="cadastroNomePro" placeholder="Digite seu nome completo" required name="nome" />
+                        <input type="text" class="form-control cadastroNomePro" id="cadastroNomePro" onclick="ClickTextPro(80)" placeholder="Digite seu nome completo" required name="nome" />
                     </div>
 
                     <div class="form-group">
                         <label>*Sua especialização</label>
-                        <input type="text" id="tipoProfissionalLista" class="form-control" required name="tipoProfissional" id="tipoProfissionalPesquisa" placeholder="Tipo de profissional" />
+                        <input type="text" id="tipoProfissionalLista" class="form-control tipoProfissionalPesquisa" onclick="ClickTextPro(155)" required name="tipoProfissional" id="tipoProfissionalPesquisa" placeholder="Tipo de profissional" />
                         <!--<input id="autocomplete-profissionais" type="text" name="Especializacao" class="form-control" placeholder="Analista sistemas, Dentista, Médico (...)" />
                         <input type="hidden" name="EspecializacaoId" id="autocomplete-profissionais-id">-->
-
+                    </div>
+                    <div class="form-group">
+                        <label>*CPF/CNPJ</label>
+                        <input type="tel" class="form-control cadastroCnpjPro" id="cadastroCnpjPro" onclick="ClickTextPro(230)" maxlength="16" placeholder="Digite o número do seu CPF ou CPJ (também será o login)" required name="nome" />
                     </div>
                     <div class="form-group">
                         <label>Telefone Fixo</label>
-                        <input type="text" class="form-control" id="telefoneFixoPro" data-mask="(99) 9999-9999" placeholder="DDD + número" required name="DDD + número" />
+                        <input type="tel" class="form-control telefoneFixoPro" id="telefoneFixoPro" onclick="ClickTextPro(305)" placeholder="DDD + número" maxlength="10" required name="DDD + número" />
                     </div>
                     <div class="form-group">
                         <label>*Telefone Celular</label>
-                        <input type="text" class="form-control" id="telefoneCelularPro" data-mask="(99) 9999-9999?9" placeholder="DDD + número" required name="DDD + número" />
+                        <input type="tel" class="form-control telefoneCelularPro" id="telefoneCelularPro" onclick="ClickTextPro(380)" placeholder="DDD + número" maxlength="11" required name="DDD + número" />
                     </div>
-
-
                     <div class="form-group">
                         <label>E-mail</label>
-                        <input type="email" class="form-control" id="cadastroEmailPro" placeholder="Seu e-mail" required name="email" />
+                        <input type="email" class="form-control cadastroEmailPro" id="cadastroEmailPro" onclick="ClickTextPro(455)" placeholder="Seu e-mail" required name="email" />
                     </div>
 
-
-                    <div class="form-group">
-                        <label>*CPF/CNPJ</label>
-                        <input type="text" class="form-control" id="cadastroCnpjPro" placeholder="Digite o número do seu CPF ou CPJ (também será o login)" required name="nome" />
-                    </div>
                     <div class="form-group">
                         <label>*CEP</label>
-                        <input type="text" class="form-control itfCEP" id="cadastroCepPro" data-mask="99999-999" placeholder="Seu código postal" required name="cep" />
+                        <input type="tel" class="form-control itfCEP cadastroCepPro" id="cadastroCepPro" onclick="ClickTextPro(530)" placeholder="Seu código postal" maxlength="8" required name="cep" />
                     </div>
                     <div class="form-group">
                         <label>*Endereço</label>
-                        <input type="text" id="cadastroRuaPro" class="form-control itfEndereco" name="nomeRuaPro" placeholder="Nome da rua" />
+                        <input type="text" id="cadastroRuaPro" class="form-control itfEndereco cadastroRuaPro" onclick="ClickTextPro(605)" name="nomeRuaPro" placeholder="Nome da rua" />
                     </div>
                     <div class="form-group">
                         <label>*Número</label>
-                        <input type="text" id="cadastroNumeroPro" class="form-control" name="nomeNumeroPro" placeholder="Número" />
+                        <input type="text" id="cadastroNumeroPro" class="form-control cadastroNumeroPro" name="nomeNumeroPro" onclick="ClickTextPro(680)" placeholder="Número" />
                     </div>
-                       
                     <div class="form-group">
                         <label>*Bairro</label>
-                        <input type="text" class="form-control itfBairro" id="cadastroBairroPro" placeholder="Nome do Bairro" required name="cep" />
+                        <input type="text" class="form-control itfBairro cadastroBairroPro" id="cadastroBairroPro" onclick="ClickTextPro(755)" placeholder="Nome do Bairro" required name="cep" />
                     </div>
-
                     <div class="form-group">
                         <label>*Estado</label>
-                        <select class="form-control itfEstado" name="estadoPro" id="estadoPro"></select>
+                        <select class="form-control itfEstado estadoPro" name="estadoPro" id="estadoPro" onclick="ClickTextPro(825)"></select>
                     </div>
                     <div class="form-group">
                         <label>*Cidade</label>
-                        <select class="form-control itfCidade" name="cidadePro" id="cidadePro">-- selecione o estado --</select>
+                        <select class="form-control itfCidade cidadePro" name="cidadePro" id="cidadePro" onclick="ClickTextPro(900)">-- selecione o estado --</select>
                     </div>
-                                     
 
                     <div class="form-group">
                         <label>Curriculum</label>
-                        <textarea class="form-control" name="Curriculum" id="cadastroCurriculoPro" placeholder="Curriculum" rows="8"></textarea>
+                        <textarea class="form-control cadastroCurriculoPro" name="Curriculum" id="cadastroCurriculoPro" onclick="ClickTextPro(975)" placeholder="Curriculum" rows="8"></textarea>
                     </div>
-
-                    <div class="form-group">
+                    <div class="form-group" style="display:none;">
                         <label>Foto de perfil</label>
+
                         <input type="file" name="foto" id="fotoPerfilPro">
+
                     </div>
 
                     <div class="form-group">
                         <label>Senha</label>
-                        <input type="password" required id="cadastroSenhaPro" class="form-control" placeholder="Sua senha cadastrada" name="senha" />
+                        <input type="password" required id="cadastroSenhaPro" class="form-control cadastroSenhaPro" onclick="ClickTextPro(1200)" placeholder="Sua senha cadastrada" name="senha" />
                     </div>
-                    
+
                     <div class="form-group" id="conteudoLoginPro">
-                        <button onclick="procCadastroProPre();" class="btn btn-default">cadastrar</button>
+                        <button onclick="procCadastroPro();" class="btn btn-default">cadastrar</button>
                     </div>
                     <div class="form-group" id="divAguardeCadPro" style="display:none;text-align:center; width:100%">
                         <img src="http://app.csprofissionais.com.br/images/loadingCad.gif" />
@@ -302,6 +321,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+                </div>
+                <div style="min-height:500px;">
+                    <br />&nbsp;<br />
                 </div>
             </div>
         </div>
@@ -312,6 +334,7 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="js/cidades-estados-v0.2.js"></script>
+    <!--<script type="text/javascript" src="js/jquery.json.min.js"></script>-->
     <script type="text/javascript">
         window.onload = function () {
             new dgCidadesEstados(
@@ -324,9 +347,54 @@
                 document.getElementById('cidadePro'),
                 true
             );
+
+            procVerificaUsuarioLogado();
+            onLoad();
+
+            
+
+            document.addEventListener("deviceready", onDeviceReady, true);
         }
 
+        $(document).ready(function ($) {
+            $('#telefoneFixoPro').mask('##########');
+            $('#telefoneCelularPro').mask('###########');
+            $('#cadastroCepPro').mask('########');
+            $('#cadastroCep').mask('########');
+            $('#telefoneCelular').mask('###########');
 
+
+
+            var field = 'clear';
+            var url = window.location.href;
+            if (url.indexOf('?' + field + '=') != -1) {
+                history.go(-(history.length - 1));
+                window.location.replace("index.html");
+                // window.history.back(-100);
+                //window.history.go(-(history.length - 1));
+               //window.history.clear();
+            }
+            else if (url.indexOf('&' + field + '=') != -1) {
+                history.go(-(history.length - 1));
+                window.location.replace("index.html");
+               
+                //window.history.back(-100);
+                //window.history.clear();
+            }  
+
+            //document.addEventListener("deviceready", onDeviceReady, false);
+            //
+            //function onDeviceReady() {
+            //    // alert("deviceready");
+            //    document.getElementById('exitApp').addEventListener('click', function () {
+            //        navigator.app.exitApp();
+            //    });
+            //}
+
+
+        });
+
+       
     </script>
 
     <script type="text/javascript" src="js/sweetalert2.min.js"></script>
@@ -334,7 +402,7 @@
     <script type="text/javascript" src="js/wow.min.js"></script>
 
     <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
-
+    <script type="text/javascript" src="js/jquery.mask.js"></script>
     <script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>
 
     <script type="text/javascript">
@@ -344,7 +412,6 @@
     </script>
 
 
-    <script type="text/javascript" src="js/jquery.json.min.js"></script>
     <script type="text/javascript" src="js/servicos.js"></script>
 
     <script type="text/javascript">
@@ -353,4 +420,5 @@
     </script>
 
 </body>
+
 </html>

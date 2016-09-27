@@ -92,7 +92,10 @@
                  <a href="#" class="btn btn-default" data-toggle="modal" data-target="#avaliarUsuario">Avaliar esse usuário</a>
              </p>
              <p>
-                 <a class="btn btn-default" onclick="solicContato();" >Solicitar Contato</a>
+                 <a class="btn btn-default" id="btnSolicitarContato" onclick="solicContato();" >Solicitar Contato</a>
+                 <div class="form-group" id="divAguardeSolContato" style="display:none;text-align:center; width:100%">
+                     <img style="max-height:50px;" src="http://app.csprofissionais.com.br/images/loadingCad.gif" />
+                 </div>
              </p>
              <p>
                  <a href="#" class="btn btn-primary" style="width:100%;" onclick="carregarComentarios();" data-toggle="modal" data-target="#verComentarios"><i class="fa fa-star" aria-hidden="true"></i> Ver comentários</a>
@@ -128,9 +131,9 @@
         <li>
             <a href="mensagens.html" ><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
         </li>
-        <li>
+        <!--<li>
             <a href="index.html"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
-        </li>
+        </li>-->
     </ul>
 </nav>
 <!-- NAVEGAÇÃO --> 
