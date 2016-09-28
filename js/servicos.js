@@ -3111,7 +3111,7 @@ function verificaVersaoAtual() {
 
             // USER ANDROID
             if (/android/i.test(userAgent)) {
-                location.href="https://play.google.com/store?hl=pt_BR";
+                location.href="https://play.google.com/store/apps/details?id=com.CSPROFISSIONAIS_2016BETA1";
             }
             
             // USER IOS
