@@ -38,7 +38,7 @@
                     </activity>
             </application>
 
-            <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="17"/>
+            <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="38"/>
 
             <permission android:name="com.alphastagestudios.danmarksflyttemand.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
             <uses-permission android:name="com.alphastagestudios.danmarksflyttemand.permission.MAPS_RECEIVE"/>
