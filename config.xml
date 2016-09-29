@@ -4,8 +4,8 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "CSPROFISSIONAIS-2016BETA1"
-        versionCode = "38" 
-        version   = "38.0.0">
+        versionCode = "39" 
+        version   = "39.0.0">
 
     <name>CS Profissionais</name>
 

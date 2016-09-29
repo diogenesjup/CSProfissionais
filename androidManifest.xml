@@ -2,7 +2,7 @@
     <?xml version="1.0" encoding="utf-8"?>
     <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:windowSoftInputMode="adjustPan"
                 package="com.alphastagestudios.danmarksflyttemand" android:versionName="38.0" android:versionCode="38" android:hardwareAccelerated="true">
-    <manifest android:versionCode="38">            
+    <manifest android:versionCode="39">            
             <supports-screens
                     android:largeScreens="true"
                     android:normalScreens="true"
@@ -39,7 +39,7 @@
                     </activity>
             </application>
 
-            <uses-sdk android:minSdkVersion="38" android:targetSdkVersion="38"/>
+            <uses-sdk android:minSdkVersion="39" android:targetSdkVersion="39"/>
 
             <permission android:name="com.alphastagestudios.danmarksflyttemand.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
             <uses-permission android:name="com.alphastagestudios.danmarksflyttemand.permission.MAPS_RECEIVE"/>
