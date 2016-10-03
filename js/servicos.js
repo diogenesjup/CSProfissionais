@@ -408,7 +408,7 @@ function verificarSessao() {
     var sessao = localStorage.getItem("ClienteId");
     if (!sessao) {
         //alert("Por favor, faça seu login novamente");
-        location.href("index.html?clear=1");
+        window.location.href="index.html?clear=1";
     }
 
 }
@@ -1805,7 +1805,7 @@ function verificarSessaoPro() {
     var sessao = localStorage.getItem("idProfissionalLogado");
     if (!sessao) {
         // alert("Por favor, faça seu login novamente");
-        location.href = "index.html?clear=1";
+        window.location.href = "index.html?clear=1";
     }
 
 }
@@ -3112,12 +3112,15 @@ function verificaVersaoAtual() {
             // USER ANDROID
             if (/android/i.test(userAgent)) {
                 alert('Nova Versão disponível! \r\n Favor efetuar a atualização');
-                location.href = "https://play.google.com/store/apps/details?id=com.CSPROFISSIONAIS_2016BETA1&hl=pt_BR";
+                location.href = "https://play.google.com/store/search?q=csprofissionais";
+                //location.href="https://play.google.com/store?hl=pt_BR";
             }
             
             // USER IOS
             if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                location.href="https://www.appstore.com/";
+                location.href = "http://www.apple.com/us/search/csprofissionais";
+                //location.href = "https://www.appstore.com/";
+                
             }
         }
 
