@@ -121,8 +121,8 @@ function procLogin() {
 
             localStorage.setItem("CidadeNome", msg["Data"]["Endereco"]["CidadeNome"]);
             localStorage.setItem("EstadoSigla", msg["Data"]["Endereco"]["EstadoSigla"]);
-            $("#conteudoLogin2").attr("style", "display:block");
-            $("#divAguardeLogCli").attr("style", "display:none;text-align:center; width:100%");
+            // $("#conteudoLogin2").attr("style", "display:block");
+            // $("#divAguardeLogCli").attr("style", "display:none;text-align:center; width:100%");
             location.href = "dashboard.html";
 
         }
@@ -212,8 +212,8 @@ function procCadastroPro() {
     }
 
 
-    $('.conteudoLoginPro').css({ display: "none" });
-    $('.divAguardeCadPro').css({ display: "block" });
+    $('#conteudoLoginPro').attr("style", "display:none");
+    $('#divAguardeCadPro').attr("style", "display:block; text-align:center; width:100%;");
 
     var cadastroNomePro = $("#cadastroNomePro").val();
     var telefoneFixoPro = $("#telefoneFixoPro").val();
@@ -273,8 +273,8 @@ function procCadastroPro() {
     request.fail(function () {
         try {
             alert(msg);
-            $('.conteudoLoginPro').css({ display: "block" });
-            $('.divAguardeCadPro').css({ display: "none" });
+            $('#conteudoLoginPro').attr("style", "display:block");
+            $('#divAguardeCadPro').attr("style", "display:none");
             console.log("Ocorreu um erro ao tentar carregar a Lista de estados");
         } catch (err) {
 
@@ -408,7 +408,7 @@ function verificarSessao() {
     var sessao = localStorage.getItem("ClienteId");
     if (!sessao) {
         //alert("Por favor, faça seu login novamente");
-        window.location.href="index.html?clear=1";
+        window.location.href = "index.html?clear=1";
     }
 
 }
@@ -657,7 +657,7 @@ function procCadastro() {
         alert('Erro ao efetuar cadastro! \r\n Tente novamente mais tarde!');
         console.log("Deu ruim o cadastro");
         $("#conteudoLogin").attr("style", "display:block");
-        $("#divAguardeCadCli").attr("style", "display:none;text-align:center; width:100%")
+        $("#divAguardeCadCli").attr("style", "display:none;text-align:center; width:100%");
     });
 }
 
@@ -925,6 +925,9 @@ function editarMeuPerfil() {
         return false;
     }
 
+    $("#divEditarPerfil").attr("style", "display:none");
+    $("#divAguardeCadPro").attr("style", "display:block;text-align:center; width:100%");
+
 
     var idUsuario = localStorage.getItem("ClienteId");
     var senhaUsuario = localStorage.getItem("Senha");
@@ -991,9 +994,16 @@ function editarMeuPerfil() {
         console.log(msg);
         console.log("Dados (outras informações) atualizados com sucesso!");
 
+        $("#divEditarPerfil").attr("style", "display:block");
+        $("#divAguardeCadPro").attr("style", "display:none;text-align:center; width:100%");
+
+
     });
     request.fail(function () {
         console.log("Não foi possível realizar a operação, tente novamente.");
+        $("#divEditarPerfil").attr("style", "display:block");
+        $("#divAguardeCadPro").attr("style", "display:none;text-align:center; width:100%");
+
     });
 
 
@@ -1628,7 +1638,7 @@ function TodasMensagens() {
 
         for (i = 0; i < totInt; i++) {
 
-            $('#areaTodasMsg').prepend('<div class="row" onclick="interagirProfissional(' + msg["Data"]["List"][i]["ProfissionalId"] + ');" style="padding:20px;"><div class="col-xs-3 col-md-3" style="padding-right:0px;"><img style="max-height:75px;max-width:75px;" src="http://www.csprofissionais.com.br/upload/'+ msg["Data"]["List"][i]["NomeFoto"] + '" class="img-responsive" alt="" style="width:100%;" /></div><div class="col-xs-9 col-md-9"><div><b style="color:#d32f2f;">' + msg["Data"]["List"][i]["Nome"] + '</b><div class="mic-info"><i>celular: ' + msg["Data"]["List"][i]["TelefoneCelular"] + '</i></div></div><div class="comment-text">clique para abrir a conversa</div></div></div>');
+            $('#areaTodasMsg').prepend('<div class="row" onclick="interagirProfissional(' + msg["Data"]["List"][i]["ProfissionalId"] + ');" style="padding:20px;"><div class="col-xs-3 col-md-3" style="padding-right:0px;"><img style="max-height:75px;max-width:75px;" src="http://www.csprofissionais.com.br/upload/' + msg["Data"]["List"][i]["NomeFoto"] + '" class="img-responsive" alt="" style="width:100%;" /></div><div class="col-xs-9 col-md-9"><div><b style="color:#d32f2f;">' + msg["Data"]["List"][i]["Nome"] + '</b><div class="mic-info"><i>celular: ' + msg["Data"]["List"][i]["TelefoneCelular"] + '</i></div></div><div class="comment-text">clique para abrir a conversa</div></div></div>');
 
         }
 
@@ -1758,8 +1768,8 @@ function procLoginPro() {
 
             localStorage.setItem("idProfissionalLogado", msg["Data"]["ProfissionalId"]);
             localStorage.setItem("Nome", msg["Data"]["Nome"]);
-  
-            localStorage.setItem("TelefoneFixo",  msg["Data"]["TelefoneFixo"]);
+
+            localStorage.setItem("TelefoneFixo", msg["Data"]["TelefoneFixo"]);
             localStorage.setItem("TelefoneCelular", msg["Data"]["TelefoneCelular"]);
             localStorage.setItem("Email", msg["Data"]["Email"]);
             localStorage.setItem("Cpf", msg["Data"]["DocumentoLogin"]);
@@ -1775,14 +1785,14 @@ function procLoginPro() {
             localStorage.setItem("Latitude", msg["Data"]["Endereco"]["Latitude"])
             localStorage.setItem("Longitude", msg["Data"]["Endereco"]["Longitude"]);
             localStorage.setItem("NomeFotoPro", msg["Data"]["NomeFoto"]);
-            try{
+            try {
                 localStorage.setItem("Especializacao", msg["Data"]["Especializacao"][0]["Nome"]);
-            }catch(err){}
-           
+            } catch (err) { }
+
             localStorage.setItem("Curriculum", msg["Data"]["Descricao"]);
             $("#btnLogProf").attr("style", "display:block");
             $("#divAguardeLogProf").attr("style", "display:none;text-align:center; width:100%");
-            location.href = "dashboard-pro.html";          
+            location.href = "dashboard-pro.html";
 
         }
 
@@ -2199,8 +2209,8 @@ function atualizarSenhaPro() {
         return false;
     }
 
-    $('.divAtualizarSenha').css({ display: "none" });
-    $('.divCarregaAtualizarSenha').css({ display: "block" });
+    $("#divAtualizarSenha").attr("style", "display:none");
+    $("#divCarregaAtualizarSenha").attr("style", "display:block;text-align:center; width:100%");
 
     var idUsuario = localStorage.getItem("idProfissionalLogado");
     var senhaUsuario = $("#senhaDeAcesso").val();
@@ -2248,8 +2258,8 @@ function atualizarSenhaPro() {
         alert("Senha alterada com sucesso!");
         console.log(msg);
         console.log("Dados (senha) atualizados com sucesso!");
-        $('.divAtualizarSenha').css({ display: "block" });
-        $('.divCarregaAtualizarSenha').css({ display: "none" });
+        $("#divAtualizarSenha").attr("style", "display:block");
+        $("#divCarregaAtualizarSenha").attr("style", "display:none;text-align:center; width:100%");
 
     });
     request.fail(function (msg) {
@@ -2261,8 +2271,8 @@ function atualizarSenhaPro() {
         }
         console.log(msg);
         console.log("Não foi possível realizar a operação, tente novamente.");
-        $('.divAtualizarSenha').css({ display: "block" });
-        $('.divCarregaAtualizarSenha').css({ display: "none" });
+        $("#divAtualizarSenha").attr("style", "display:block");
+        $("#divCarregaAtualizarSenha").attr("style", "display:none;text-align:center; width:100%");
     });
 
 }
@@ -2324,10 +2334,8 @@ function editarMeuPerfilPro() {
         }
     }
 
-
-
-    $('.divEditarPerfil').css({ display: "none" });
-    $('.divCarregaEditarPerfil').css({ display: "block" });
+    $("#divEditarPerfil").attr("style", "display:none");
+    $("#divCarregaEditarPerfil").attr("style", "display:block;text-align:center; width:100%");
 
     var idUsuario = localStorage.getItem("idProfissionalLogado");
     var senhaUsuario = localStorage.getItem("Senha");
@@ -2378,6 +2386,8 @@ function editarMeuPerfilPro() {
     });
     request.fail(function () {
         console.log("Ocorreu um erro ao tentar carregar a Lista de estados");
+        $("#divEditarPerfil").attr("style", "display:block");
+        $("#divCarregaEditarPerfil").attr("style", "display:none;text-align:center; width:100%");
 
     });
     // PEGAR LATITUDE E LONGITUDE
@@ -2438,15 +2448,15 @@ function editarMeuPerfilPro() {
         console.log(msg);
         console.log("Dados (outras informações) atualizados com sucesso!");
 
-        $('.divEditarPerfil').css({ display: "block" });
-        $('.divCarregaEditarPerfil').css({ display: "none" });
+        $("#divEditarPerfil").attr("style", "display:block");
+        $("#divCarregaEditarPerfil").attr("style", "display:none;text-align:center; width:100%");
 
     });
     request.fail(function (msg) {
         console.log(msg);
         console.log("Não foi possível realizar a operação, tente novamente.");
-        $('.divEditarPerfil').css({ display: "block" });
-        $('.divCarregaEditarPerfil').css({ display: "none" });
+        $("#divEditarPerfil").attr("style", "display:block");
+        $("#divCarregaEditarPerfil").attr("style", "display:none;text-align:center; width:100%");
     });
 
 
@@ -2852,77 +2862,83 @@ $('#fotoTrabalho').change(function (event) {
 $('#SendfotoTrabalho').click(function () {
     $('#SendfotoTrabalho').html("enviando....");
 
-    $('.divBtnSendFoto').css({ display: "none" });
-    $('.divEnviandoFoto').css({ display: "block" });
-
-    var retorno = '';
-    var imagemTrabalho = '';
-    var dtImg = new Date().toLocaleString().replace('/', '').replace('/', '').replace(':', '').replace(':', '').replace(' ', '').replace(' ', '');
-    var nomeFotoTrabalho = dtImg + document.getElementById('fotoTrabalho').files[0].name;
-    var request = $.ajax({
-        url: 'http://api.csprofissionais.com.br/api/imagem/PostImg/' + dtImg, // Url do lado server que vai receber o arquivo
-        data: form,
-        processData: false,
-        contentType: false,
-        async: false,
-        type: 'POST',
-        success: function (data) {
-            //retorno = data;
-            //alert(data); // utilizar o retorno
-        }
-    });
-    //alert(retorno);
-    request.done(function (msg) {
-
-        imagemTrabalho = msg;
-        imagemTrabalho = nomeFotoTrabalho;
-        console.log(imagemTrabalho);
-        $('#SendfotoTrabalho').html("enviar novo trabalho");
-        $('.divBtnSendFoto').css({ display: "block" });
-        $('.divEnviandoFoto').css({ display: "none" });
-
-    })
-    request.fail(function () {
-        imagemTrabalho = nomeFotoTrabalho;
-        alert("Erro ao subir imagem!");
-        console.log("Deu ruim o cadastro");
-        $('.divBtnSendFoto').css({ display: "block" });
-        $('.divEnviandoFoto').css({ display: "none" });
-
-    });
+    $("#divBtnSendFoto").attr("style", "display:none");
+    $("#divEnviandoFoto").attr("style", "display:block;text-align:center; width:100%");
 
 
-    if (imagemTrabalho != '') {
-        console.log("Salvando na API " + imagemTrabalho);
-        var profissionalTrabalho = localStorage.getItem("idProfissionalLogado");
+    setTimeout(function () {
 
 
+
+        var retorno = '';
+        var imagemTrabalho = '';
+        var dtImg = new Date().toLocaleString().replace('/', '').replace('/', '').replace(':', '').replace(':', '').replace(' ', '').replace(' ', '');
+        var nomeFotoTrabalho = dtImg + document.getElementById('fotoTrabalho').files[0].name;
         var request = $.ajax({
-            method: "POST",
-            url: "http://api.csprofissionais.com.br/api/profissional/InserirImagem",
-            data: { ProfissionalId: profissionalTrabalho, Nome: imagemTrabalho }
-        })
+            url: 'http://api.csprofissionais.com.br/api/imagem/PostImg/' + dtImg, // Url do lado server que vai receber o arquivo
+            data: form,
+            processData: false,
+            contentType: false,
+            async: false,
+            type: 'POST',
+            success: function (data) {
+                //retorno = data;
+                //alert(data); // utilizar o retorno
+            }
+        });
+        //alert(retorno);
         request.done(function (msg) {
 
-            if (!msg["Data"]) {
-                alert("Ocorreu um erro em tentar salvar a imagem no servidor, tente novamente mais tarde");
-            } else {
-                alert("Imagem enviada com sucesso");
+            imagemTrabalho = msg;
+            imagemTrabalho = nomeFotoTrabalho;
+            console.log(imagemTrabalho);
+            $('#SendfotoTrabalho').html("enviar novo trabalho");
+            $("#divBtnSendFoto").attr("style", "display:block");
+            $("#divEnviandoFoto").attr("style", "display:none;text-align:center; width:100%");
 
-                $('#ultimosTrabalhosWork').prepend("<div id='imagemTrabalhoDiv" + msg["Data"]["ImagensProfissionalId"] + "'><img src='http://www.csprofissionais.com.br/upload/" + msg["Data"]["Nome"] + "' style='width:100%;height:auto;margin-bottom:8px;padding:3px;border:1px solid #efefef;' /><p><button onclick='apagarImagemPro(" + msg["Data"]["ImagensProfissionalId"] + ");' class='btn btn-danger btn-xs'>apagar</button></p><br></div>")
-                console.log("Imagem salva na galeria do profissional com sucesso");
-            }
-            //buscarUltimosTrabalhosPro();
-        });
+        })
         request.fail(function () {
+            imagemTrabalho = nomeFotoTrabalho;
+            alert("Erro ao subir imagem!");
+            console.log("Deu ruim o cadastro");
+            $("#divBtnSendFoto").attr("style", "display:block");
+            $("#divEnviandoFoto").attr("style", "display:none;text-align:center; width:100%");
 
-            alert("Ocorreu um erro em tentar salvar a imagem no servidor, tente novamente mais tarde");
-            //buscarUltimosTrabalhosPro();
         });
 
 
-    }
+        if (imagemTrabalho != '') {
+            console.log("Salvando na API " + imagemTrabalho);
+            var profissionalTrabalho = localStorage.getItem("idProfissionalLogado");
 
+
+            var request = $.ajax({
+                method: "POST",
+                url: "http://api.csprofissionais.com.br/api/profissional/InserirImagem",
+                data: { ProfissionalId: profissionalTrabalho, Nome: imagemTrabalho }
+            })
+            request.done(function (msg) {
+
+                if (!msg["Data"]) {
+                    alert("Ocorreu um erro em tentar salvar a imagem no servidor, tente novamente mais tarde");
+                } else {
+                    alert("Imagem enviada com sucesso");
+
+                    $('#ultimosTrabalhosWork').prepend("<div id='imagemTrabalhoDiv" + msg["Data"]["ImagensProfissionalId"] + "'><img src='http://www.csprofissionais.com.br/upload/" + msg["Data"]["Nome"] + "' style='width:100%;height:auto;margin-bottom:8px;padding:3px;border:1px solid #efefef;' /><p><button onclick='apagarImagemPro(" + msg["Data"]["ImagensProfissionalId"] + ");' class='btn btn-danger btn-xs'>apagar</button></p><br></div>")
+                    console.log("Imagem salva na galeria do profissional com sucesso");
+                }
+                //buscarUltimosTrabalhosPro();
+            });
+            request.fail(function () {
+
+                alert("Ocorreu um erro em tentar salvar a imagem no servidor, tente novamente mais tarde");
+                //buscarUltimosTrabalhosPro();
+            });
+
+
+        }
+
+    }, 3000);
 
 });
 
@@ -2956,10 +2972,12 @@ $('#fotoPerfilPro2').change(function (event) {
     //var name = event.target.files[0].content.name; // para capturar o nome do arquivo com sua extenção
 });
 
-$('#updateProfilePicture').click(function () {
+$('#updateProfilePicture_old').click(function () {
 
-    $('.divAtualizarFotoPerfil').css({ display: "none" });
-    $('.divFotoPerfil').css({ display: "block" });
+
+    $("#divAtualizarFotoPerfil").attr("style", "display:none");
+    $("#divFotoPerfil").attr("style", "display:block;text-align:center; width:100%");
+
 
     if (form != undefined) {
         var imagemPerfil = '';
@@ -2988,16 +3006,17 @@ $('#updateProfilePicture').click(function () {
             localStorage.setItem("NomeFotoPro", nomeFoto);
             console.log(imagemPerfil);
             alert("Imagem atualizada com sucesso");
-            $('.divAtualizarFotoPerfil').css({ display: "block" });
-            $('.divFotoPerfil').css({ display: "none" });
+            $("#divAtualizarFotoPerfil").attr("style", "display:block");
+            $("#divFotoPerfil").attr("style", "display:none;text-align:center; width:100%");
+
             $('#imgFotoPerfil').attr('src', 'http://www.csprofissionais.com.br/upload/' + localStorage.getItem("NomeFotoPro"));
         })
         request.fail(function () {
             imagemPerfil = nomeFoto;
             localStorage.setItem("NomeFotoPro", nomeFoto);
             console.log("Deu ruim o cadastro");
-            $('.divAtualizarFotoPerfil').css({ display: "block" });
-            $('.divFotoPerfil').css({ display: "none" });
+            $("#divAtualizarFotoPerfil").attr("style", "display:block");
+            $("#divFotoPerfil").attr("style", "display:none;text-align:center; width:100%");
         });
 
 
@@ -3033,6 +3052,125 @@ $('#updateProfilePicture').click(function () {
 
 });
 
+function AtualizaFotoPerfilAll() {
+    ExibeIconeCarregandoFotoPerfil();
+
+    // alert('carregando');
+
+    setTimeout(function () {
+        AtualizaFotoPerfil();
+    }, 3000);
+
+
+
+    //RemoveIconeCarregandoFotoPerfil();
+}
+
+function ExibeIconeCarregandoFotoPerfil() {
+
+    $('.updateProfilePicture').css({ display: "none" });
+    //$("#divAtualizarFotoPerfil").attr("style", "display:none");
+    $('.divFotoPerfil').css({ display: "block" });
+}
+
+function RemoveIconeCarregandoFotoPerfil() {
+
+    $('.updateProfilePicture').css({ display: "block" });
+    //$("#divAtualizarFotoPerfil").attr("style", "display:none");
+    $('.divFotoPerfil').css({ display: "none" });
+}
+
+
+
+function AtualizaFotoPerfil() {
+    //$("#updateProfilePicture").attr("style", "display:none");
+    ////$("#divAtualizarFotoPerfil").attr("style", "display:none");
+    //$("#divFotoPerfil").attr("style", "display:block;text-align:center; width:100%");
+
+
+    if (form != undefined) {
+        var imagemPerfil = '';
+
+        var dtImg = new Date().toLocaleString().replace('/', '').replace('/', '').replace(':', '').replace(':', '').replace(' ', '').replace(' ', '');
+
+        nomeFoto = dtImg + document.getElementById('fotoPerfilPro2').files[0].name;
+
+        var request = $.ajax({
+            url: 'http://api.csprofissionais.com.br/api/imagem/PostImg/' + dtImg, // Url do lado server que vai receber o arquivo
+            data: form,
+            processData: false,
+            contentType: false,
+            async: false,
+            type: 'POST',
+            success: function (data) {
+                //retorno = data;
+                //alert(data); // utilizar o retorno
+            }
+        });
+        //alert(retorno);
+        request.done(function (msg) {
+
+            imagemPerfil = msg;
+            imagemPerfil = nomeFoto;
+            localStorage.setItem("NomeFotoPro", nomeFoto);
+            //console.log(imagemPerfil);
+
+            // $("#updateProfilePicture").attr("style", "display:block");
+            //// $("#divAtualizarFotoPerfil").attr("style", "display:block");
+            // $("#divFotoPerfil").attr("style", "display:none;text-align:center; width:100%");
+
+            $('#imgFotoPerfil').attr('src', 'http://www.csprofissionais.com.br/upload/' + localStorage.getItem("NomeFotoPro"));
+        })
+        request.fail(function () {
+            imagemPerfil = nomeFoto;
+            localStorage.setItem("NomeFotoPro", nomeFoto);
+            //console.log("Deu ruim o cadastro");
+            //$("#updateProfilePicture").attr("style", "display:block");
+            ////$("#divAtualizarFotoPerfil").attr("style", "display:block");
+            //$("#divFotoPerfil").attr("style", "display:none;text-align:center; width:100%");
+        });
+
+
+        if (imagemPerfil != '') {
+            //console.log("Atualizando Perfil " + imagemPerfil);
+            var profissionalPicture = localStorage.getItem("idProfissionalLogado");
+
+            var request = $.ajax({
+                method: "POST",
+                url: "http://api.csprofissionais.com.br/api/profissional/AlterarImagemPerfil",
+                data: {
+                    UsuarioId: profissionalPicture,
+                    Foto: imagemPerfil
+                }
+            })
+            request.done(function (msg) {
+                alert("Imagem atualizada com sucesso!");
+                $('.updateProfilePicture').css({ display: "block" });
+                //$("#divAtualizarFotoPerfil").attr("style", "display:none");
+                $('.divFotoPerfil').css({ display: "none" });
+                //console.log(msg);
+                //console.log("Dados (profile picture) atualizados com sucesso!");
+
+            });
+            request.fail(function () {
+                alert("Falha ao atualizar imagem!");
+                $('.updateProfilePicture').css({ display: "block" });
+                //$("#divAtualizarFotoPerfil").attr("style", "display:none");
+                $('.divFotoPerfil').css({ display: "none" });
+                //console.log("Não foi possível realizar a operação, tente novamente.");
+            });
+
+
+        }
+    }
+    else {
+        alert('Selecionar a imagem!');
+        $('.updateProfilePicture').css({ display: "block" });
+        //$("#divAtualizarFotoPerfil").attr("style", "display:none");
+        $('.divFotoPerfil').css({ display: "none" });
+    }
+
+}
 
 // D0048 - BUSCAR SOLICITAÇÕES DE CONTATO
 function buscarTrabalhos() {
@@ -3107,20 +3245,21 @@ function verificaVersaoAtual() {
         } else {
             console.log("DIRECIONANDO O USUÁRIO PARA A LOJA DE APLICATIVO");
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            
+
 
             // USER ANDROID
             if (/android/i.test(userAgent)) {
                 alert('Nova Versão disponível! \r\n Favor efetuar a atualização');
-                location.href = "https://play.google.com/store/search?q=csprofissionais";
-                //location.href="https://play.google.com/store?hl=pt_BR";
+                //location.href = "https://play.google.com/store/search?q=csprofissionais";
+                //location.href ="https://play.google.com/store/apps/details?id=com.CSPROFISSIONAIS_2016BETA1";
+                location.href = "https://play.google.com/store?hl=pt_BR";
             }
-            
+
             // USER IOS
             if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
                 location.href = "http://www.apple.com/us/search/csprofissionais";
                 //location.href = "https://www.appstore.com/";
-                
+
             }
         }
 
@@ -3167,16 +3306,28 @@ function ClickTextEditPro(val) {
 function ClickTextMensPro(val) {
 
     $('html, body').animate({
-        scrollTop: $('.' + val).offset().top -100
+        scrollTop: $('.' + val).offset().top - 100
     }, 1500);
     //alert($('.' + val).offset().top);
 }
 
 function EfetuaLogOff() {
-    localStorage.clear();
-    history.go(-(history.length - 1));
+
+
+    $('.efetuarlogoff').attr("style", "display:none");
+    //$("#divAtualizarFotoPerfil").attr("style", "display:none");
+    $('.divefetuarlogoff').attr("style", "display:block");
+
+    setTimeout(function () {
+        localStorage.clear();
+        history.go(-(history.length - 1));
+    }, 3000);
+
+
     //location.href = "index.html?clear=1";
-    
+    $('.efetuarlogoff').attr("style", "display:block");
+    //$("#divAtualizarFotoPerfil").attr("style", "display:none");
+    $('.divefetuarlogoff').attr("style", "display:none");
 }
 
 function exitFromApp() {
@@ -3395,9 +3546,9 @@ function closeBrowser() {
     try {
         var ref = window.open('Sair.html', 'location=no');
         window.addEventListener('loadstart', function (event) {
-        if (event.url.match("mobile/close")) {
-             ref.close();
-         }
+            if (event.url.match("mobile/close")) {
+                ref.close();
+            }
         });
 
     } catch (erro) {
@@ -3411,7 +3562,7 @@ function onDeviceReady() {
     //  var dd = today.getDate();
     //  if (dd == 19) {
     //      alert("Your application has been expired");
-   // navigator.app.exitApp();
+    // navigator.app.exitApp();
     //navigator.device.exitApp()
     // }
 }
@@ -3419,15 +3570,15 @@ function onDeviceReady() {
 function closeMeNow() {
     if (typeof cordova !== 'undefined') {
         if (navigator.app) {
-             navigator.app.exitApp();
+            navigator.app.exitApp();
         }
         else if (navigator.device) {
-             navigator.device.exitApp();
+            navigator.device.exitApp();
         }
     } else {
         window.close();
         $timeout(function () {
-         //   self.showCloseMessage = true;  //since the browser can't be closed (otherwise this line would never run), ask the user to close the window
+            //   self.showCloseMessage = true;  //since the browser can't be closed (otherwise this line would never run), ask the user to close the window
         });
     }
 }
@@ -3435,14 +3586,14 @@ function closeMeNow() {
 
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
-   // document.addEventListener("backbutton", function (e) {
-        //if ($.mobile.activePage.is('#index')) {
-          //  e.preventDefault();
-            navigator.app.exitApp();
-        //}
-        //else {
-          //  navigator.app.backHistory()
-       // }
+    // document.addEventListener("backbutton", function (e) {
+    //if ($.mobile.activePage.is('#index')) {
+    //  e.preventDefault();
+    navigator.app.exitApp();
+    //}
+    //else {
+    //  navigator.app.backHistory()
+    // }
     //}, false);
 }
 

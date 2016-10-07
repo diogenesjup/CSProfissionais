@@ -179,11 +179,11 @@
                         <label>Envie um novo trabalho</label>
                         <input type="file" id="fotoTrabalho" name="fotoTrabalho" class="form-control">
                     </div>
-                    <div class="form-group divBtnSendFoto" id="divBtnSendFoto">
+                    <div class="form-group" id="divBtnSendFoto">
                         <button type="submit" id="SendfotoTrabalho" class="btn btn-primary btn-sm">enviar novo trabalho</button>
                     </div>
-                    <div class="divEnviandoFoto" style="display:none;text-align:center; width:100%">
-                        <img style="max-height:30px;max-width:30px;" src="http://app.csprofissionais.com.br/images/loadingCad.gif" />
+                    <div id="divEnviandoFoto" style="display:none;text-align:center; width:100%">
+                        <img style="max-height:30px;max-width:30px;" src="images/loadingCad.gif" />
                     </div>
 
                 </div>
@@ -294,6 +294,8 @@
             $('#btnSolicitacaoDestaque').click();
             //$('#solicitacoesDestaqueWork').show();
         }
+
+        verificaVersaoAtual();
 
     </script>
 
