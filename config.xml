@@ -48,7 +48,7 @@
     <!-- Plugins -->  
 
     
-    <gap:plugin name="de.appplant.cordova.plugin.local-notification" version="0.8.4" />
+    <gap:plugin name="de.appplant.cordova.plugin.local-notification" version="0.8.4" source="npm" />
        
     
 
