@@ -3918,5 +3918,6 @@ function exitAppPopup() {
 }
 
 document.addEventListener('deviceready', function () {
-    window.plugin.notification.local.add({ message: 'Great app!' });
+    //window.plugin.notification.local.add({ message: 'Great app!' });
+    alert("funciona se for por aqui");
 }, false);
