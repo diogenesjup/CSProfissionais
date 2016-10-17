@@ -3917,7 +3917,12 @@ function exitAppPopup() {
     return false;
 }
 
-document.addEventListener('deviceready', function () {
-    //window.plugin.notification.local.add({ message: 'Great app!' });
+
+    window.plugin.notification.local.add({ id: 1, message: 'Great app!' });
+    navigator.notification.alert('Aqui funciona melhor',  // message
+                 null,    // callback
+                null,    // title
+                 'Ok'     // buttonName
+                 );     
     alert("funciona se for por aqui");
-}, false);
+
