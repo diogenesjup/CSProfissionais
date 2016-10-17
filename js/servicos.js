@@ -3918,7 +3918,7 @@ function exitAppPopup() {
 }
 
 
-    window.plugin.notification.local.add({ id: 1, message: 'Great app!' });
+    //window.plugin.notification.local.add({ id: 1, message: 'Great app!' });
     navigator.notification.alert('Aqui funciona melhor',  // message
                  null,    // callback
                 null,    // title
