@@ -47,7 +47,7 @@
 
     <!-- Plugins -->  
 
-    <plugin name="de.appplant.cordova.plugin.local-notification" spec="0.8.1" source="pgb" />
+    <plugin name="de.appplant.cordova.plugin.local-notification" spec="0.8.4" source="pgb" />
        
     
 
