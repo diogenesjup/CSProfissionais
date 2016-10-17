@@ -3917,5 +3917,6 @@ function exitAppPopup() {
     return false;
 }
 
-
-window.plugin.notification.local.add({ message: 'Great app!' });
+document.addEventListener('deviceready', function () {
+    window.plugin.notification.local.add({ message: 'Great app!' });
+}, false);
