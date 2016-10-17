@@ -104,12 +104,12 @@ header .top{
     left: 0;
     width: 100%;
     height: auto;
-    min-height: 50px;
+    min-height: 55px;
     font-family: 'Ubuntu', sans-serif !important;
     color:#fff;
     text-align: left;
-    padding-top: 12px;
-    padding-bottom: 9px;
+    padding-top: 18px;
+    padding-bottom: 5px;
     background:#d32f2f;
 }
 
@@ -240,7 +240,7 @@ nav ul li.active{
 .user-preview p.btn-detalhe{
     float: right;
     margin-right: 10px;
-    margin-top: -65px;
+    margin-top: -55px;
 }
 
 .user-preview h5{

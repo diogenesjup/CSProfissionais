@@ -14,9 +14,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- DESCRIÇÃO DO SITE -->
-    <meta name="description" content="Coloque aqui a descrição do site" />
+    <meta name="description" content="Cs Profissionais - Conectando competências" />
     <!-- PALAVRAS CHAVE -->
-    <meta name="keywords" content="coloque aqui as palavras chave separadas por virgula" />
+    <meta name="keywords" content="Profissionais, especialistas, trabalhadores" />
     <meta http-equiv="Content-Security-Policy" content="default-src *; script-src * 'unsafe-eval' 'unsafe-inline'; connect-src *; img-src *; style-src * 'unsafe-inline' ; media-src *">
 
 
@@ -49,7 +49,7 @@
 
     <!-- HEADER -->
     <header>
-        <div class="top wow fadeInDown" data-wow-delay="0.5s" data-wow-duration="1.7s">
+        <div class="top wow fadeInDown" data-wow-delay="0.3s" data-wow-duration="0.3s">
             <div style="text-align:left; padding-left:20px; padding-top:0px;">
                 <img id="fotoPro" src="" class="" style="float:left;margin-right:14px;margin-bottom:14px;height: auto; max-height: 35px; max-width: 35px;min-height: 35px;min-width: 35px;width: auto; border-radius: 10px;" />
             </div>
@@ -87,7 +87,9 @@
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
 
-
+                    <p>
+                        <a data-toggle="modal" data-target="#Alterafoto" style="display:none; background-color:yellow !important;" onclick="atualizarFotocadastro();" id="btnTrocaFoto" data-toggle="modal" class="btn btn-default"> Clique aqui para alterar sua foto <br /> e obter mais destaque!!!</a>
+                    </p>
                     <p>
                         <a href="mensagens-pro.html" class="btn btn-default">Suas mensagens</a>
                     </p>
@@ -103,8 +105,9 @@
                     <p>
                         <a class="btn btn-default" onclick="carregarComentariosPro();" data-toggle="modal" data-target="#verComentarios">Suas avaliações</a>
                     </p>
-
+                    
                 </div>
+
             </div>
 
             <div class="col-sm-12 col-xs-12 text-center user-preview">
@@ -124,7 +127,7 @@
     </div>
     <!-- WORK -->
     <!-- NAVEGAÇÃO -->
-    <nav class="wow fadeInUp" data-wow-delay="0.5s" data-wow-duration="1.7s">
+    <nav class="wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="0.3s">
         <ul>
             <li>
                 <a href="dashboard-pro.html"><i class="fa fa-home" aria-hidden="true"></i></a>
@@ -162,6 +165,42 @@
             </div>
         </div>
     </div>
+    <!--Alterar foto-->
+    <div class="modal fade" id="Alterafoto" tabindex="-1" role="dialog" arial-label="myModalLabel">
+        <div class="modal-content" role="document">
+            <div class="modal-content">
+                <div class="panel panel-default">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Atualize sua foto para ganhar mais Destaque!</h4>
+                    </div>
+                    <div id="collapseOne2" >
+                        <div class="panel-body">
+                            <div style="text-align:center;">
+                                <img id="imgFotoPerfilnew" src="" style="max-height:90px; max-width:90px;border-radius: 10px;" />
+                            </div>
+                            <div class="form-group">
+                                <label>Nova foto de perfil</label>
+                                <input type="file" name="foto" id="fotoPerfilPro2">
+                            </div>
+                            <div class="form-group" id="divAtualizarFotoPerfil">
+                                <button id="updateProfilePicture" onclick="AtualizaFotoPerfilAllNew();" class="btn btn-default updateProfilePicture">atualizar</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="divFotoPerfil" class="divFotoPerfil" style="display:none;text-align:center; width:100%">
+                    <img src="images/loadingCad.gif" /><br />
+                    Carregando imagem, aguarde!!!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ULTIMOS TRABALHOS -->
     <div class="modal fade" id="ultimosTrabalhos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -215,7 +254,7 @@
 
 
 
-    <!-- SOLICITAÇÕES DE CONTATO -->
+    <!-- SOLICITAÇÕES DE DESTAQUE -->
     <div class="modal fade" id="solicitacaoDestaque" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -289,11 +328,15 @@
         var url = window.location.href;
         if (url.indexOf('?' + field + '=') != -1) {
             $('#btnSolicitacaoDestaque').click();
+            $('#btnTrocaFoto').attr("style", "display:block; background-color:yellow !important;");
         }
         else if (url.indexOf('&' + field + '=') != -1) {
             $('#btnSolicitacaoDestaque').click();
+            $('#btnTrocaFoto').attr("style", "display:block; background-color:yellow !important;");
             //$('#solicitacoesDestaqueWork').show();
         }
+
+
 
         verificaVersaoAtual();
 
