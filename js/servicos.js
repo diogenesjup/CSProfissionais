@@ -3933,8 +3933,8 @@ var date = new Date();
 
 cordova.plugins.notification.local.schedule({
     id: 1,
-    title: "Message Title",
-    message: "Message Text",
+    title: "Título mensagem",
+    message: "Texto mensagem",
     at: date,
     sound: sound,
     icon: "file://images/icon/icon-36-ldpi.png"
