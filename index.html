@@ -59,11 +59,9 @@
                 <br />
                 <!--<a href="javascript:;" onclick="closeBrowser()">Close</a>-->
                 <!--<button id="efetuarlogoff" class="btn btn-primary btn-lg" onclick="onDeviceReady()">onDeviceReady</button>-->
-
                 <!--<button id="efetuarlogoff2" class="btn btn-primary btn-lg" onclick="closeBrowser();">closeBrowser</button>-->
                 <!--<button id="backbutton" class="btn btn-primary btn-lg" onclick="exitAppPopup()">closeMeNow</button>-->
                 <!--<a href="#" onclick="exitFromApp();" data-role="button">Close App</a>-->
-
                 <!--<a id="exitApp" href="#" onclick="onDeviceReady();" data-role="button">closeMeNow</a>-->
             </div>
         </div>
@@ -115,9 +113,58 @@
                     </div>
                     <div class="form-group" id="conteudoLogin2">
                         <button onclick="procLogin();" class="btn btn-defaul">login como cliente</button> <p style="text-align:center;">ou</p> <button data-toggle="modal" data-target="#modalLoginPro" class="btn btn-defaul">quero me logar como profissional</button>
-                    
+
                     </div>
                     <div class="form-group" id="divAguardeLogCli" style="display:none;text-align:center; width:100%">
+                        <img src="images/loadingCad.gif" />
+                    </div>
+                    <div class="form-group" id="conteudoLogin2">
+                        <button class="btn btn-primary btn-defaul" data-toggle="modal" data-target="#modalEsqueciCliente">Esqueci minha senha</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalEsqueciCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Esqueci Minha Senha(cliente)</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="text" class="form-control" id="loginEsqueci" placeholder="Seu e-mail cadastrado" required name="email" />
+                    </div>
+
+                    <div class="form-group" id="conteudoEsqueciCli">
+                        <button onclick="procEsqueciSenhaCliente();" class="btn btn-defaul">Enviar Senha</button> <p style="text-align:center;">
+
+                    </div>
+                    <div class="form-group" id="divAguardeEsqueciCli" style="display:none;text-align:center; width:100%">
+                        <img src="images/loadingCad.gif" />
+                    </div>
+                </div>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Esqueci Minha Senha(Profissional)</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Documento</label>
+                        <input type="text" class="form-control" id="loginEsqueciProf" placeholder="Seu CPF/CNPJ cadastrado" required name="email" />
+                    </div>
+
+                    <div class="form-group" id="conteudoEsqueciPro">
+                        <button onclick="procEsqueciSenhaProfissional();" class="btn btn-defaul">Enviar Senha</button> <p style="text-align:center;">
+
+                    </div>
+                    <div class="form-group" id="divAguardeEsqueciPro" style="display:none;text-align:center; width:100%">
                         <img src="images/loadingCad.gif" />
                     </div>
                 </div>
@@ -127,6 +174,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Modal -->
     <div class="modal fade" id="modalLoginPro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -202,7 +250,7 @@
                     </div>
                     <div class="form-group">
                         <label>*Bairro</label>
-                        <input type="text" class="form-control itfBairroCli" id="cadastroBairro" placeholder="Nome do Bairro" required name="cadastroBairro" onclick="ClickTextCli(530)" /> 
+                        <input type="text" class="form-control itfBairroCli" id="cadastroBairro" placeholder="Nome do Bairro" required name="cadastroBairro" onclick="ClickTextCli(530)" />
                     </div>
                     <div class="form-group">
                         <label>*Estado</label>
@@ -297,7 +345,7 @@
 
                     <div class="form-group">
                         <label>Curriculum</label><br />
-                        <span style="font-size:12px">Ex: Sou pintor a 20 anos, trabalho com pintura de interiores, etc (máximo de 300 caracters) </span>
+                        <span style="font-size:12px">Ex: Tenho 32 anos, sou pintor a 15 anos, trabalho com pintura de interiores, etc (máximo de 300 caracters) </span>
                         <textarea class="form-control cadastroCurriculoPro" name="Curriculum" id="cadastroCurriculoPro" onclick="ClickTextPro(975)" placeholder="Curriculum" rows="8"></textarea>
                     </div>
                     <div class="form-group" style="display:none;">
@@ -352,7 +400,7 @@
             procVerificaUsuarioLogado();
             onLoad();
 
-            
+
 
             document.addEventListener("deviceready", onDeviceReady, true);
         }
@@ -373,15 +421,15 @@
                 window.location.replace("index.html");
                 // window.history.back(-100);
                 //window.history.go(-(history.length - 1));
-               //window.history.clear();
+                //window.history.clear();
             }
             else if (url.indexOf('&' + field + '=') != -1) {
                 history.go(-(history.length - 1));
                 window.location.replace("index.html");
-               
+
                 //window.history.back(-100);
                 //window.history.clear();
-            }  
+            }
 
             //document.addEventListener("deviceready", onDeviceReady, false);
             //
@@ -395,9 +443,9 @@
             //navigator.notification.alert('Hello', ok, 'Title', 'Button!');
         });
 
-       
+
     </script>
-    <script type="text/javascript" src="cordova.js"></script>
+
     <script type="text/javascript" src="js/sweetalert2.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-notify.js"></script>
     <script type="text/javascript" src="js/wow.min.js"></script>
@@ -411,6 +459,7 @@
         new WOW().init();
 
     </script>
+
 
     <script type="text/javascript" src="js/servicos.js"></script>
 

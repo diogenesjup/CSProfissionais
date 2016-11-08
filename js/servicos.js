@@ -3681,6 +3681,89 @@ function procVerificaUsuarioLogado() {
 
 }
 
+function procEsqueciSenhaCliente() {
+
+    var login = $("#loginEsqueci").val();
+   
+
+    if (login == "") {
+        alert("E-mail obrigatório!");
+        return 1;
+    }
+
+    $("#conteudoEsqueciCli").attr("style", "display:none");
+    $("#divAguardeEsqueciCli").attr("style", "display:block;text-align:center; width:100%");
+
+    var request = $.ajax({
+        method: "POST",
+        //url: "http://api.csprofissionais.com.br/api/EsqueciSenha/Cliente",
+        url: "http://api.csprofissionais.com.br/api/EsqueciSenha/Cliente",
+        data: { email: login}
+    })
+
+    request.done(function (msg) {
+
+        if (!msg["Data"]) {
+            alert("Cadastro não encontrado!");
+            $("#conteudoEsqueciCli").attr("style", "display:block");
+            $("#divAguardeEsqueciCli").attr("style", "display:none;text-align:center; width:100%");
+        } else {
+            alert("Senha enviada com sucesso!");
+            $("#conteudoEsqueciCli").attr("style", "display:block");
+            $("#divAguardeEsqueciCli").attr("style", "display:none;text-align:center; width:100%");
+        }
+    });
+
+    request.fail(function () {
+        console.log("Ocorreu um erro ao tentar carregar as solicitações de contato");
+        $("#conteudoEsqueciCli").attr("style", "display:block");
+        $("#divAguardeEsqueciCli").attr("style", "display:none;text-align:center; width:100%");
+    });
+
+}
+
+
+function procEsqueciSenhaProfissional() {
+
+    var login = $("#loginEsqueciProf").val();
+    
+    if (login == "") {
+        alert("Documento obrigatório!");
+        return 1;
+    }
+
+    $("#conteudoEsqueciPro").attr("style", "display:none");
+    $("#divAguardeEsqueciPro").attr("style", "display:block;text-align:center; width:100%");
+
+    var request = $.ajax({
+        method: "POST",
+        url: "http://api.csprofissionais.com.br/api/EsqueciSenha/Profissional",
+        data: { documento: login }
+    })
+
+    request.done(function (msg) {
+
+        if (!msg["Data"]) {
+            alert("Cadastro não encontrado!");
+            $("#conteudoEsqueciPro").attr("style", "display:block");
+            $("#divAguardeEsqueciPro").attr("style", "display:none;text-align:center; width:100%");
+        } else {
+            alert("Senha enviada com sucesso!");
+            $("#conteudoEsqueciPro").attr("style", "display:block");
+            $("#divAguardeEsqueciPro").attr("style", "display:none;text-align:center; width:100%");
+        }
+    });
+
+    request.fail(function () {
+        console.log("Ocorreu um erro ao tentar carregar as solicitações de contato");
+        $("#conteudoEsqueciPro").attr("style", "display:block");
+        $("#divAguardeEsqueciPro").attr("style", "display:none;text-align:center; width:100%");
+    });
+
+}
+
+
+
 function validaCpfCnpj(val) {
     var valid = null;
     valid = validate_cpf(val);
@@ -3916,29 +3999,3 @@ function exitAppPopup() {
     );
     return false;
 }
-
-
-
-
-
-
-cordova.plugins.notification.local.hasPermission(function (granted) {
-
-});
-
-cordova.plugins.notification.local.registerPermission(function (granted) {
-});
-
-var date = new Date();
-
-cordova.plugins.notification.local.schedule({
-    id: 1,
-    title: "Título mensagem",
-    message: "Texto mensagem",
-    at: date,
-    sound: sound,
-    icon: "file://images/icon/icon-36-ldpi.png"
-});
-
-
-window.plugin.notification.local.add({ id: 1, message: 'Great app!' });
