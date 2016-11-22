@@ -148,15 +148,25 @@ function procCadastroPro() {
 
     if ($("#tipoProfissionalLista").val().trim() == "")
         msgerro = msgerro + "* Especialização é obrigatório!  \r\n";
+    
+    if ($("#cadastroCnpjPro").val() == "")
+        msgerro = msgerro + "* CPF/CNPJ é obrigatório! \r\n";
+    else if ($("#cadastroCnpjPro").val().length < 10 || $("#cadastroCnpjPro").val().length > 15)
+        msgerro = msgerro + "* CPF/CNPJ inválido! \r\n";
+
 
     if ($("#telefoneCelularPro").val() == "")
         msgerro = msgerro + "* Telefone Celular é obrigatório!  \r\n";
+    else if ($("#telefoneCelularPro").val().length < 10 || $("#telefoneCelularPro").val().length > 11)
+        msgerro = msgerro + "* Telefone Celular inválido!  \r\n";
 
-    if ($("#cadastroCnpjPro").val() == "")
-        msgerro = msgerro + "* CPF/CNPJ é obrigatório! \r\n";
-
+    if ($("#telefoneFixoPro").val() != "" && ($("#telefoneFixoPro").val().length < 10 || $("#telefoneFixoPro").val().length > 10))
+        msgerro = msgerro + "* Telefone fixo inválido!  \r\n";
+        
     if ($("#cadastroCepPro").val() == "")
         msgerro = msgerro + "* CEP é obrigatório! \r\n";
+    else if ($("#cadastroCepPro").val().length != 8)
+        msgerro = msgerro + "* CEP inválido! \r\n";
 
     if ($("#cadastroRuaPro").val() == "")
         msgerro = msgerro + "* Endereço é obrigatório! \r\n";
@@ -176,6 +186,10 @@ function procCadastroPro() {
 
     if ($("#cadastroSenhaPro").val() == "")
         msgerro = msgerro + "* Senha é obrigatório! \r\n";
+
+    if ($("#cadastroCurriculoPro").val() == "")
+        msgerro = msgerro + "* Curriculum é obrigatório! \r\n";
+   
 
     if (msgerro != "") {
         alert(msgerro);
@@ -546,12 +560,16 @@ function procCadastro() {
 
     if ($("#telefoneCelular").val() == "")
         msgerroCad = msgerroCad + "* Telefone Celular é obrigatório!  \r\n";
+    else if ($("#telefoneCelular").val().length < 10 || $("#telefoneCelular").val().length > 11)
+        msgerroCad = msgerroCad + "* Telefone Celular inválido!  \r\n";
 
     //if ($("#cadastroCnpjPro").val() == "")
     //    msgerro = msgerro + "* CPF/CNPJ é obrigatório! \r\n";
 
     if ($("#cadastroCep").val() == "")
         msgerroCad = msgerroCad + "* CEP é obrigatório! \r\n";
+    else if ($("#cadastroCep").val().length != 8)
+        msgerroCad = msgerroCad + "* CEP inválido! \r\n";
 
     if ($("#cadastroRua").val() == "")
         msgerroCad = msgerroCad + "* Endereço é obrigatório! \r\n";
