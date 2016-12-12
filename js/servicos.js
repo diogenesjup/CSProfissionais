@@ -521,11 +521,16 @@ function bannersAnuncios() {
     })
     request.done(function (msg) {
 
-        var totBanners = msg["Data"]["List"].length;
-        totBanners = totBanners - 1;
-        var chaveBanner = Math.floor((Math.random() * totBanners) + 1);
+       // var totBanners = msg["Data"]["List"].length;
+       // totBanners = totBanners - 1;
+       // var chaveBanner = Math.floor((Math.random() * totBanners) + 1);
 
-        $("#areaBannerAnuncio").html("<a href='#'><img src='http://www.csprofissionais.com.br/upload/" + msg["Data"]["List"][chaveBanner]["Arquivo"] + "' /></a>")
+        //$("#areaBannerAnuncio").html("<a href='#'><img src='http://www.csprofissionais.com.br/upload/" + msg["Data"]["List"][chaveBanner]["Arquivo"] + "' /></a>")
+        $("#areaBannerAnuncio").append("<br />");
+        for (i = 0; i < msg["Data"]["List"].length; i++) {
+                $("#areaBannerAnuncio").append("<a href='#'><img src='http://www.csprofissionais.com.br/upload/" + msg["Data"]["List"][i]["Arquivo"] + "' /></a>")
+
+        }
 
     });
     request.fail(function () {
