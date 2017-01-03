@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Aqui um teste de JSON</title>
+</head>
+<body>
+
+
+<div id="resultado"></div>
+<div id="novaTela"></div>
+
+
+<input type="text" id="login" value="luiz@teste.com">
+<input type="text" id="senha" value="123456">
+
+
+<button onclick="procLogin();">clica para ir</button>
+
+    <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script> 
+
+    <script type="text/javascript" src="js/jquery.json.min.js"></script>
+
+    <script type="text/javascript" src="js/servicos.js"></script>
+
+    <script type="text/javascript">
+    	
+
+// Classe para chamar o Json.
+function json(){
+  var qtd;
+  var retorno;
+
+  // Resgatar valores.
+  json.prototype.resgatarValores = function(){
+    $('#resultado').html('Carregando dados...');
+
+    // Estrutura de resultado.
+    $.getJSON('http://api.mdanave.com.br/api/MediaBox/Listar', function(data){
+      this.qtd = data.Data.List.length;
+      this.retorno = '';
+
+      for (i = 0; i < this.qtd; i++){
+        //this.retorno += 'ID: ' + data.usuarios[i].id + '<br />';
+        this.retorno += 'Nome: ' + data.Data.List[i].Nome + ' -<br> ';
+        //this.retorno += 'Cidade: ' + data.usuarios[i].cidade + '<br /><br />';
+      }
+
+      $('#resultado').html(this.retorno);
+    });
+
+  }
+
+}
+
+// Objeto.
+var obj = new json();
+obj.resgatarValores();
+
+
+
+
+function sendInfoLogin(){
+  
+
+  var login = $("#login").val();
+  var senha = $("#senha").val();
+
+  var request = $.ajax({
+      method: "POST",
+      url: "http://api.csprofissionais.com.br/api/cliente/Login",
+      data: { email: login, senha: senha }
+    })
+      request.done(function( msg ) {
+          console.log(msg["Data"]["ClienteId"]);
+          console.log(msg["Data"]["Endereco"]["Nome"]);
+          console.log(msg["Data"]["Endereco"]["Cep"]);
+      });
+      request.fail(function() {
+          console.log("Deu ruim");
+      });
+
+}
+
+function getBanner(){
+  
+
+  var request = $.ajax({
+      method: "GET",
+      url: "http://api.mdanave.com.br/api/MediaBox/Listar"
+      //data: { email: login, senha: senha }
+    })
+      request.done(function( msg ) {
+          alert(msg["Data"]["List"][0]["Arquivo"]);
+          alert(msg["Data"]["List"].length);
+      });
+      request.fail(function() {
+          alert("Banners não foi fácil");
+      });
+
+}
+
+getBanner();
+
+
+    </script>	
+</body>
+</html>

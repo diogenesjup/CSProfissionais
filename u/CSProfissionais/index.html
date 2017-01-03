@@ -1,0 +1,502 @@
+﻿<!--
+#
+# DIOGENES OLIVEIRA DOS SANTOS JUNIOR
+# WWW.DIOGENESJUNIOR.COM.BR
+# CONTATO@DIOGENESJUNIOR.COM.BR
+#
+-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>CS PROFISSIONAIS</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- DESCRIÇÃO DO SITE -->
+    <meta name="description" content="Coloque aqui a descrição do site" />
+    <!-- PALAVRAS CHAVE -->
+    <meta name="keywords" content="coloque aqui as palavras chave separadas por virgula" />
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src * 'unsafe-eval' 'unsafe-inline'; connect-src *; img-src *; style-src * 'unsafe-inline' ; media-src *">
+
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" media="all" />
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <!-- SWEET ALERT -->
+    <link rel="stylesheet" type="text/css" href="css/sweetalert2.min.css">
+
+    <!-- ICONES -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+
+    <!-- FONTE UBUNTU -->
+    <!--<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>-->
+
+    <script type="text/javascript">
+
+
+
+    </script>
+</head>
+<!--<body class="homepage hidden-lg hidden-md" onload="localStorage.clear();">-->
+<body class="homepage hidden-lg hidden-md">
+    <div class="container actions-homepage wow fadeInDown" data-wow-delay="0.5s" data-wow-duration="1.7s">
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalLogin">Já sou usuário</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#tipoCadastro">Quero me cadastrar</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <br />
+                <!--<a href="javascript:;" onclick="closeBrowser()">Close</a>-->
+                <!--<button id="efetuarlogoff" class="btn btn-primary btn-lg" onclick="onDeviceReady()">onDeviceReady</button>-->
+                <!--<button id="efetuarlogoff2" class="btn btn-primary btn-lg" onclick="closeBrowser();">closeBrowser</button>-->
+                <!--<button id="backbutton" class="btn btn-primary btn-lg" onclick="exitAppPopup()">closeMeNow</button>-->
+                <!--<a href="#" onclick="exitFromApp();" data-role="button">Close App</a>-->
+                <!--<a id="exitApp" href="#" onclick="onDeviceReady();" data-role="button">closeMeNow</a>-->
+            </div>
+        </div>
+        <!--<input type="file" id="fileUpload" name="fileUpload" />
+        <input type="button" id="btnEnviar" value="Enviar" />-->
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="tipoCadastro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Você é que tipo de usuário?</h4>
+                </div>
+                <div class="modal-body" style="text-align:center;">
+                    <p>&nbsp;</p>
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12">
+                            <button class="btn btn-dafault btn-lg" data-toggle="modal" data-target="#modalCadastroCliente">Estou procurando <br> profissionais</button>
+                        </div>
+                        <p>&nbsp;</p>
+                        <div class="col-sm-12 col-xs-12">
+                            <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalCadastroProfissional">Eu sou um <br> profissional</button>
+                        </div>
+                    </div>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="text" class="form-control" id="login" placeholder="Seu e-mail cadastrado" required name="email" />
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" id="senha" required class="form-control" placeholder="Sua senha cadastrada" name="senha" />
+                    </div>
+                    <div class="form-group" id="conteudoLogin2">
+                        <button onclick="procLogin();" class="btn btn-defaul">login como cliente</button> <p style="text-align:center;">ou</p> <button data-toggle="modal" data-target="#modalLoginPro" class="btn btn-defaul">quero me logar como profissional</button>
+
+                    </div>
+                    <div class="form-group" id="divAguardeLogCli" style="display:none;text-align:center; width:100%">
+                        <img src="images/loadingCad.gif" />
+                    </div>
+                    <div class="form-group" id="conteudoLogin2">
+                        <button class="btn btn-primary btn-defaul" data-toggle="modal" data-target="#modalEsqueciCliente">Esqueci minha senha</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalEsqueciCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Esqueci Minha Senha(cliente)</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="text" class="form-control" id="loginEsqueci" placeholder="Seu e-mail cadastrado" required name="email" />
+                    </div>
+
+                    <div class="form-group" id="conteudoEsqueciCli">
+                        <button onclick="procEsqueciSenhaCliente();" class="btn btn-defaul">Enviar Senha</button> <p style="text-align:center;">
+
+                    </div>
+                    <div class="form-group" id="divAguardeEsqueciCli" style="display:none;text-align:center; width:100%">
+                        <img src="images/loadingCad.gif" />
+                    </div>
+                </div>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Esqueci Minha Senha(Profissional)</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Documento</label>
+                        <input type="text" class="form-control" id="loginEsqueciProf" placeholder="Seu CPF/CNPJ cadastrado" required name="email" />
+                    </div>
+
+                    <div class="form-group" id="conteudoEsqueciPro">
+                        <button onclick="procEsqueciSenhaProfissional();" class="btn btn-defaul">Enviar Senha</button> <p style="text-align:center;">
+
+                    </div>
+                    <div class="form-group" id="divAguardeEsqueciPro" style="display:none;text-align:center; width:100%">
+                        <img src="images/loadingCad.gif" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalLoginPro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Login</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>CPF/CNPJ</label>
+                        <input type="tel" class="form-control" id="loginPro" placeholder="Digite seu CPF/CNPJ" maxlength="16" required name="email" />
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" id="senhaPro" required class="form-control" placeholder="Sua senha cadastrada" name="senha" />
+                    </div>
+                    <div class="form-group" id="conteudoLogin2">
+                        <button onclick="procLoginPro();" class="btn btn-defaul" id="btnLogProf">logar como profissional</button>
+                        <div class="form-group" id="divAguardeLogProf" style="display:none;text-align:center; width:100%">
+                            <img src="images/loadingCad.gif" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalCadastroCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Novo cadastro CS Profissionais</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>*Nome</label>
+                        <input type="text" class="form-control" id="cadastroNome" placeholder="Digite seu nome completo" onclick="ClickTextCli(80)" required name="nome" />
+                    </div>
+                    <div class="form-group">
+                        <label>*E-mail</label>
+                        <input type="email" class="form-control" id="cadastroEmail" placeholder="Seu e-mail (também será o login)" onclick="ClickTextCli(155)" required name="email" />
+                    </div>
+                    <div class="form-group">
+                        <label>*Telefone Celular</label>
+                        <input type="tel" class="form-control" id="telefoneCelular" maxlength="11" placeholder="DDD + número" onclick="ClickTextCli(230)" required name="DDD + número" />
+                    </div>
+                    <div class="form-group">
+                        <label>*CEP</label>
+                        <input type="tel" class="form-control itfCEPCli" id="cadastroCep" maxlength="8" placeholder="Seu código postal" onclick="ClickTextCli(305)" required name="cep" />
+                    </div>
+                    <!--<div class="form-group">
+                        <label>CPF</label>
+                        <input type="text" class="form-control" id="cadastroCpf" placeholder="Digite seu cpf" required name="CPF" />
+                    </div>-->
+
+                    <div class="form-group">
+                        <label>*Endereço</label>
+                        <input type="text" id="cadastroRua" class="form-control itfEnderecoCli" name="nomeRua" placeholder="Nome da rua" onclick="ClickTextCli(380)" />
+                    </div>
+                    <div class="form-group">
+                        <label>Número</label>
+                        <input type="text" id="cadastroNumero" class="form-control" name="nomeNumero" placeholder="Número" onclick="ClickTextCli(455)" />
+                    </div>
+                    <div class="form-group">
+                        <label>*Bairro</label>
+                        <input type="text" class="form-control itfBairroCli" id="cadastroBairro" placeholder="Nome do Bairro" required name="cadastroBairro" onclick="ClickTextCli(530)" />
+                    </div>
+                    <div class="form-group">
+                        <label>*Estado</label>
+                        <select class="form-control itfEstadoCli" name="estado" id="estado" onclick="ClickTextCli(605)"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>*Cidade</label>
+                        <select class="form-control itfCidadeCli" name="cidade" id="cidade" onclick="ClickTextCli(680)">-- selecione a cidade --</select>
+                    </div>
+                    <div class="form-group">
+                        <label>*Senha</label>
+                        <input type="password" required id="cadastroSenha" class="form-control" placeholder="Sua senha cadastrada" name="senha" onclick="ClickTextCli(755)" />
+                    </div>
+                    <div class="form-group" id="conteudoLogin">
+                        <button onclick="procCadastro();" class="btn btn-default">cadastrar</button>
+                    </div>
+                    <div class="form-group" id="divAguardeCadCli" style="display:none;text-align:center; width:100%">
+                        <img src="images/loadingCad.gif" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+                </div>
+                <br />&nbsp;<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalCadastroProfissional" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Novo cadastro CS Profissionais</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>*Nome</label>
+                        <input type="text" class="form-control cadastroNomePro" id="cadastroNomePro" onclick="ClickTextPro(80)" placeholder="Digite seu nome completo" required name="nome" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>*Sua especialização</label>
+                        <input type="text" id="tipoProfissionalLista" class="form-control tipoProfissionalPesquisa" onclick="ClickTextPro(155)" required name="tipoProfissional" id="tipoProfissionalPesquisa" placeholder="Tipo de profissional" />
+                        <!--<input id="autocomplete-profissionais" type="text" name="Especializacao" class="form-control" placeholder="Analista sistemas, Dentista, Médico (...)" />
+                        <input type="hidden" name="EspecializacaoId" id="autocomplete-profissionais-id">-->
+                    </div>
+                    <div class="form-group">
+                        <label>*CPF/CNPJ</label>
+                        <input type="tel" class="form-control cadastroCnpjPro" id="cadastroCnpjPro" onclick="ClickTextPro(230)" maxlength="16" placeholder="Digite o número do seu CPF ou CPJ (login)" required name="nome" />
+                    </div>
+                    <div class="form-group">
+                        <label>Telefone Fixo</label>
+                        <input type="tel" class="form-control telefoneFixoPro" id="telefoneFixoPro" onclick="ClickTextPro(305)" placeholder="DDD + número" maxlength="10" required name="DDD + número" />
+                    </div>
+                    <div class="form-group">
+                        <label>*Telefone Celular</label>
+                        <input type="tel" class="form-control telefoneCelularPro" id="telefoneCelularPro" onclick="ClickTextPro(380)" placeholder="DDD + número" maxlength="11" required name="DDD + número" />
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="email" class="form-control cadastroEmailPro" id="cadastroEmailPro" onclick="ClickTextPro(455)" placeholder="Seu e-mail" required name="email" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>*CEP</label>
+                        <input type="tel" class="form-control itfCEP cadastroCepPro" id="cadastroCepPro" onclick="ClickTextPro(530)" placeholder="Seu código postal" maxlength="8" required name="cep" />
+                    </div>
+                    <div class="form-group">
+                        <label>*Endereço</label>
+                        <input type="text" id="cadastroRuaPro" class="form-control itfEndereco cadastroRuaPro" onclick="ClickTextPro(605)" name="nomeRuaPro" placeholder="Nome da rua" />
+                    </div>
+                    <div class="form-group">
+                        <label>*Número</label>
+                        <input type="text" id="cadastroNumeroPro" class="form-control cadastroNumeroPro" name="nomeNumeroPro" onclick="ClickTextPro(680)" placeholder="Número" />
+                    </div>
+                    <div class="form-group">
+                        <label>*Bairro</label>
+                        <input type="text" class="form-control itfBairro cadastroBairroPro" id="cadastroBairroPro" onclick="ClickTextPro(755)" placeholder="Nome do Bairro" required name="cep" />
+                    </div>
+                    <div class="form-group">
+                        <label>*Estado</label>
+                        <select class="form-control itfEstado estadoPro" name="estadoPro" id="estadoPro" onclick="ClickTextPro(825)"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>*Cidade</label>
+                        <select class="form-control itfCidade cidadePro" name="cidadePro" id="cidadePro" onclick="ClickTextPro(900)">-- selecione o estado --</select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Curriculum</label><br />
+                        <span style="font-size:12px">Ex: Tenho 32 anos, sou pintor a 15 anos, trabalho com pintura de interiores, etc (máximo de 300 caracters) </span>
+                        <textarea class="form-control cadastroCurriculoPro" name="Curriculum" id="cadastroCurriculoPro" onclick="ClickTextPro(975)" placeholder="Curriculum" rows="8"></textarea>
+                    </div>
+                    <div class="form-group" style="display:none;">
+                        <label>Foto de perfil</label>
+
+                        <input type="file" name="foto" id="fotoPerfilPro">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" required id="cadastroSenhaPro" class="form-control cadastroSenhaPro" onclick="ClickTextPro(1200)" placeholder="Sua senha cadastrada" name="senha" />
+                    </div>
+
+                    <div class="form-group" id="conteudoLoginPro">
+                        <button onclick="procCadastroPro();" class="btn btn-default">cadastrar</button>
+                    </div>
+                    <div class="form-group" id="divAguardeCadPro" style="display:none;text-align:center; width:100%">
+                        <img src="images/loadingCad.gif" />
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+                </div>
+                <div style="min-height:500px;">
+                    <br />&nbsp;<br />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/cidades-estados-v0.2.js"></script>
+
+ 
+    <!--<script type="text/javascript" src="js/jquery.json.min.js"></script>-->
+    <script type="text/javascript">
+        window.onload = function () {
+            new dgCidadesEstados(
+                document.getElementById('estado'),
+                document.getElementById('cidade'),
+                true
+            );
+            new dgCidadesEstados(
+                document.getElementById('estadoPro'),
+                document.getElementById('cidadePro'),
+                true
+            );
+
+            procVerificaUsuarioLogado();
+            onLoad();
+
+
+
+            document.addEventListener("deviceready", onDeviceReady, true);
+
+
+        }
+
+        $(document).ready(function ($) {
+            $('#telefoneFixoPro').mask('##########');
+            $('#telefoneCelularPro').mask('###########');
+            $('#cadastroCepPro').mask('########');
+            $('#cadastroCep').mask('########');
+            $('#telefoneCelular').mask('###########');
+
+
+
+            var field = 'clear';
+            var url = window.location.href;
+            if (url.indexOf('?' + field + '=') != -1) {
+                history.go(-(history.length - 1));
+                window.location.replace("index.html");
+                // window.history.back(-100);
+                //window.history.go(-(history.length - 1));
+                //window.history.clear();
+            }
+            else if (url.indexOf('&' + field + '=') != -1) {
+                history.go(-(history.length - 1));
+                window.location.replace("index.html");
+
+                //window.history.back(-100);
+                //window.history.clear();
+            }
+
+            //document.addEventListener("deviceready", onDeviceReady, false);
+            //
+            //function onDeviceReady() {
+            //    // alert("deviceready");
+            //    document.getElementById('exitApp').addEventListener('click', function () {
+            //        navigator.app.exitApp();
+            //    });
+            //}
+
+            //navigator.notification.alert('Hello', ok, 'Title', 'Button!');
+
+           // function init() {
+                //alert('Init');
+            //    try {
+            //        //alert('setting alarm');
+            //        plugin.setalarm(success, failure);
+            //        alert('alarm set');
+            //    } catch (e) { alert('error' + e.message); }
+
+            //try{
+            //    window.broadcaster.addEventListener("didShow", function (e) {
+            //        //log: didShow received! userInfo: {"data":"test"} 
+            //        console.log("didShow received! userInfo: " + JSON.stringify(e));
+            //    });
+            //}catch(e)
+            //{
+
+            //}
+
+            ////document.addEventListener("deviceready", function() {
+            //    // Here you can use it:
+            //    var pushNotification = window.plugins.pushNotification;
+            //    pushNotification.constructor();
+            ////}, false);
+            ////}
+        });
+
+
+    </script>
+
+    <script type="text/javascript" src="js/sweetalert2.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-notify.js"></script>
+    <script type="text/javascript" src="js/wow.min.js"></script>
+
+    <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
+    <script type="text/javascript" src="js/jquery.mask.js"></script>
+    <script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+
+        new WOW().init();
+
+    </script>
+
+
+    <script type="text/javascript" src="js/servicos.js"></script>
+
+    <script type="text/javascript">
+        verificaVersaoAtual();
+        autoCompleteBusca();
+    </script>
+
+</body>
+
+</html>

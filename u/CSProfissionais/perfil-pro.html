@@ -1,0 +1,307 @@
+﻿<!--
+#
+# DIOGENES OLIVEIRA DOS SANTOS JUNIOR
+# WWW.DIOGENESJUNIOR.COM.BR
+# CONTATO@DIOGENESJUNIOR.COM.BR
+#
+-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>CS Profissionais</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- DESCRIÇÃO DO SITE -->
+    <meta name="description" content="Coloque aqui a descrição do site" />
+    <!-- PALAVRAS CHAVE -->
+    <meta name="keywords" content="coloque aqui as palavras chave separadas por virgula" />
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" media="all" />
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <!-- SWEET ALERT -->
+    <link rel="stylesheet" type="text/css" href="css/sweetalert2.min.css">
+
+    <!-- ICONES -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+    <!-- ANIMATE -->
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <!-- FONTE UBUNTU -->
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
+
+    <!-- AUTO COMPLETE -->
+    <link rel="stylesheet" href="css/bootstrap-tagsinput.css?v=3">
+
+    <!-- MASCARA DO CEP -->
+    <link rel="stylesheet" type="text/css" href="css/jasny-bootstrap.css" media="all" />
+
+
+
+</head>
+<body class="hidden-lg hidden-md">
+
+
+    <!-- HEADER -->
+    <header>
+        <div class="top wow fadeInDown" data-wow-delay="0.3s" data-wow-duration="0.3s">
+            <div class="col-sm-6 col-xs-6" id="nomeUsuario">
+
+            </div>
+            <div class="col-sm-6 col-xs-6" style="text-align:right;">
+                <a href="dashboard.html?cache=3" style="color:#fff;text-decoration:none;">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+    <!-- HEADER -->
+    <!-- WORK -->
+    <div class="work">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12 text-left">
+                    <h3>Suas informações</h3>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Atualizar sua Senha de Acesso
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+
+
+                                    <div class="form-group">
+                                        <label>Senha de acesso</label>
+                                        <input id="senhaDeAcesso" type="password" class="form-control input-lg" required name="senha" placeholder="sua senha de acesso" />
+                                    </div>
+
+
+                                    <div class="form-group" id="divAtualizarSenha">
+                                        <button id="atualizarSenha" class="btn btn-default btn-lg" onclick="atualizarSenhaPro()">atualizar senha de acesso</button>
+                                    </div>
+                                    <div id="divCarregaAtualizarSenha" style="display:none;text-align:center; width:100%">
+                                        <img src="images/loadingCad.gif" />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne2">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne2" aria-expanded="false" aria-controls="collapseOne2">
+                                        Atualizar sua foto de perfil
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne2">
+                                <div class="panel-body">
+                                    <div style="text-align:center;">
+                                        <img id="imgFotoPerfil" src="" style="max-height:90px; max-width:90px;border-radius: 10px;" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Nova foto de perfil</label>
+                                        <input type="file" name="foto" id="fotoPerfilPro2">
+                                    </div>
+                                    <div class="form-group" id="divAtualizarFotoPerfil">
+                                        <button id="updateProfilePicture" onclick="AtualizaFotoPerfilAll();" class="btn btn-default updateProfilePicture">atualizar</button>
+                                    </div>                                 
+
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div id="divFotoPerfil" class="divFotoPerfil" style="display:none;text-align:center; width:100%">
+                            <img src="images/loadingCad.gif" /><br />
+                            Carregando imagem, aguarde!!!
+                        </div>
+                         <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Atualizar Outras informações
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label>*Nome</label>
+                                        <input id="nomeClienteEditar" type="text" class="form-control input-lg" onclick="ClickTextEditPro(220)" required name="nome" placeholder="Nome completo" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>*Sua especialização</label>
+                                        <input type="text" id="tipoProfissionalLista" onclick="ClickTextEditPro(305)" class="form-control tipoProfissionalPesquisa" onclick="ClickTextEditPro(155)" required name="tipoProfissional" id="tipoProfissionalPesquisa" placeholder="Tipo de profissional" />
+                                        <!--<input id="autocomplete-profissionais" type="text" name="Especializacao" class="form-control" placeholder="Analista sistemas, Dentista, Médico (...)" />
+                                        <input type="hidden" name="EspecializacaoId" id="autocomplete-profissionais-id">-->
+                                    </div>
+                                    <div class="form-group">
+                                        <label>*CPF/CNPJ</label>
+                                        <input id="cpfCliente" type="tel" onclick="ClickTextEditPro(385)" class="form-control input-lg" name="cpf" placeholder="Número do seu CPF" maxlength="16" readonly="readonly" style="background-color:#EEEEEE;" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Telefone Fixo</label>
+                                        <input id="telefoneFixo" type="tel" onclick="ClickTextEditPro(465)" class="form-control input-lg" name="telefone" maxlength="10" placeholder="Telefone com DDD" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>*Telefone Celular</label>
+                                        <input id="telefoneCelular" type="tel" onclick="ClickTextEditPro(550)" class="form-control input-lg" name="celular" maxlength="11" placeholder="Celular com DDD" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>E-mail</label>
+                                        <input id="emailCliente" type="email" onclick="ClickTextEditPro(640)" class="form-control input-lg" required name="email" placeholder="E-mail de contato" />
+                                    </div>                                    
+                                    <div class="form-group">
+                                        <label>*CEP</label>
+                                        <input id="cepCliente" type="tel" onclick="ClickTextEditPro(720)" class="form-control input-lg itfCEPCli" maxlength="8" name="bairro" placeholder="Cep" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>*Endereço</label>
+                                        <input id="enderecoCliente" type="text" onclick="ClickTextEditPro(800)"  class="form-control input-lg itfEnderecoCli" name="endereco" placeholder="Nome da Rua" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>*Número</label>
+                                        <input id="numeroCliente" type="text" onclick="ClickTextEditPro(880)"  class="form-control input-lg" name="numero" placeholder="Número" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>*Bairro</label>
+                                        <input id="bairroCliente" type="text" onclick="ClickTextEditPro(960)"  class="form-control input-lg itfBairroCli" name="bairro" placeholder="Bairro" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>*Estado</label>
+                                        <select class="form-control itfEstadoCli" name="estado" id="estado" onclick="ClickTextEditPro(1040)" ></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>*Cidade</label>
+                                        <select class="form-control itfCidadeCli" name="cidade" id="cidade" onclick="ClickTextEditPro(1120)" >-- selecione o estado --</select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Curriculum</label>
+                                        <textarea class="form-control cadastroCurriculoPro" name="Curriculum" id="cadastroCurriculoPro" onclick="ClickTextEditPro(1200)" placeholder="Curriculum" rows="8"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Cadastro Ativo</label>
+                                        <table><tr><td></td><td></td></tr></table>
+                                        <input type="radio" name="CadastroAtivo"  value="1">&nbsp;Sim &nbsp; &nbsp;<input type="radio" name="CadastroAtivo"  value="2">&nbsp;Não
+                                    </div>
+                                    <div class="form-group" id="divEditarPerfil">
+                                        <button id="atualizarPerfil" onclick="editarMeuPerfilPro();" class="btn btn-default btn-lg">atualizar informações</button>
+                                    </div>
+                                    <div id="divCarregaEditarPerfil" style="display:none;text-align:center; width:100%">
+                                        <img src="images/loadingCad.gif" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <button id="efetuarlogoff" class="btn btn-primary btn-lg efetuarlogoff" onclick="EfetuaLogOff()" style="width:100%">Sair do sistema</button>
+                    <div id="divefetuarlogoff" class="divefetuarlogoff" style="display:none;text-align:center; width:100%">
+                        <img src="images/loadingCad.gif" /><br />
+                    </div>
+                    <br />
+                    <span id="areaBannerAnuncio"></span>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <br />&nbsp;<br />
+                    <br />&nbsp;<br />
+                    <br />&nbsp;<br />
+                    <br />&nbsp;<br />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- WORK -->
+    <!-- NAVEGAÇÃO -->
+    <nav class="wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="0.3s">
+        <ul>
+            <li>
+                <a href="dashboard-pro.html"><i class="fa fa-home" aria-hidden="true"></i></a>
+            </li>
+            <li>
+                <a href="perfil-pro.html"><i class="fa fa-user" aria-hidden="true"></i></a>
+            </li>
+            <li>
+                <a href="mensagens-pro.html"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+            </li>
+            <!--<li>
+                <a href="index.html"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+            </li>-->
+        </ul>
+    </nav>
+    <!-- NAVEGAÇÃO -->
+
+    <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/sweetalert2.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-notify.js"></script>
+    <script type="text/javascript" src="js/wow.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
+
+    <script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/cidades-estados-v0.2.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            new dgCidadesEstados(
+                document.getElementById('estado'),
+                document.getElementById('cidade'),
+                true
+            );
+         
+            
+        }
+
+        $(document).ready(function ($) {
+            //$('#telefoneFixo').mask('##########');
+            //$('#telefoneCelular').mask('###########');
+            //$('#cepCliente').mask('########');
+          
+        });
+
+    </script>
+
+    <script type="text/javascript" src="js/jquery.json.min.js"></script>
+    <script type="text/javascript" src="js/servicos.js"></script>
+
+    <script type="text/javascript">
+        new WOW().init();
+
+        verificarSessaoPro();
+        autoCompleteBusca();
+        bannersAnuncios();
+        popularHtmlPro();
+
+        popularCamposPerfilPro();
+
+
+
+
+    </script>
+
+
+    <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+</body>
+</html>

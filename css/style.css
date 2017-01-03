@@ -22,7 +22,7 @@ body{
 
 @media (min-width: 550px) {
     body{
-        display: none;
+        display: block !important;
     }
 }
 

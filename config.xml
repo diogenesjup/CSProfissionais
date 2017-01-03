@@ -86,7 +86,7 @@
     <gap:splash src="images/icon/screen-portrait.jpg"      gap:platform="winphone" />
 
     <gap:config-file platform="ios" parent="CFBundleShortVersionString">
-    <string>385</string>
+    <string>400</string>
     </gap:config-file>
 
     
